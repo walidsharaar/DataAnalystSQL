@@ -54,4 +54,4 @@ Apply your knowledge by using SQL joins and set theory to discover the best year
   - Consultant @ Applied Statistics
 ## Statement of Accomplishment
 
-[Link to Assessments (if applicable)]
+[Link to Assessments]
