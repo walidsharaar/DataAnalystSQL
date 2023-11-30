@@ -44,14 +44,3 @@ If you already have knowledge in some areas, you can take assessments to verify 
 When Was the Golden Age of Video Games?
 Apply your knowledge by using SQL joins and set theory to discover the best years for video games.
 
-## Instructors
-
-- **Michel Semaan**
-  - Data Scientist
-- **Brian Piccolo**
-  - Data Analyst
-- **Irene Ortner**
-  - Consultant @ Applied Statistics
-## Statement of Accomplishment
-
-[Link to Assessments]
