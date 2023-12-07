@@ -329,3 +329,33 @@ select round(avg(budget),-3) as avg_budget_thousands
 from films
 
 ```
+
+## Summary Aliasing and arithmetic | SQL
+SQL lessons cover arithmetic operations, highlighting how to use parentheses for clarity, manage division precision, and the importance of aliasing in queries.
+
+### Facts
+- Basic arithmetic operations in SQL involve symbols for addition, subtraction, multiplication, and division, using parentheses for clarity.
+- SQL defaults to integers when dividing integers, requiring decimal points for precision.
+- Aggregate functions operate vertically on fields, while arithmetic performs calculations horizontally on records.
+- Aliasing becomes essential when using arithmetic operations or aggregate functions, as they generate unnamed fields in queries.
+- Clear field naming, especially with multiple function uses in a query, demands proper aliasing to avoid confusion.
+- SQL execution order dictates that an alias defined in the SELECT clause can't be used in the WHERE clause due to processing sequence.
+
+```
+-- Calculate the title and duration_hours from films
+SELECT title, duration / 60.0 AS duration_hours
+FROM films;
+
+-- Calculate the percentage of people who are no longer alive
+SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead
+FROM people;
+
+-- Find the number of decades in the films table
+SELECT (MAX(release_year) - MIN(release_year)) / 10.0 AS number_of_decades
+FROM films;
+
+-- Round duration_hours to two decimal places
+SELECT title, round((duration / 60.0),2) AS duration_hours
+FROM films;
+
+```
