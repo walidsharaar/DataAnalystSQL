@@ -51,8 +51,46 @@ Facts <br/>
 - 🔍 Multiple fields can be selected by listing their names separated by commas. <br/>
 - 🔍 An asterisk (*) selects all fields within a table for querying. <br/>
   ### Querying the table
--- Select title and author from the books table
 ```
+-- Select title and author from the books table
 SELECT title,author
 FROM books;
 ```
+### Summary Writing queries | SQL
+🔍 SQL queries can be enhanced using keywords like aliasing, DISTINCT, and views to manipulate and manage data efficiently.
+
+### Facts
+📝 Aliasing: Renaming columns in result sets using the AS keyword allows for clarity and brevity without changing the original table.<br/>
+🔄 Selecting distinct records: The DISTINCT keyword helps retrieve unique values; it's useful when needing unique sets or eliminating duplicate values in queries.<br/>
+🔄 DISTINCT with multiple fields: When applied to multiple fields, DISTINCT shows unique combinations of those fields, aiding in examining distinct data sets.<br/>
+🖼️ Views: SQL views create virtual tables from saved SELECT statements, updating automatically when underlying data changes. They're created using CREATE VIEW.<br/>
+🔄 Using views: Once created, views can be queried similar to regular tables, providing a way to access stored result sets.<br/>
+
+```
+-- Select unique authors from the books table
+SELECT DISTINCT author
+FROM 
+books;
+-- Select unique authors and genre combinations from the books table
+SELECT DISTINCT author,genre
+FROM books;
+-- Alias author so that it becomes unique_author
+SELECT DISTINCT author AS unique_author
+FROM books;
+-- Save the results of this query as a view called library_authors
+CREATE VIEW library_authors AS 
+SELECT DISTINCT author AS unique_author
+FROM books;
+-- Select all columns from library_authors
+SELECT * FROM library_authors;
+```
+### Summary SQL flavors | SQL
+SQL flavors encompass different versions that adhere to universal standards but may have additional features. Two prominent flavors are PostgreSQL and SQL Server, each with its unique traits but sharing similarities.
+
+### Facts
+💻 SQL flavors exist, varying in support and features, all conforming to universal standards.<br/>
+🐘 PostgreSQL: Open-source, DARPA-sponsored, and versatile.<br/>
+🖥️ SQL Server: Microsoft's creation, compatible with Microsoft products, using T-SQL as its flavor.<br/>
+🌐 Comparing Flavors: Differences between flavors are akin to dialects; small variations exist, like LIMIT in PostgreSQL and TOP in SQL Server.<br/>
+🤔 Choosing a Flavor: The decision on which to learn might be influenced by employer preferences or remain inconsequential due to minor differences; mastering one allows for an easy transition to another.<br/>
+
