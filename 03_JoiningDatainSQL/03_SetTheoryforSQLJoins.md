@@ -55,3 +55,34 @@ INTERSECT is a set operation that retrieves records common to two tables, akin t
 *Inner vs Intersect Syntax*
 - Application: Used to find countries with both prime ministers and presidents.
 - Pitfalls: Matching specific fields might lead to unexpected or empty results based on data correlations.
+```
+-- Return all cities with the same name as a country
+select name from countries
+intersect 
+select name from cities
+
+```
+
+## Summary EXCEPT | SQL
+EXCEPT operation in SQL allows identifying records present in one table but not in another, aiding in the exclusion of specific data based on set differences.
+
+### Facts
+- EXCEPT identifies records present in the left table but absent in the right.
+- EXCEPT's diagram visually demonstrates its operation, fading out irrelevant records and retaining exclusions.
+- EXCEPT's SQL syntax effectively excludes specified records based on set differences, providing a practical method to filter data.
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/65673a68-ab7d-42ec-a92c-810bcbf89c59)
+*Except Venn diagrams*
+
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/334bd3e7-5a51-470d-b8cc-ed50fb465f01)
+*Except  diagrams*
+
+```
+-- Return all cities that do not have the same name as a country
+SELECT name 
+FROM cities
+EXCEPT
+SELECT name
+FROM countries
+ORDER BY name;
+
+```
