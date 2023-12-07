@@ -99,3 +99,13 @@ SELECT genre
 FROM books
 LIMIT 10
 ```
+### Conclusion
+🏆 I've gained a solid grasp of SQL fundamentals.
+
+###Facts
+🌐 I've learned the significance of databases and their application.<br/>
+🧭 Explored the structure and organization of relational databases.<br/>
+📝 Developed the ability to craft SQL queries for database insights.<br/>
+Where to go next
+🚀 Dive deeper into advanced SQL queries for more complex data manipulation and analysis.<br/>
+📚 Consider specialized SQL flavor courses to explore nuances and expand your skills further.<br/>
