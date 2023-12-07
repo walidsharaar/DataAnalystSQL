@@ -65,3 +65,14 @@ Understanding SQL involves more than just knowing the language—formatting, sty
 - Using semicolons at the end of SQL queries, though not mandatory in all flavors, is considered a best practice for portability and clarity.
 - Handling non-standard field names, like those with spaces, requires enclosing them in double-quotes for proper querying.
 - Adhering to SQL style guides fosters smoother collaboration and enhances readability for better understanding and debugging.
+
+## Summary Filtering numbers | SQL
+
+Understanding the WHERE clause in SQL for filtering data based on specific criteria, including numbers and strings.
+
+### Facts
+- The WHERE clause allows filtering of data in SQL queries, similar to selecting coats from a closet based on specific attributes.
+- It uses comparison operators (greater than, less than, equal to, etc.) for numeric values to filter data, such as movies released after a certain year.
+- Various comparison operators help filter data, including 'not equal to' for excluding specific values.
+- These operators can also be applied to strings, using single quotation marks for text-based filtering.
+- The order of execution for SQL statements involving WHERE follows a specific sequence, impacting how the data is retrieved.
