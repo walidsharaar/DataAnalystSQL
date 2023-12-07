@@ -9,3 +9,6 @@ Subquerying and anti-joins introduce advanced SQL techniques beyond traditional 
 - Leveraging WHERE clauses and subqueries is fundamental in performing semi joins, allowing for nuanced data filtering.
 - Anti joins, in contrast, choose records in the first table where no matching condition is found in the second table.
 - Illustrative examples demonstrate how to modify semi joins into anti joins for refined data filtering, such as selecting countries in the Americas founded after 1800.
+
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/d7c3e15a-0e0b-4fd1-b02c-b27582ad76c2)
+* Addative Join *
