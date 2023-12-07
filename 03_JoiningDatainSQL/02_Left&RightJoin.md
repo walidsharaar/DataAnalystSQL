@@ -151,3 +151,86 @@ FULL JOIN currencies AS c2
 USING(code)
 WHERE region LIKE 'M%esia';
 ```
+## Summary Crossing into CROSS JOIN | SQL
+
+Exploring the concept of CROSS JOIN in SQL, which generates all possible combinations between two tables without conditions.
+
+### Facts
+- CROSS JOIN Diagram: Illustrates how CROSS JOIN combines all combinations from two tables, showcasing the result of nine combinations between table1 and table2.
+- CROSS JOIN Syntax: Requires minimal syntax without specifying conditions like ON or USING.
+- Pairing Prime Ministers with Presidents: Applying CROSS JOIN to a scenario involving global leaders from Asia and South America databases, generating all possible pairings for journalist coverage.
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/07469286-638b-4e1b-94e5-b8f0376f71a3)
+*cross join*
+```
+--Complete the code to perform an INNER JOIN of countries AS c with languages AS l using the code field to obtain the languages currently spoken in the two countries.
+SELECT c.name AS country, l.name AS language
+-- Inner join countries as c with languages as l on code
+FROM countries AS c        
+INNER JOIN languages AS l
+USING(code)
+WHERE c.code IN ('PAK','IND')
+	AND l.code in ('PAK','IND');
+-- Change your INNER JOIN to a different kind of join to look at possible combinations of languages that could have been spoken in the two countries given their history. Observe the differences in output for both joins.
+SELECT c.name AS country, l.name AS language
+FROM countries AS c        
+-- Perform a cross join to languages (alias as l)
+CROSS JOIN languages AS l
+WHERE c.code in ('PAK','IND')
+	AND l.code in ('PAK','IND');
+```
+
+- Use joins, filtering, sorting, and limiting to identify the five countries and their regions with the lowest life expectancy in 2010.
+```
+SELECT 
+	c.name AS country,
+    region,
+    life_expectancy AS life_exp
+FROM countries AS c
+-- Join to populations (alias as p) using an appropriate join
+left join populations p 
+ON c.code = p.country_code
+-- Filter for only results in the year 2010
+where year=2010
+-- Sort by life_exp
+order by life_expectancy asc
+-- Limit to five records
+limit 5;
+
+```
+## Summary Self joins | SQL
+Self joins involve joining a table to itself, typically used to compare values within the same table. They're handy for tasks like pairing countries from the same continent.
+
+### Facts
+- Self joins link a table with itself to compare values internally.
+- They're helpful for creating pairs like countries on the same continent.
+- No dedicated syntax exists; aliasing is necessary for a self join in SQL.
+- Setting joining fields is crucial to match the table to itself.
+- Avoiding pairing records with themselves requires additional conditions.
+- The final self-joined table displays country combinations within continents, excluding self-pairings.
+
+```
+--Select the country_code from p1 and the size field from both p1 and p2, aliasing p1.size as size2010 and p2.size as size2015 (in that order).
+-- Select aliased fields from populations as p1
+SELECT 
+	p1.country_code, 
+    p1.size AS size2010, 
+    p2.size AS size2015
+-- Join populations as p1 to itself, alias as p2, on country code
+FROM populations AS p1
+INNER JOIN populations AS p2
+USING(country_code);
+
+-- Since you want to compare records from 2010 and 2015, eliminate unwanted records by extending the WHERE statement to include only records where the p1.year matches p2.year - 5.
+SELECT 
+	p1.country_code, 
+    p1.size AS size2010, 
+    p2.size AS size2015
+FROM populations AS p1
+INNER JOIN populations AS p2
+USING(country_code)
+WHERE p1.year = 2010
+-- Filter such that p1.year is always five years before p2.year
+    AND p1.year = p2.year - 5;
+
+
+```
