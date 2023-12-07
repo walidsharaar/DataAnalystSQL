@@ -93,4 +93,9 @@ SQL flavors encompass different versions that adhere to universal standards but 
 🖥️ SQL Server: Microsoft's creation, compatible with Microsoft products, using T-SQL as its flavor.<br/>
 🌐 Comparing Flavors: Differences between flavors are akin to dialects; small variations exist, like LIMIT in PostgreSQL and TOP in SQL Server.<br/>
 🤔 Choosing a Flavor: The decision on which to learn might be influenced by employer preferences or remain inconsequential due to minor differences; mastering one allows for an easy transition to another.<br/>
-
+```
+-- Select the first 10 genres from books using PostgreSQL
+SELECT genre
+FROM books
+LIMIT 10
+```
