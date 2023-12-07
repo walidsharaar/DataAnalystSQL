@@ -79,3 +79,75 @@ RIGHT JOIN countries
 USING(code)
 ORDER BY language;
 ```
+## Summary FULL JOINs | SQL
+FULL JOIN combines LEFT JOIN and RIGHT JOIN, returning all IDs irrespective of matches, showing nulls for non-matching records.
+
+### Facts
+- FULL JOIN, the last of three outer join types, compared to LEFT JOIN, RIGHT JOIN, and INNER JOIN.
+- FULL JOIN combines LEFT and RIGHT JOIN, retaining all IDs regardless of matches, displaying nulls for non-matching records.
+- SQL code for FULL JOIN closely aligns with INNER, LEFT, and RIGHT JOIN syntax.\
+- Example from leaders database illustrates FULL JOIN to retrieve countries and their leaders, showcasing nulls for non-matching positions.
+  
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/5ffafd48-9a4d-45e9-829f-25c604a2cada)
+*full join*
+
+```
+--Perform a full join with countries (left) and currencies (right). Filter for the North America region or NULL country names.
+SELECT name AS country, code, region, basic_unit
+FROM countries
+-- Join to currencies
+FULL JOIN currencies
+USING (code)
+-- Where region is North America or null
+WHERE region = 'North America'
+	OR name IS NULL
+ORDER BY region;
+-- Repeat the same query as before, turning your full join into a left join with the currencies table. Have a look at what has changed in the output by comparing it to the full join result.
+SELECT name AS country, code, region, basic_unit
+FROM countries
+-- Join to currencies
+left Join currencies 
+USING (code)
+WHERE region = 'North America' 
+	OR name IS NULL
+ORDER BY region;
+-- Repeat the same query again, this time performing an inner join of countries with currencies. Have a look at what has changed in the output by comparing it to the full join and left join results!
+SELECT name AS country, code, region, basic_unit
+FROM countries
+-- Join to currencies
+INNER JOIN currencies
+USING (code)
+WHERE region = 'North America' 
+	OR name IS NULL
+ORDER BY region;
+--Complete the FULL JOIN with countries as c1 on the left and languages as l on the right, using code to perform this join.
+SELECT 
+	c1.name AS country, 
+    region, 
+    l.name AS language,
+	basic_unit, 
+    frac_unit
+FROM countries as c1 
+-- Full join with languages (alias as l)
+FULL JOIN languages as l 
+USING(code)
+-- Full join with currencies (alias as c2)
+FULL JOIN currencies AS c2
+USING(code)
+WHERE region LIKE 'M%esia';
+--chain this join with another FULL JOIN, placing currencies on the right, joining on code again
+SELECT 
+	c1.name AS country, 
+    region, 
+    l.name AS language,
+	basic_unit, 
+    frac_unit
+FROM countries as c1 
+-- Full join with languages (alias as l)
+FULL JOIN languages as l 
+USING(code)
+-- Full join with currencies (alias as c2)
+FULL JOIN currencies AS c2
+USING(code)
+WHERE region LIKE 'M%esia';
+```
