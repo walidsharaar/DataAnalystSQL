@@ -31,7 +31,7 @@ Tables, the foundational elements of databases, consist of rows and columns hold
 ### Summary  Data 
 📊 This lesson covers the essence of databases, focusing on data types, storage, and schemas within a database.
 
-Facts <br/>
+### Facts <br/>
 ⏰ Introduction to database data and storage. <br/>
 💾  SQL data types for fields and their importance in storage and operations.<br/>
 🔤 Understanding strings, their types, and their efficient storage.<br/>
