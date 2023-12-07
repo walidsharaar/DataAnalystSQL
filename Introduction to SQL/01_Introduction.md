@@ -38,3 +38,16 @@ Facts <br/>
 🔢 Storing whole numbers (integers) and numbers with fractional parts (floats).<br/>
 📐 Schemas as blueprints showing table designs and relationships, including data types.<br/>
 💽 Explanation of how database information is physically stored on servers, detailing server roles and their capabilities.<br/>
+
+
+### Summary Introducing queries
+🔍 SQL queries are powerful tools for accessing and analyzing data in databases, especially when handling large and complex datasets.
+
+### Facts
+- 🔍 SQL helps extract insights within and across relational database tables.  <br/>
+- 🔍 It's optimal for complex data relationships and extensive datasets like those in retail platforms. <br/>
+- 🔍 Keywords like SELECT and FROM guide query operations. <br/>
+- 🔍 Queries, written using keywords and syntax, generate result sets without altering the database. <br/>
+- 🔍 Multiple fields can be selected by listing their names separated by commas. <br/>
+- 🔍 An asterisk (*) selects all fields within a table for querying. <br/>
+
