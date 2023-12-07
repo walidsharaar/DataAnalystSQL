@@ -359,3 +359,40 @@ SELECT title, round((duration / 60.0),2) AS duration_hours
 FROM films;
 
 ```
+
+## Summary Sorting results | SQL
+Learned about sorting data in SQL using ORDER BY. It organizes results in ascending or descending order based on specified fields, enabling clearer data interpretation.
+
+### Facts
+- Sorting results aids in organizing data for easier comprehension, similar to arranging a messy closet by specific attributes for quick access.
+- ORDER BY in SQL arranges data either in ascending order (default) or descending order when specified, applied after the FROM statement.
+- Adding ASC clarifies sorting in ascending order, while DESC sorts data in descending order.
+- ORDER BY can sort by single or multiple fields, using commas to separate and prioritize sorting criteria.
+- Different sorting orders can be applied to each field, granting flexibility in sorting multiple attributes.
+- ORDER BY executes towards the end in the sequence of SQL commands, after SELECT and before LIMIT.
+
+```
+-- Select name from people and sort alphabetically
+select name 
+from people
+order by name asc
+
+-- Select the title and duration from longest to shortest film
+select title, duration 
+from films 
+order by duration desc
+
+-- Select the release year, duration, and title sorted by release year and duration
+select release_year, duration,title
+from films
+order by release_year
+
+-- Select the certification, release year, and title sorted by certification and release year
+select release_year,title, certification
+from films
+order by release_year asc
+
+
+
+```
+
