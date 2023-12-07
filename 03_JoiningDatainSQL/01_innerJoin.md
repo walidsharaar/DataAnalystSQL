@@ -38,3 +38,48 @@ INNER JOIN economies AS e
 ON c.code = e.code;
 
 ```
+#### USING in action | SQL
+Using the USING clause simplifies joins when joining tables with common field names, enhancing query efficiency.
+- USING simplifies joins by referencing a shared column in both tables.
+- It's beneficial when joining tables with identical field names.
+- Specifically helpful in simplifying the exploration of the languages table for official and unofficial languages.
+```
+-- Use the country code field to complete the INNER JOIN with USING; do not change any alias names.
+SELECT c.name AS country, l.name AS language, official
+FROM countries AS c
+INNER JOIN languages AS l
+-- Match using the code column
+USING(code);
+
+```
+
+## Summary Defining relationships | SQL
+Understanding SQL relationships involves recognizing one-to-many, one-to-one, and many-to-many connections between tables, each defined by distinct associations.
+
+### Facts
+- One-to-many relationships : One entity links to multiple entities, like artists and their songs, authors and books, etc.
+- One-to-one relationships: Unique pairings between entities, such as one fingerprint per person at border control.
+- Many-to-many relationships: Complex associations like languages and countries, where multiple languages can belong to multiple countries, like Dutch in the Netherlands and Belgium.
+
+```
+-- Select country and language names, aliased
+select c.name as country , l.name as language
+-- From countries (aliased)
+from countries c
+-- Join to languages (aliased)
+inner join languages l
+-- Use code as the joining field with the USING keyword
+using(code);
+
+-- Rearrange SELECT statement, keeping aliases
+SELECT c.name AS country, l.name AS language
+FROM countries AS c
+INNER JOIN languages AS l
+USING(code)
+-- Order the results by language
+order by language 
+
+
+```
+
+
