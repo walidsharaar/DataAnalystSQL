@@ -14,3 +14,7 @@ Subquerying and anti-joins introduce advanced SQL techniques beyond traditional 
 *Addative Join*
 ![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/411b31cf-1904-4f99-9613-1e7dac7efa7c)
 *Semi Join*
+
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/5eeec05d-c665-4fa9-b021-a11d69050092)
+
+*Anti Join*
