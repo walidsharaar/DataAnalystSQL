@@ -423,5 +423,57 @@ select release_year,country, max(budget) as max_budget
 from films
 group by release_year, country
 
+```
 
+## Summary Filtering grouped data | SQL
+Understanding SQL's HAVING clause involves the distinction between WHERE and HAVING in filtering grouped data, determined by the order of execution and the type of filtering needed for aggregate functions.
+
+### Facts
+- In SQL, HAVING filters grouped records, whereas WHERE filters individual records.
+- The order of execution in SQL queries is: FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY, and LIMIT.
+- WHERE is executed before GROUP BY, impacting the use of aliases and aggregate functions.
+- HAVING is crucial when filtering based on aggregated data, such as average film duration per year.
+- Understanding business questions helps determine whether to use WHERE or HAVING in SQL queries, depending on the need for grouping and aggregation.
+
+```
+-- Select the country and distinct count of certification as certification_count
+SELECT country, COUNT(DISTINCT certification) AS certification_count
+FROM films
+-- Group by country
+GROUP BY country
+-- Filter results to countries with more than 10 different certifications
+HAVING COUNT(DISTINCT certification) > 10;
+
+-- Select the country and average_budget from films
+select country , round(avg(budget),2) as average_budget
+from films
+-- Group by country
+group by country
+-- Filter to countries with an average_budget of more than one billion
+having (avg(budget))>1000000000
+-- Order by descending order of the aggregated budget
+order by (avg(budget)) desc
+
+-- Select the release_year for films released after 1990 grouped by year
+SELECT release_year
+FROM films
+WHERE release_year > 1990
+GROUP BY release_year;
+
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+FROM films
+WHERE release_year > 1990
+GROUP BY release_year
+-- Modify the query to see only years with an avg_budget of more than 60 million
+having avg(budget) > 60000000;
+
+--Finally, order the results from the highest average gross and limit to one.
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+FROM films
+WHERE release_year > 1990
+GROUP BY release_year
+HAVING AVG(budget) > 60000000
+-- Order the results from highest to lowest average gross and limit to one
+order by avg_gross desc
+limit 1;
 ```
