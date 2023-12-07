@@ -491,3 +491,5 @@ Skills
 What's next?
 - Ready for the joining course or explore practice options on DataCamp
 
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/58287e83-1d0b-457d-9945-df8f3977d782)
+*Statement of Accomplishment*
