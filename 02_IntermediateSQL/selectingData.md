@@ -76,3 +76,110 @@ Understanding the WHERE clause in SQL for filtering data based on specific crite
 - Various comparison operators help filter data, including 'not equal to' for excluding specific values.
 - These operators can also be applied to strings, using single quotation marks for text-based filtering.
 - The order of execution for SQL statements involving WHERE follows a specific sequence, impacting how the data is retrieved.
+```
+-- Select film_ids and imdb_score with an imdb_score over 7.0
+SELECT film_id, imdb_score
+from reviews
+where imdb_score>7.0
+
+-- Select film_ids and facebook_likes for ten records with less than 1000 likes 
+select film_id,facebook_likes
+from reviews
+where facebook_likes<1000
+limit 10 ;
+
+-- Count the records with at least 100,000 votes
+select count(*) as films_over_100K_votes
+from 
+reviews
+where num_votes >= 100000
+
+-- Count the Spanish-language films
+select count(language) as count_spanish
+from films
+where language='Spanish'
+
+```
+
+## Summary Multiple criteria | SQL
+SQL learning progresses from filtering single criteria to incorporating multiple criteria using keywords like OR, AND, and BETWEEN, enhancing query precision.
+
+### Facts
+- Understanding SQL filters growth in skills rapidly, moving from single criteria to multiple criteria.
+- Filtering criteria can involve various attributes, such as color and length, e.g., narrowing coat choices to yellow and shorter ones.
+- Learning additional keywords (OR, AND, BETWEEN) expands filtering capabilities in WHERE clauses for more nuanced queries.
+- OR operator allows selection based on meeting at least one condition, like choosing green or purple coat options.
+- Combining OR with WHERE enables filtering films by specified years, showing films released in 1994 or 2000.
+- Using AND in filters requires meeting all specified conditions, exemplified in queries for films released between 1994 and 2000.
+- Combining AND and OR allows complex queries, like filtering films by release years and certification criteria.
+- BETWEEN simplifies filtering within ranges, like querying films released between 1994 and 2000 inclusively.
+- Utilizing BETWEEN, AND, OR collectively enhances query complexity, enabling filtering films released in a specific range and country.
+
+```
+-- Select the title and release_year for all German-language films released before 2000
+SELECT title, release_year
+FROM films
+WHERE release_year < 2000
+AND language = 'German';
+
+-- Update the query to see all German-language films released after 2000
+SELECT title, release_year
+FROM films
+WHERE release_year > 2000
+AND language = 'German';
+
+-- Select all records for German-language films released after 2000 and before 2010
+SELECT *
+FROM films
+WHERE release_year > 2000
+AND release_year < 2010
+AND language = 'German';
+
+-- Find the title and year of films from the 1990 or 1999
+select title,release_year
+from films
+where release_year = 1990 or release_year=1999;
+
+-- Filter the records to only include English or Spanish-language films.
+SELECT title, release_year
+FROM films
+WHERE (release_year = 1990 OR release_year = 1999)
+-- Add a filter to see only English or Spanish-language films
+and (language='Spanish' or language='English') ;
+
+--Finally, restrict the query to only return films worth more than $2,000,000 gross.
+SELECT title, release_year
+FROM films
+WHERE (release_year = 1990 OR release_year = 1999)
+AND (language = 'English' OR language = 'Spanish')
+-- Filter films with more than $2,000,000 gross
+	and gross>2000000;
+
+-- Select the title and release_year for films released between 1990 and 2000
+select title, release_year
+from films
+where release_year between 1990 and 2000;
+
+-- Build on your previous query to select only films with a budget over $100 million.
+SELECT title, release_year
+FROM films
+WHERE release_year BETWEEN 1990 AND 2000
+-- Narrow down your query to films with budgets > $100 million
+and budget>100000000;
+
+--Now, restrict the query to only return Spanish-language films.
+SELECT title, release_year
+FROM films
+WHERE release_year BETWEEN 1990 AND 2000
+	AND budget > 100000000
+-- Restrict the query to only Spanish-language films
+	and language='Spanish';
+
+--Finally, amend the query to include all Spanish-language or French-language films with the same criteria.
+SELECT title, release_year
+FROM films
+WHERE release_year BETWEEN 1990 AND 2000
+	AND budget > 100000000
+-- Amend the query to include Spanish or French-language films
+	AND language in('Spanish','French') ;
+```
