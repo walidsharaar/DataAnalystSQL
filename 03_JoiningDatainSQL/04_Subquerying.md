@@ -11,4 +11,6 @@ Subquerying and anti-joins introduce advanced SQL techniques beyond traditional 
 - Illustrative examples demonstrate how to modify semi joins into anti joins for refined data filtering, such as selecting countries in the Americas founded after 1800.
 
 ![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/d7c3e15a-0e0b-4fd1-b02c-b27582ad76c2)
-* Addative Join *
+*Addative Join*
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/411b31cf-1904-4f99-9613-1e7dac7efa7c)
+*Semi Join*
