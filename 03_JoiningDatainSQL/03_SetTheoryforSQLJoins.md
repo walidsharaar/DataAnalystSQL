@@ -21,3 +21,22 @@ Set theory introduces set operations like UNION, INTERSECT, and EXCEPT in SQL, e
 
 *Union & Union all Syntax*
 <br/>Understanding these set operations in SQL extends the toolkit for combining data without the need for explicit join conditions, focusing on set theory principles and data stacking rather than table merging.
+
+```
+--You have two tables, economies2015 and economies2019, available to you under the tabs in the console. You'll perform a set operation to stack all records in these two tables on top of each other, excluding duplicates
+-- Select all fields from economies2015
+select * from economies2015    
+-- Set operation
+union
+-- Select all fields from economies2019
+select * from economies2019
+ORDER BY code, year;
+
+-- Query that determines all pairs of code and year from economies and populations, without duplicates
+SELECT code, year
+FROM economies
+UNION 
+SELECT country_code, year
+FROM populations
+ORDER BY code, year;
+```
