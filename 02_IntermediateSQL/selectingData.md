@@ -183,3 +183,61 @@ WHERE release_year BETWEEN 1990 AND 2000
 -- Amend the query to include Spanish or French-language films
 	AND language in('Spanish','French') ;
 ```
+
+## Summary Filtering text | SQL
+SQL filtering involves using LIKE, NOT LIKE, and IN operators to search for text patterns or specific values in fields, allowing versatile queries.
+
+### Facts
+-  We shift focus from filtering numbers to filtering text data.
+- WHERE clause is used to filter text; initially, specific text strings are targeted.
+- LIKE, NOT LIKE, and IN keywords are introduced for pattern-based text filtering.
+- LIKE operator with wildcards (%) matches various characters, while underscore (_) matches a single character.
+- NOT LIKE operator filters records not matching the specified pattern (case-sensitive).
+- Wildcards can be positioned anywhere and combined for diverse search criteria.
+- WHERE clause with OR conditions can get complex; IN operator simplifies by specifying multiple values.
+- IN operator quickly filters based on multiple conditions, as shown in filtering by release years.
+- Text field filtering example: WHERE country is Germany or France.
+  
+```
+-- Select the names that start with B
+select name
+from people
+where name like 'B%'
+
+-- Select the names of people whose names have 'r' as the second letter.
+SELECT name
+FROM people
+-- Select the names that have r as the second letter
+where name like '_r%'
+
+--Select the names of people whose names don't start with 'A'.
+SELECT name
+FROM people
+-- Select names that don't start with A
+where name not like 'A%'
+
+-- Find the title and release_year for all films over two hours in length released in 1990 and 2000
+SELECT title, release_year
+FROM films
+WHERE release_year IN (1990, 2000) AND duration > 120;
+
+-- Find the title and language of all films in English, Spanish, and French
+SELECT title, language
+FROM films WHERE language IN ('English', 'Spanish', 'French');
+
+-- Find the title, certification, and language all films certified NC-17 or R that are in English, Italian, or Greek
+SELECT title, certification, language
+FROM films
+WHERE certification IN ('NC-17', 'R') AND language IN ('English', 'Italian', 'Greek');
+
+-- Count the unique titles
+SELECT COUNT(DISTINCT title) AS nineties_english_films_for_teens
+FROM films
+-- Filter to release_years to between 1990 and 1999
+WHERE release_year BETWEEN 1990 AND 1999
+-- Filter to English-language films
+AND language = 'English'
+-- Narrow it down to G, PG, and PG-13 certifications
+AND certification IN ('G', 'PG', 'PG-13');
+
+```
