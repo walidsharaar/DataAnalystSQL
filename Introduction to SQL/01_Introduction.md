@@ -110,5 +110,5 @@ Where to go next
 - Dive deeper into advanced SQL queries for more complex data manipulation and analysis.<br/>
 - Consider specialized SQL flavor courses to explore nuances and expand your skills further.<br/>
 
-[Accomplishment] https://www.datacamp.com/statement-of-accomplishment/course/209839ed3608cc1febf05a635ef7fcc8222018e0?raw=1
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/6b68e513-73e4-43c8-abd7-4bdf7fe29bf1)
 *Statement of Accomplishment*
