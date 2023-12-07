@@ -16,4 +16,4 @@ Set theory introduces set operations like UNION, INTERSECT, and EXCEPT in SQL, e
 - Syntax for set operations involves SELECT statements for tables and the set operation (UNION/UNION ALL) between them, requiring identical column count and data types.
 ![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/f996a83a-713b-4f12-acf4-10eda668755a)
 *Union & Union all Syntax*
-Understanding these set operations in SQL extends the toolkit for combining data without the need for explicit join conditions, focusing on set theory principles and data stacking rather than table merging.
+<br/>Understanding these set operations in SQL extends the toolkit for combining data without the need for explicit join conditions, focusing on set theory principles and data stacking rather than table merging.
