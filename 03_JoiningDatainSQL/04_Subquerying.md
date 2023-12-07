@@ -51,3 +51,96 @@ WHERE continent = 'Oceania'
     (SELECT code
     FROM currencies);
 ```
+
+## Summary Subqueries inside WHERE and SELECT | SQL
+This lesson delves into the use of subqueries within WHERE and SELECT statements in SQL, demonstrating their syntax, nuances, and application in filtering and counting data.
+
+### Facts
+- Subqueries in WHERE clauses are common for filtering data; the lesson revisits syntax and nuances, including using the WHERE IN clause.
+- IN operator can accept subqueries, provided the result matches the data type of the field being filtered.
+- Subqueries in WHERE clauses can involve fields from the same or different tables, impacting their compatibility.
+- Subqueries in SELECT clauses help count and filter data across different tables, requiring careful setup with aliases and WHERE conditions.
+- Using a subquery within a SELECT statement allows aggregation and filtering across distinct elements, facilitating complex data manipulation and counting.
+
+```
+-- Select average life_expectancy from the populations table
+select avg(life_expectancy)
+-- Filter for the year 2015
+from populations
+where year=2015
+
+SELECT *
+FROM populations
+-- Filter for only those populations where life expectancy is 1.15 times higher than average
+WHERE life_expectancy > 1.15 *
+  (SELECT AVG(life_expectancy)
+   FROM populations
+   WHERE year = 2015) 
+    AND year = 2015;
+
+-- Return the name, country_code and urbanarea_pop for all capital cities (not aliased).
+-- Select relevant fields from cities table
+SELECT name, country_code, urbanarea_pop
+FROM cities
+-- Filter using a subquery on the countries table
+WHERE name IN
+  (SELECT capital
+   FROM countries)
+ORDER BY urbanarea_pop DESC;
+
+-- Find top nine countries with the most cities
+SELECT countries.name AS country, COUNT(*) AS cities_num
+FROM countries
+LEFT JOIN cities
+ON countries.code = cities.country_code
+GROUP BY country
+-- Order by count of cities as cities_num
+ORDER BY cities_num DESC, country
+LIMIT 9;
+SELECT countries.name AS country,
+-- Subquery that provides the count of cities   
+  (SELECT COUNT(*)
+   FROM cities
+   WHERE cities.country_code = countries.code) AS cities_num
+FROM countries
+ORDER BY cities_num DESC, country
+LIMIT 9;
+```
+
+## Summary Subqueries inside FROM | SQL
+Subqueries within a FROM clause allow for complex filtering and data manipulation in SQL queries, enabling the creation of temporary tables to extract specific information.
+
+### Facts
+- Subqueries within FROM: Utilized to filter continents with monarchs and extract the most recent independence year for each continent.
+- Combining tables: Multiple tables can be included using commas in the FROM clause, addressing duplicates with the DISTINCT command.
+- Nested subqueries: Integration of initial subqueries within a FROM statement, using aliases and WHERE clauses for matching records.
+- Finalizing the query: Employing DISTINCT to remove duplicate results and ordering the output by continent to display continents with monarchs and their recent independence years.
+```
+-- Select code, and language count as lang_num
+SELECT code, COUNT(*) AS lang_num
+FROM languages
+GROUP BY code;
+
+-- Select local_name and lang_num from appropriate tables
+SELECT local_name, sub.lang_num
+FROM countries,
+    (SELECT code, COUNT(*) AS lang_num
+     FROM languages
+     GROUP BY code) AS sub
+-- Where codes match    
+WHERE countries.code = sub.code
+ORDER BY lang_num DESC;
+--Select country code, inflation_rate, and unemployment_rate from economies. Filter code for the set of countries which do not contain the words "Republic" or "Monarchy" in their gov_form.
+-- Select relevant fields
+SELECT code, inflation_rate, unemployment_rate
+FROM economies
+WHERE year = 2015 
+  AND code NOT IN
+-- Subquery returning country codes filtered on gov_form
+    (SELECT code
+     FROM countries
+     WHERE (gov_form LIKE '%Monarchy%' OR gov_form LIKE '%Republic%'))
+ORDER BY inflation_rate;
+
+
+```
