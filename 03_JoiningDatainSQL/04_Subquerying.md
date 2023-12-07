@@ -144,3 +144,14 @@ ORDER BY inflation_rate;
 
 
 ```
+## Summary The finish line | SQL
+Congratulations on completing the course! Let's review the various types of joins, set operations, basic subqueries, and next steps in SQL.
+
+### Facts
+- SQL joins combine columns from tables via a lookup process: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN, CROSS JOIN, semi joins, anti joins, and self joins were covered.
+- Set operations in SQL offer an alternative way of joining data.
+- Subquerying within SELECT, WHERE, and FROM clauses was explored as part of basic subqueries.
+- To advance in SQL, consider further courses or practice joining data through projects, exercises, and competitions. Build a portfolio in Workspace for hands-on experience!
+
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/5ab3d992-0a7b-4575-8965-cfa4aa220ecf)
+*Accomplishment Statement*
