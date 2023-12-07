@@ -392,7 +392,36 @@ select release_year,title, certification
 from films
 order by release_year asc
 
+```
+
+## Summary Grouping data | SQL
+
+Learned about sorting data and moved on to grouping results based on different fields using GROUP BY in SQL queries. Error handling when selecting fields not in the GROUP BY clause was highlighted, and the order of execution for GROUP BY in queries was explained.
+
+### Facts
+- Learned to sort data before diving into grouping results.
+- Grouping data in SQL involves summarizing data for specific groups.
+- GROUP BY clause in SQL is used with aggregate functions for summarizing statistics.
+- Selecting a field not in the GROUP BY clause results in an error; it can be resolved by adding an aggregate function.
+- GROUP BY can be applied to multiple fields, affecting how data is grouped.
+- Combining GROUP BY with ORDER BY allows for grouping, calculation, and result ordering.
+- Order of execution for GROUP BY in queries: after FROM and before other clauses.
+
+```
+-- Find the release_year and film_count of each year
+select release_year, count(title) as film_count
+from films
+group by release_year
+
+-- Find the release_year and average duration of films for each year
+select release_year, avg(duration) as avg_duration
+from films
+group by release_year
+
+-- Find the release_year, country, and max_budget, then group and order by release_year and country
+select release_year,country, max(budget) as max_budget
+from films
+group by release_year, country
 
 
 ```
-
