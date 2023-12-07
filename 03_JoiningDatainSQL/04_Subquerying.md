@@ -42,4 +42,12 @@ where code in
     WHERE region = 'Middle East')
 ORDER BY name;
 
+-- build on your query to complete your anti join, by adding an additional filter to return every country code that is not included in the currencies table.
+SELECT code, name
+FROM countries
+WHERE continent = 'Oceania'
+-- Filter for countries not included in the bracketed subquery
+ and code not in
+    (SELECT code
+    FROM currencies);
 ```
