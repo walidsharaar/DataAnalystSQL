@@ -82,4 +82,39 @@ order by language
 
 ```
 
+## Summary Multiple joins | SQL
+Understanding the power of SQL joins gets a boost as we delve into multiple and chained joins, exploring syntax intricacies and applying them to real-world scenarios.
 
+### Facts
+- Multiple joins in a single query streamline complex data retrieval.
+- Chained joins build on the result of previous joins, refining data selection.
+- Applying joins to real-world scenarios like identifying countries with specific leadership structures enhances practical SQL skills.
+- Chaining multiple INNER JOINs allows us to link several tables together.
+- Utilizing additional fields in the ON clause refines result sets, narrowing down matches.
+```
+--Perform an inner join of countries AS c (left) with populations AS p (right), on code. Select name, year and fertility_rate.
+select name,year,fertility_rate
+from countries c
+-- Inner join countries and populations, aliased, on code
+inner join populations p
+on c.code = p.country_code
+-- Chain another inner join to your query with the economies table AS e, using code.Select name, and using table aliases, select year and unemployment_rate from economies.
+-- Select fields
+SELECT name, e.year, fertility_rate,e.unemployment_rate
+FROM countries AS c
+INNER JOIN populations AS p
+ON c.code = p.country_code
+-- Join to economies (as e)
+inner join economies e
+-- Match on country code
+using(code);
+
+SELECT name, e.year, fertility_rate, unemployment_rate
+FROM countries AS c
+INNER JOIN populations AS p
+ON c.code = p.country_code
+INNER JOIN economies AS e
+ON c.code = e.code
+-- Add an additional joining condition such that you are also joining on year
+AND e.year = p.year;
+```
