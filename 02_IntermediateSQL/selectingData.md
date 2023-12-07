@@ -241,3 +241,91 @@ AND language = 'English'
 AND certification IN ('G', 'PG', 'PG-13');
 
 ```
+## Summary NULL values | SQL
+This lesson delves into handling NULL values in SQL, emphasizing their prevalence in real-world databases and the importance of filtering them for accurate analysis using operators like IS NULL and IS NOT NULL.
+
+### Facts
+- NULL in SQL represents missing or unknown values, often found in databases due to human error or unavailable information.
+- Misinterpreting data due to NULL values, such as assuming available information when it's missing, can lead to inaccurate analysis.
+- Using IS NULL in the WHERE clause helps identify missing data, while IS NOT NULL filters out NULL values for specific queries.
+- COUNT() and COUNT() with IS NOT NULL yield the same results as they both count non-missing values.
+- Knowing how to handle NULL values is crucial for accurate data analysis, as they're widespread in real-world databases. Operators like IS NULL and IS NOT NULL aid in selecting, excluding, or identifying missing values.
+```
+-- List all film titles with missing budgets
+SELECT title AS no_budget_info
+FROM films
+WHERE budget IS NULL;
+
+-- Count the number of films we have language data for
+select count(title) as count_language_known
+from films
+where language  is not null;
+
+```
+
+## Summary Summarizing data | SQL
+Aggregate functions in SQL summarize data using calculations like average, sum, minimum, and maximum for specific fields, enabling a comprehensive view of the dataset.
+
+### Facts
+- Aggregate functions in SQL condense multiple values into a single result, providing insights into datasets beyond individual records.
+- Functions like COUNT(), AVG(), SUM(), MIN(), and MAX() operate on fields, not rows, showcasing aspects like average budget, total sum, lowest, and highest values within a dataset.
+- While some functions like AVG() and SUM() work solely on numerical fields, COUNT(), MIN(), and MAX() function with both numerical and non-numerical data.
+- MIN() and MAX() applied to non-numerical data showcase examples like finding the earliest country alphabetically or the last one in a database.
+- Using aliases when summarizing data in SQL is considered a best practice, ensuring clarity and readability of query results.
+```
+-- Query the sum of film durations
+select sum(duration) as total_duration
+from films;
+-- Calculate the average duration of all films
+select avg(duration) as average_duration
+from films;
+-- Find the latest release_year
+select max(release_year) as latest_year
+from films;
+-- Find the duration of the shortest film
+select min(duration) as shortest_film
+from films;
+
+```
+
+## Summary Summarizing subsets | SQL
+
+Learn how to merge filtering and summarizing skills in SQL queries by combining WHERE clauses with aggregate functions. Use ROUND() to refine numerical outputs, specifying decimal places or rounding to whole numbers.
+
+### Facts
+- Combining WHERE with aggregate functions executes filtering before summarizing.
+-  Using SUM, MIN, MAX, and COUNT functions provides insights into specific data subsets.
+- Examples showcase finding total, smallest, largest budgets, and counting non-missing values.
+- ROUND() cleans decimals; its parameters determine precision or rounding to whole numbers.
+- Optional parameters in ROUND() allow rounding to whole numbers (default) or using negative values to round to the left of the decimal.
+
+```
+-- Calculate the sum of gross from the year 2000 or later
+select sum(gross) as total_gross
+from films
+where release_year>=2000
+
+-- Calculate the average gross of films that start with A
+select avg(gross) as avg_gross_A
+from films
+where title like 'A%'
+
+-- Calculate the lowest gross film in 1994
+SELECT MIN(gross) AS lowest_gross
+FROM films
+WHERE release_year = 1994;
+
+-- Calculate the highest gross film released between 2000-2012
+SELECT MAX(gross) AS highest_gross
+FROM films
+WHERE release_year BETWEEN 2000 AND 2012;
+
+-- Round the average number of facebook_likes to one decimal place
+select round(avg(facebook_likes),1) as avg_facebook_likes
+from reviews
+
+-- Calculate the average budget rounded to the thousands
+select round(avg(budget),-3) as avg_budget_thousands
+from films
+
+```
