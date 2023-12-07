@@ -477,3 +477,17 @@ HAVING AVG(budget) > 60000000
 order by avg_gross desc
 limit 1;
 ```
+
+## Summary Congratulations! | SQL
+Congratulations on completing the course! I've learned various SQL keywords and techniques, becoming proficient in querying, filtering, sorting, and summarizing data.
+
+### Facts
+- Expanded SQL vocabulary with COUNT, LIMIT, IS NULL, IS NOT NULL
+- Covered filtering, comparison operators, and arithmetic
+- Explored ROUND, aggregate functions, ORDER BY, DESC, GROUP BY, HAVING
+- Acquired skills in error handling, debugging, and writing clean SQL code
+Skills
+- Proficient in selecting, querying, filtering, summarizing, sorting, and grouping data
+What's next?
+- Ready for the joining course or explore practice options on DataCamp
+
