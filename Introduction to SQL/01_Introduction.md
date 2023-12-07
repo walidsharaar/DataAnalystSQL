@@ -50,4 +50,9 @@ Facts <br/>
 - 🔍 Queries, written using keywords and syntax, generate result sets without altering the database. <br/>
 - 🔍 Multiple fields can be selected by listing their names separated by commas. <br/>
 - 🔍 An asterisk (*) selects all fields within a table for querying. <br/>
-
+  ### Querying the table
+-- Select title and author from the books table
+```
+SELECT title,author
+FROM books;
+```
