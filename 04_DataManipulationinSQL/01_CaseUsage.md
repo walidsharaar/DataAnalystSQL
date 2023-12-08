@@ -314,3 +314,82 @@ GROUP BY l.name;
 
 
 ```
+## Summary Subqueries everywhere! And best practices! | SQL
+ Subqueries are extensively used in SQL queries across various clauses, and understanding best practices like formatting, annotating, and filtering is crucial for readability and efficiency.
+
+### Facts
+- SQL allows multiple subqueries in different clauses within a query, but readability can suffer with longer, complex queries.
+- Properly formatting queries (lining up statements) aids readability and comprehension for yourself and collaborators.
+- Annotating queries with comments (using multiple-line or in-line comments) clarifies their purpose and functions.
+- Indenting queries, especially within subqueries, enhances readability, aids in tracking changes, and managing complex statements.
+- Clear indentation within single columns (e.g., long CASE statements) assists in understanding the conditions and outcomes.
+- Assessing the necessity of subqueries is vital due to the added computational load they bring to query execution.
+- Properly filtering each subquery and the main query ensures accurate and relevant results are generated.
+```
+/*
+Extract the average number of home and away team goals in two SELECT subqueries.
+Calculate the average home and away goals for the specific stage in the main query.
+Filter both subqueries and the main query so that only data from the 2012/2013 season is included.
+Group the query by the m.stage column.
+*/
+
+SELECT 
+	-- Select the stage and average goals for each stage
+	m.stage,
+	ROUND(AVG(m.home_goal + m.away_goal),2) AS avg_goals,
+    -- Select the average overall goals for the 2012/2013 season
+	ROUND((SELECT AVG(home_goal + away_goal) 
+           FROM match 
+           WHERE season = '2012/2013'),2) AS overall
+FROM match AS m
+-- Filter for the 2012/2013 season
+WHERE m.season = '2012/2013'
+-- Group by stage
+GROUP BY m.stage;
+
+/*
+Calculate the average home goals and average away goals from the match table for each stage in the FROM clause subquery.
+Add a subquery to the WHERE clause that calculates the overall average home goals.
+Filter the main query for stages where the average home goals is higher than the overall average.
+Select the stage and avg_goals columns from the s subquery into the main query.
+*/
+SELECT 
+	-- Select the stage and average goals from the subquery
+	s.stage,
+    ROUND(s.avg_goals,2) AS avg_goals
+FROM 
+	-- Select the stage and average goals in 2012/2013
+	(SELECT
+         stage,
+         AVG(home_goal + away_goal) AS avg_goals
+     FROM match
+     WHERE season = '2012/2013'
+     GROUP BY stage) AS s
+WHERE 
+	-- Filter the main query using the subquery
+	s.avg_goals > (SELECT AVG(home_goal + away_goal) 
+                   FROM match WHERE season = '2012/2013');
+/*
+Create a subquery in SELECT that yields the average goals scored in the 2012/2013 season. Name the new column overall_avg.
+Create a subquery in FROM that calculates the average goals scored in each stage during the 2012/2013 season.
+Filter the main query for stages where the average goals exceeds the overall average in 2012/2013.
+*/
+SELECT 
+	-- Select the stage and average goals from s
+	s.stage,
+	ROUND(s.avg_goals,2) AS avg_goal,
+    -- Select the overall average for 2012/2013
+	(SELECT AVG(home_goal + away_goal) FROM match WHERE season = '2012/2013') AS overall_avg
+FROM 
+	-- Select the stage and average goals in 2012/2013 from match
+	(SELECT
+         stage,
+         AVG(home_goal + away_goal) AS avg_goals
+     FROM match
+     WHERE season = '2012/2013'
+     GROUP BY stage) AS s
+WHERE 
+	-- Filter the main query using the subquery
+	s.avg_goals > (SELECT AVG(home_goal + away_goal) 
+                   FROM match WHERE season = '2012/2013');
+```
