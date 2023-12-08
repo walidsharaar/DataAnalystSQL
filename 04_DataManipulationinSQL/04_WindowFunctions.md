@@ -60,5 +60,73 @@ GROUP BY l.name
 -- Order the query by the rank you created
 ORDER BY league_rank;
  ```
+## Summary OVER with a PARTITION | SQL
+Window functions with the OVER clause allow for detailed computations within partitions, offering insights into data categorically.
+
+### Facts
+- OVER and PARTITION BY: The PARTITION BY statement within the OVER clause enables separate calculations for distinct categories in data, avoiding the need for separate columns for aggregate values.
+- Partitioned Query Results: Queries utilizing PARTITION BY return data with calculated values specific to designated categories, like comparing match goals to overall and seasonal averages.
+- Multiple Column Partitioning: PARTITION BY extends to multiple columns, breaking down average calculations by various categorical combinations, such as season and country.
+- Versatile Usage: PARTITION BY works seamlessly with diverse window functions, accommodating different analysis needs efficiently.
+ ```
+-- Complete the two window functions that calculate the home and away goal averages. Partition the window functions by season to calculate separate averages for each season. Filter the query to only include matches played by Legia Warszawa, id = 8673.
+SELECT 
+	date,
+	season,
+    home_goal,
+    away_goal,
+    CASE WHEN hometeam_id = 8673 THEN 'home' 
+         ELSE 'away' END AS warsaw_location,
+    -- Calculate the average goals scored partitioned by season
+    AVG(home_goal) OVER(PARTITION BY season) AS season_homeavg,
+    AVG(away_goal) OVER(PARTITION BY season) AS season_awayavg
+FROM match
+-- Filter the data set for Legia Warszawa matches only
+WHERE 
+	hometeam_id = 8673 
+    OR awayteam_id = 8673
+ORDER BY (home_goal + away_goal) DESC;
+--Construct two window functions partitioning the average of home and away goals by season and month. Filter the dataset by Legia Warszawa's team ID (8673) so that the window calculation only includes matches involving them.
+
+SELECT 
+	date,
+    season,
+    home_goal,
+    away_goal,
+    CASE WHEN hometeam_id = 8673 THEN 'home' 
+         ELSE 'away' END AS warsaw_location,
+    -- Calculate average goals partitioned by season and month
+    AVG(home_goal) OVER(PARTITION BY season, 
+         	EXTRACT(MONTH FROM date)) AS season_mo_home,
+    AVG(away_goal) OVER(PARTITION BY season, 
+            EXTRACT(MONTH FROM date)) AS season_mo_away
+FROM match
+WHERE 
+	hometeam_id = 8673 
+    OR awayteam_id = 8673
+ORDER BY (home_goal + away_goal) DESC;
+/*
+Construct two window functions partitioning the average of home and away goals by season and month.
+Filter the dataset by Legia Warszawa's team ID (8673) so that the window calculation only includes matches involving them.
+*/
+SELECT 
+	date,
+    season,
+    home_goal,
+    away_goal,
+    CASE WHEN hometeam_id = 8673 THEN 'home' 
+         ELSE 'away' END AS warsaw_location,
+    -- Calculate average goals partitioned by season and month
+    AVG(home_goal) OVER(PARTITION BY season, 
+         	EXTRACT(MONTH FROM date)) AS season_mo_home,
+    AVG(away_goal) OVER(PARTITION BY season, 
+            EXTRACT(MONTH FROM date)) AS season_mo_away
+FROM match
+WHERE 
+	hometeam_id = 8673 
+    OR awayteam_id = 8673
+ORDER BY (home_goal + away_goal) DESC;
+
+```
 ![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/e31ed0ad-14d4-4977-996f-4d0d1d6e24f2)
 *Statement of Accomplishment*
