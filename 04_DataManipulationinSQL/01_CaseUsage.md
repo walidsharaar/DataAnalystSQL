@@ -177,3 +177,46 @@ LEFT JOIN matches AS m
 ON c.id = m.country_id
 GROUP BY country;
 ```
+Summary WHERE are the Subqueries? | SQL
+Subqueries, nested queries within SQL statements, aid in data extraction, transformation, and filtering. They're placed within various SQL clauses and assist in comparing summarized values to detailed data.
+
+Facts
+- Subqueries are queries nested within other queries, aiding in data transformations before selecting, filtering, or calculating information.
+- They can be placed in SELECT, FROM, WHERE, or GROUP BY clauses to return scalar quantities, lists for filtering or joining, or tables for further data manipulation.
+- They're essential for comparing summarized data to detailed information, restructuring data for multiple purposes, and combining data from unjoinable tables.
+- Simple subqueries, evaluated once in the entire query, offer standalone query capabilities and streamline data processing.
+- Subqueries in the WHERE clause allow filtering results based on calculated values, reducing manual steps in querying specific data sets.
+- Utilizing subqueries for generating filtering lists is valuable, aiding in comparisons between tables lacking direct connections.
+
+ ```
+--Calculate triple the average home + away goals scored across all matches. This will become your subquery in the next step. Note that this column does not have an alias, so it will be called ?column? in your results.
+SELECT 
+-- Select the average of home + away goals, multiplied by 3
+	3 * AVG(home_goal + away_goal)
+FROM matches_2013_2014;
+
+--Create a subquery in the WHERE clause that retrieves all unique hometeam_ID values from the match table. Select the team_long_name and team_short_name from the team table. Exclude all values from the subquery in the main query.
+
+SELECT 
+	-- Select the team long and short names
+	team_long_name,
+	team_short_name
+FROM team 
+-- Exclude all values from the subquery
+WHERE team_api_id not in
+     (select DISTINCT hometeam_id  FROM match);
+
+--Create a subquery in WHERE clause that retrieves all hometeam_ID values from match with a home_goal score greater than or equal to 8.Select the team_long_name and team_short_name from the team table. Include all values from the subquery in the main query.
+
+SELECT
+	-- Select the team long and short names
+	team_long_name,
+	team_short_name
+FROM team
+-- Filter for teams with 8 or more home goals
+WHERE team_api_id IN
+	  (SELECT hometeam_id 
+       FROM match
+       WHERE home_goal >= 8);
+
+``` 
