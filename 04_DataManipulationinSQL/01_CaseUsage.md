@@ -220,3 +220,64 @@ WHERE team_api_id IN
        WHERE home_goal >= 8);
 
 ``` 
+
+## Summary Subqueries in FROM | SQL
+Subqueries in the FROM statement enable restructuring and transforming data for complex analysis. They're useful for preparing data, performing calculations, and obtaining specific results by nesting queries within the FROM clause.
+
+### Facts
+- Subqueries in the FROM statement allow restructuring data and preparing it for analysis.
+- Useful for transforming data into different shapes or pre-filtering before calculations.
+- Helpful in calculating aggregates of aggregate information, like finding top performers based on derived calculations.
+- Creating a subquery involves selecting specific columns, applying functions (e.g., AVG), and filtering data.
+- Subqueries can be incorporated into main queries by placing them in the FROM clause, giving them aliases, and joining them as necessary.
+-Remember to assign aliases to subqueries, join them properly, and utilize columns for JOIN operations.
+### Additional Tips
+- Multiple subqueries can be created in the FROM statement; ensure proper aliasing and join conditions.
+- Subqueries can be joined with existing tables; validate columns for join conditions.
+
+```
+--Create the subquery to be used in the next step, which selects the country ID and match ID (id) from the match table.Filter the query for matches with greater than or equal to 10 goals.
+SELECT 
+	-- Select the country ID and match ID
+	country_id, 
+    id 
+FROM match
+-- Filter for matches with 10 or more goals in total
+WHERE (home_goal + away_goal) >= 10;
+
+--Construct a subquery that selects only matches with 10 or more total goals.Inner join the subquery onto country in the main query & Select name from country and count the id column from match.
+SELECT
+	-- Select country name and the count match IDs
+    name AS country_name,
+    COUNT(country_id) AS matches
+FROM country AS c
+-- Inner join the subquery onto country
+-- Select the country id and match id columns
+inner join (SELECT country_id, id 
+           FROM match
+           -- Filter the subquery by matches with 10+ goals
+           WHERE (home_goal + away_goal) >=10) AS sub
+ON c.id = sub.country_id
+GROUP BY country_name;
+
+--Complete the subquery inside the FROM clause. Select the country name from the country table, along with the date, the home goal, the away goal, and the total goals columns from the match table.
+SELECT
+	-- Select country, date, home, and away goals from the subquery
+    country,
+    date,
+    home_goal,
+    away_goal
+FROM
+	-- Select country name, date, home_goal, away_goal, and total goals in the subquery
+	(SELECT c.name AS country, 
+     	    m.date, 
+     		m.home_goal, 
+     		m.away_goal,
+           (m.home_goal + m.away_goal) AS total_goals
+    FROM match AS m
+    LEFT JOIN country AS c
+    ON m.country_id = c.id) AS subquery
+-- Filter by total goals scored in the main query
+WHERE total_goals >= 10;
+
+```   
