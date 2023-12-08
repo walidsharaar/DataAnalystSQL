@@ -11,3 +11,27 @@ This course, led by Michel Semaan and Fernando Gonzalez Prada, introduces window
 - Anatomy of a Window Function: The OVER clause in window functions can include subclauses like ORDER BY, PARTITION BY, and ROWS/FOLLOWING, impacting the function's output significantly. Understanding these subclauses is crucial for nuanced application.
 
 This course provides a comprehensive understanding of window functions in SQL, offering efficient solutions for data analysis tasks within the context of the Summer Olympics dataset.
+```
+--Number each row in the dataset.
+SELECT
+  *,
+  -- Assign numbers to each row
+  ROW_NUMBER() OVER() AS Row_N
+FROM Summer_Medals
+ORDER BY Row_N ASC;
+
+--Assign a number to each year in which Summer Olympic games were held.
+SELECT
+  Year,
+
+  -- Assign numbers to each year
+  row_number() over() AS Row_N
+FROM (
+  SELECT distinct year
+  FROM Summer_Medals
+  ORDER BY Year ASC
+) AS Years
+ORDER BY Year ASC;
+
+
+```
