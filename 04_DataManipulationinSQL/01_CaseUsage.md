@@ -280,4 +280,37 @@ FROM
 -- Filter by total goals scored in the main query
 WHERE total_goals >= 10;
 
-```   
+```
+## Summary Subqueries in SELECT | SQL
+Subqueries in SELECT statements allow for aggregating data and performing calculations within SQL queries, aiding in obtaining summary values within detailed datasets.
+
+### Facts
+- Subqueries in SELECT retrieve single aggregate values, facilitating the inclusion of aggregate values in ungrouped SQL queries.
+- Subqueries enable complex mathematical calculations within datasets, like measuring deviations from averages or comparing values.
+- Adding a subquery directly into the SELECT statement can yield identical results as including a separate calculated value.
+- These subqueries are valuable for performing calculations within SQL queries, such as determining differences from averages or computing values based on existing data.
+- Subqueries in SELECT must return a single value to avoid errors; multiple rows from a subquery will cause the query to fail. Also, proper filtering in both the main and subqueries is crucial for accurate results.
+  
+```
+/*In the subquery, select the average total goals by adding home_goal and away_goal.
+Filter the results so that only the average of goals in the 2013/2014 season is calculated.
+In the main query, select the average total goals by adding home_goal and away_goal. This calculates the average goals for each league.
+Filter the results in the main query the same way you filtered the subquery. Group the query by the league name.
+*/
+SELECT 
+	l.name AS league,
+    -- Select and round the league's total goals
+    ROUND(AVG(m.home_goal + m.away_goal),2) AS avg_goals,
+    -- Select and round the average total goals
+    (SELECT ROUND(AVG(home_goal + away_goal),2) 
+     FROM match
+     WHERE season = '2013/2014') AS overall_avg
+FROM league AS l
+LEFT JOIN match AS m
+ON l.country_id = m.country_id
+-- Filter for the 2013/2014 season
+WHERE m.season = '2013/2014'
+GROUP BY l.name;
+
+
+```
