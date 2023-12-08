@@ -128,5 +128,61 @@ WHERE
 ORDER BY (home_goal + away_goal) DESC;
 
 ```
+
+## Summary Sliding windows | SQL
+Window functions in SQL, particularly sliding windows, enable dynamic calculations based on rows in a dataset, allowing for diverse aggregations and rank computations.
+
+### Facts
+- Window functions calculate changing information relative to rows in a dataset.
+- Sliding windows perform calculations based on the current row, enabling various aggregations like running totals, sums, and averages.
+- Sliding window functions in SQL use keywords within the OVER clause to specify the data for calculations, like ROWS BETWEEN, PRECEDING, FOLLOWING, UNBOUNDED PRECEDING, UNBOUNDED FOLLOWING, and CURRENT ROW.
+- An example illustrates using a sliding window to calculate a season's total goals, creating a running total ordered by match date.
+- Using PRECEDING, a sliding window with a limited frame can compute specific aggregations, like summing goals in current and previous matches.
+
+```
+/*
+Assessing the running total of home goals scored by FC Utrecht.
+Assessing the running average of home goals scored.
+Ordering both the running average and running total by date.
+*/
+SELECT 
+	date,
+	home_goal,
+	away_goal,
+    -- Create a running total and running average of home goals
+	SUM(home_goal) OVER(ORDER BY date 
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total,
+    AVG(home_goal) OVER(ORDER BY date 
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_avg
+FROM match
+WHERE 
+	hometeam_id = 9908 
+    AND season = '2011/2012';
+
+/*
+Complete the window function by:
+Assessing the running total of home goals scored by FC Utrecht.
+Assessing the running average of home goals scored.
+Ordering both the running average and running total by date, descending.
+*/
+
+SELECT 
+	-- Select the date, home goal, and away goals
+	date,
+	home_goal,
+	away_goal,
+    -- Create a running total and running average of home goals
+    SUM(home_goal) OVER(ORDER BY date DESC
+        ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS running_total,
+    AVG(home_goal) OVER(ORDER BY date DESC
+        ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS running_avg
+FROM match
+WHERE 
+	awayteam_id = 9908 
+    AND season = '2011/2012';
+
+
+```
+
 ![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/e31ed0ad-14d4-4977-996f-4d0d1d6e24f2)
 *Statement of Accomplishment*
