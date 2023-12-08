@@ -106,3 +106,74 @@ WHERE
          WHEN awayteam_id = 9857 AND away_goal > home_goal THEN 'Bologna Win' 
          END IS NOT NULL;
 ```
+
+
+## Summary CASE WHEN with aggregate functions | SQL
+
+This tutorial explains how to use CASE statements with aggregate functions in SQL to categorize data, filter information, count occurrences, calculate sums and averages, and compute percentages efficiently.
+
+### Facts
+- CASE statements categorize and filter data, including aggregation in WHERE clauses.
+- Using COUNT with CASE allows counting based on logical tests, e.g., counting wins for specific conditions.
+- CASE statements can be included inside aggregate functions like COUNT, SUM, and AVG to process data.
+- SUM function calculates totals based on conditions, e.g., total goals scored by a team.
+- AVG function computes averages of data, like average goals per season, and can be rounded for readability.
+- Using CASE with AVG helps compute percentages, like the percentage of games won by a team in a season.
+
+```
+--Create a CASE statement that identifies the id of matches played in the 2012/2013 season. Specify that you want ELSE values to be NULL.
+SELECT 
+	c.name AS country,
+    -- Count games from the 2012/2013 season
+	COUNT(CASE WHEN m.season = '2012/2013' 
+          	   THEN m.id ELSE NULL END) AS matches_2012_2013
+FROM country AS c
+LEFT JOIN match AS m
+ON c.id = m.country_id
+-- Group by country name alias
+GROUP BY country;
+
+--Create 3 CASE WHEN statements counting the matches played in each country across the 3 seasons.
+SELECT 
+	c.name AS country,
+    -- Count matches in each of the 3 seasons
+	COUNT(CASE WHEN m.season = '2012/2013' THEN m.id END) AS matches_2012_2013,
+	COUNT(CASE WHEN m.season = '2013/2014' THEN m.id END) AS matches_2013_2014,
+	COUNT(CASE WHEN m.season = '2014/2015' THEN m.id END) AS matches_2014_2015
+FROM country AS c
+LEFT JOIN match AS m
+ON c.id = m.country_id
+-- Group by country name alias
+GROUP BY country;
+
+--Create 3 CASE statements to "count" matches in the '2012/2013', '2013/2014', and '2014/2015' seasons, respectively.Have each CASE statement return a 1 for every match you want to include, and a 0 for every match to exclude.Wrap the CASE statement in a SUM to return the total matches played in each season.Group the query by the country name alias.
+SELECT 
+	c.name AS country,
+    -- Sum the total records in each season where the home team won
+	SUM(CASE WHEN m.season = '2012/2013' AND m.home_goal > m.away_goal 
+        THEN 1 ELSE 0 END) AS matches_2012_2013,
+	SUM(CASE WHEN m.season = '2013/2014' AND m.home_goal > m.away_goal 
+        THEN 1 ELSE 0 END) AS matches_2013_2014,
+	SUM(CASE WHEN m.season = '2014/2015' AND m.home_goal > m.away_goal 
+        THEN 1 ELSE 0 END) AS matches_2014_2015
+FROM country AS c
+LEFT JOIN match AS m
+ON c.id = m.country_id
+-- Group by country name alias
+GROUP BY country;
+
+
+SELECT 
+	c.name AS country,
+    -- Round the percentage of tied games to 2 decimal points
+	ROUND(AVG(CASE WHEN m.season='2013/2014' AND m.home_goal = m.away_goal THEN 1
+			 WHEN m.season='2013/2014' AND m.home_goal != m.away_goal THEN 0
+			 END),2) AS pct_ties_2013_2014,
+	ROUND(AVG(CASE WHEN m.season='2014/2015' AND m.home_goal = m.away_goal THEN 1
+			 WHEN m.season='2014/2015' AND m.home_goal != m.away_goal THEN 0
+			 END),2) AS pct_ties_2014_2015
+FROM country AS c
+LEFT JOIN matches AS m
+ON c.id = m.country_id
+GROUP BY country;
+```
