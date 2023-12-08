@@ -55,3 +55,54 @@ ON m.awayteam_id = t.team_api_id
 -- Filter for Barcelona as the home team
 WHERE m.hometeam_id = 8634; 
 ```
+
+## Summary In CASE things get more complex | SQL
+
+Understanding CASE statements involves testing logical conditions to categorize data into different outcomes. Handling complex tests, including multiple logical conditions, and managing NULL values are vital aspects of utilizing CASE statements effectively.
+
+### Facts
+- CASE statements expand into more complex logical tests beyond basic conditions.
+- Review of CASE WHEN: One logical test per WHEN statement, categorizing outcomes based on conditions (e.g., higher scores for home/away teams).
+- CASE WHEN ... AND logic: Multiple logical conditions in a WHEN clause using AND to differentiate outcomes (e.g., identifying matches won by Chelsea, both home and away).
+- Importance of ELSE: Consideration of what data is included in the ELSE clause, categorizing unmatched rows.
+- Correct categorization: Filtering data with specific conditions in the WHERE clause to accurately classify outcomes.
+- Dealing with NULL values: Understanding the impact of ELSE NULL and handling NULL values in query results.
+- Filtering with CASE: Utilizing CASE statements as filter criteria in the WHERE clause to refine data retrieval.
+- Optimal placement of CASE: Leveraging CASE statements in the WHERE clause to filter for specific outcomes without additional conditions.
+  
+```
+--Complete the first CASE statement, identifying Barcelona or Real Madrid as the home team using the hometeam_id column.
+SELECT 
+	date,
+	-- Identify the home team as Barcelona or Real Madrid
+	CASE WHEN hometeam_id = 8634 THEN 'FC Barcelona' 
+         ELSE 'Real Madrid CF' END AS home,
+    -- Identify the away team as Barcelona or Real Madrid
+	CASE WHEN awayteam_id = 8634 THEN 'FC Barcelona' 
+         ELSE 'Real Madrid CF' END AS away
+FROM matches_spain
+WHERE (awayteam_id = 8634 OR hometeam_id = 8634)
+      AND (awayteam_id = 8633 OR hometeam_id = 8633);
+
+--Identify Bologna's team ID listed in the teams_italy table by selecting the team_long_name and team_api_id.
+-- Select team_long_name and team_api_id from team
+SELECT
+	team_long_name,
+	team_api_id
+FROM teams_italy
+-- Filter for team long name
+WHERE team_long_name = 'Bologna';
+
+-- Select the season, date, home_goal, and away_goal columns
+SELECT 
+	season,
+	date,
+	home_goal,
+	away_goal
+FROM matches_italy
+WHERE
+-- Exclude games not won by Bologna
+	CASE WHEN hometeam_id = 9857 AND home_goal > away_goal THEN 'Bologna Win'
+         WHEN awayteam_id = 9857 AND away_goal > home_goal THEN 'Bologna Win' 
+         END IS NOT NULL;
+```
