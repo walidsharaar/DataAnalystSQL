@@ -35,3 +35,41 @@ ORDER BY Year ASC;
 
 
 ```
+
+## Summary ORDER BY | SQL
+
+This tutorial dives into using the ORDER BY clause within the OVER clause in SQL window functions, illustrating its impact on row numbering, multi-column sorting, and applications like identifying reigning champions.
+
+### Facts
+- Basics of Window Function: Understanding the basics laid in the previous video, focusing on the OVER clause and its subclause, ORDER BY.
+- Row Numbers Reversed: Exploring scenarios where row numbers are reversed, altering the sequence from ascending to descending.
+- Effect of ORDER BY: Demonstrating how ORDER BY within OVER influences row numbering based on specified criteria like year, affecting the assigned numbers.
+- Multiple Column Sorting: Exploring sorting by multiple columns within the OVER clause and its impact on row numbering.
+- Ordering Inside & Outside OVER: Understanding the interplay of ordering inside and outside OVER clauses and its effect on result sequencing.
+- Reigning Champions: Utilizing window functions like LAG to identify reigning champions by comparing current and previous year champions.
+- Using LAG Function: Utilizing LAG function to retrieve previous row values without complex self-joins.
+- Current Champions: Querying current year's champions as a step toward using LAG to access previous champions.
+- Current and Last Champions: Employing Common Table Expressions (CTE) and LAG to display both current and previous champions in the results, observing how the last champion aligns with the previous year's outcome.
+
+```
+--Assign a number to each year in which Summer Olympic games were held so that rows with the most recent years have lower row numbers.
+SELECT
+  Year,
+  -- Assign the lowest numbers to the most recent years
+  ROW_NUMBER() OVER (ORDER BY Year DESC) AS Row_N
+FROM (
+  SELECT DISTINCT Year
+  FROM Summer_Medals
+) AS Years
+ORDER BY Year desc;
+
+--Select the Athlete column and count the number of rows each athlete appears in.
+SELECT
+  -- Count the number of medals each athlete has earned
+  Athlete,
+  COUNT(*) AS Medals
+FROM Summer_Medals
+GROUP BY Athlete
+ORDER BY Medals DESC;
+```
+
