@@ -123,4 +123,55 @@ ORDER BY Year ASC;
 
 
 ```
+## Summary PARTITION BY | SQL
+Using the PARTITION BY subclause in SQL window functions divides data into partitions based on specified columns, allowing separate operations within each partition.
 
+### Facts
+- PARTITION BY in window functions changes behavior similarly to ORDER BY but divides data into partitions for distinct operations.
+- It helps differentiate data sets within window functions, preventing cross-partition errors or misrepresentations.
+- Unlike GROUP BY, PARTITION BY doesn't collapse results into a single column but operates on partitions individually.
+- For instance, applying PARTITION BY Event in a query separates data into distinct partitions for each unique value in the Event column.
+- Complex partitioning involves resetting row numbers across various criteria like country and year, achievable using multiple columns in PARTITION BY.
+Understanding PARTITION BY in SQL window functions allows for precise data handling within distinct partitions, preventing errors and enabling granular analysis based on specified column values.
+```
+--Return the previous champions of each year's event by gender.
+WITH Tennis_Gold AS (
+  SELECT DISTINCT
+    Gender, Year, Country
+  FROM Summer_Medals
+  WHERE
+    Year >= 2000 AND
+    Event = 'Javelin Throw' AND
+    Medal = 'Gold')
+
+SELECT
+  Gender, Year,
+  Country AS Champion,
+  -- Fetch the previous year's champion by gender
+  LAG(Country) OVER (PARTITION BY Gender
+                         ORDER BY Year ASC) AS Last_Champion
+FROM Tennis_Gold
+ORDER BY Gender ASC, Year ASC;
+
+--Return the previous champions of each year's events by gender and event.
+WITH Athletics_Gold AS (
+  SELECT DISTINCT
+    Gender, Year, Event, Country
+  FROM Summer_Medals
+  WHERE
+    Year >= 2000 AND
+    Discipline = 'Athletics' AND
+    Event IN ('100M', '10000M') AND
+    Medal = 'Gold')
+
+SELECT
+  Gender, Year, Event,
+  Country AS Champion,
+  -- Fetch the previous year's champion by gender and event
+  LAG(Country) OVER (PARTITION BY Gender, Event
+                         ORDER BY Year ASC) AS Last_Champion
+FROM Athletics_Gold
+ORDER BY Event ASC, Gender ASC, Year ASC;
+
+
+```
