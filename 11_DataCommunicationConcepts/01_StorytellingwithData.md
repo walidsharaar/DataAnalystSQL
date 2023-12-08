@@ -30,3 +30,17 @@ Translating technical results into understandable narratives for varied audience
 - Be mindful of acronyms and jargon, favoring simpler terms for wider comprehension.
 - Emphasize impact over process when explaining technical details.
 - Demonstrate humility by remaining open to questions and revisiting explanations as needed.
+
+## Summary Impacting the decision-making process | Theory
+Data storytelling involves translating results for non-technical stakeholders through a compelling narrative structure and impactful presentation.
+
+### Facts
+- Data storytelling involves three key elements: data, narrative, and visuals.
+- A compelling narrative organizes insights into a connected sequence, engaging the audience and driving change.
+- Narrative structure: Start with background details, highlight contributing factors, and lead to the central finding.
+- Use evidence to support insights, avoiding overwhelming detailed data.
+- Deeper examination provides supporting evidence for the cause of the problem.
+- The climax: Introduce the central finding, emphasizing potential consequences without action.
+- Conclude by exploring potential solutions and recommendations, guiding the audience towards impactful decision-making.
+- Building narrative: Explore various data aspects to drive and shape the narrative, ensuring relevance and relatability.
+  
