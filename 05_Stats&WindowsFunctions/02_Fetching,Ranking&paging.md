@@ -1,0 +1,69 @@
+
+## Summary Fetching | SQL
+This tutorial delves into practical applications of window functions, covering fetching values from different parts of a table into one row.
+
+### Facts
+- Relative Functions: LAG and LEAD retrieve values relative to the current row. LAG gets values preceding the current row, while LEAD retrieves values after the current row. FIRST_VALUE and LAST_VALUE are absolute functions that fetch the first and last values in a table/partition, respectively.
+- LEAD: Demonstrates fetching the next city/cities after each set of Olympic Games. LEAD returns null when there are no subsequent rows to fetch, handling scenarios like the end of data.
+- FIRST_VALUE and LAST_VALUE: Fetch the first and last cities of Olympic Games, showcasing absolute functions. LAST_VALUE's usage with the RANGE BETWEEN clause extends the window to capture the actual last value beyond the current row.
+-  Partitioning with LEAD: Illustrates the impact of partitioning on fetching current and next champions, emphasizing the difference between partitioned and unpartitioned tables.
+-  Partitioning with FIRST_VALUE: Expands on partitioning's effect, correctly assigning values based on partitions, highlighting the differences between partitioned and unpartitioned tables.
+
+
+```
+--For each year, fetch the current gold medalist and the gold medalist 3 competitions ahead of the current row.
+WITH Discus_Medalists AS (
+  SELECT DISTINCT
+    Year,
+    Athlete
+  FROM Summer_Medals
+  WHERE Medal = 'Gold'
+    AND Event = 'Discus Throw'
+    AND Gender = 'Women'
+    AND Year >= 2000)
+
+SELECT
+  -- For each year, fetch the current and future medalists
+  year,
+  Athlete,
+  lead(Athlete,3) OVER (ORDER BY year ASC) AS Future_Champion
+FROM Discus_Medalists
+ORDER BY Year ASC;
+
+--Return all athletes and the first athlete ordered by alphabetical order.
+WITH All_Male_Medalists AS (
+  SELECT DISTINCT
+    Athlete
+  FROM Summer_Medals
+  WHERE Medal = 'Gold'
+    AND Gender = 'Men')
+
+SELECT
+  -- Fetch all athletes and the first athlete alphabetically
+  athlete,
+  first_value (athlete) OVER (
+    ORDER BY athlete ASC
+  ) AS First_Athlete
+FROM All_Male_Medalists;
+/*
+Return the year and the city in which each Olympic games were held.
+Fetch the last city in which the Olympic games were held.
+*/
+WITH Hosts AS (
+  SELECT DISTINCT Year, City
+    FROM Summer_Medals)
+
+SELECT
+  Year,
+  City,
+  -- Get the last city in which the Olympic games were held
+  LAST_VALUE(City) OVER (
+   ORDER BY Year ASC
+   RANGE BETWEEN
+     UNBOUNDED PRECEDING AND
+     UNBOUNDED FOLLOWING
+  ) AS Last_City
+FROM Hosts
+ORDER BY Year ASC;
+
+```
