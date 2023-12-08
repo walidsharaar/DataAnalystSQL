@@ -71,5 +71,56 @@ SELECT
 FROM Summer_Medals
 GROUP BY Athlete
 ORDER BY Medals DESC;
+
+--Having wrapped the previous query in the Athlete_Medals CTE, rank each athlete by the number of medals they've earned.
+WITH Athlete_Medals AS (
+  SELECT
+    -- Count the number of medals each athlete has earned
+    Athlete,
+    COUNT(*) AS Medals
+  FROM Summer_Medals
+  GROUP BY Athlete)
+
+SELECT
+  -- Number each athlete by how many medals they've earned
+  athlete,
+  row_number() OVER (ORDER BY medals DESC) AS Row_N
+FROM Athlete_Medals
+ORDER BY Medals DESC;
+
+--Select the year and country columns, and filter out non-Gold medals.
+SELECT
+  -- Return each year's champions' countries
+  Year,
+  Country AS champion
+FROM Summer_Medals
+WHERE
+  Discipline = 'Weightlifting' AND
+  Event = '69KG' AND
+  Gender = 'Men' AND
+  Medal = 'Gold';
+
+--Having wrapped the previous query in the Weightlifting_Gold CTE, get the previous year's champion for each year.
+WITH Weightlifting_Gold AS (
+  SELECT
+    -- Return each year's champions' countries
+    Year,
+    Country AS champion
+  FROM Summer_Medals
+  WHERE
+    Discipline = 'Weightlifting' AND
+    Event = '69KG' AND
+    Gender = 'Men' AND
+    Medal = 'Gold')
+
+SELECT
+  Year, Champion,
+  -- Fetch the previous year's champion
+  LAG(Champion) OVER
+    (ORDER BY Year ASC) AS Last_Champion
+FROM Weightlifting_Gold
+ORDER BY Year ASC;
+
+
 ```
 
