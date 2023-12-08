@@ -102,3 +102,78 @@ FROM (
 -- Group by country_id and season
 GROUP BY country_id, season;
  ```
+## Summary Common Table Expressions | SQL
+Common table expressions (CTEs) are a method to enhance query readability and organization in SQL. They're declared ahead of the main query and behave like temporary tables, improving query management and performance.
+
+### Facts
+- CTEs, declared with the WITH statement, are used to name and reference subqueries separately before using them in the main query's FROM statement.
+- They replace nested subqueries, making queries easier to read and manage by placing them at the query's beginning.
+- CTEs offer performance benefits by running once and storing the results in memory, potentially improving query execution time.
+- They allow referencing earlier CTEs, enabling complex query organization and providing a cleaner structure for multiple subqueries.
+- Recursive CTEs enable a CTE to reference itself, opening avenues for more advanced query functionalities.
+ ```
+-- Set up your CTE
+WITH match_list AS (
+    SELECT 
+  		country_id, 
+  		id
+    FROM match
+    WHERE (home_goal + away_goal) >= 10)
+-- Select league and count of matches from the CTE
+SELECT
+    l.name AS league,
+    COUNT(match_list.id) AS matches
+FROM league AS l
+-- Join the CTE to the league table
+LEFT JOIN match_list 
+ON l.id = match_list.country_id
+GROUP BY l.name;
+
+/*
+Declare your CTE, where you create a list of all matches with the league name.
+Select the league, date, home, and away goals from the CTE.
+Filter the main query for matches with 10 or more goals.
+*/
+-- Set up your CTE
+WITH match_list AS (
+  -- Select the league, date, home, and away goals
+    SELECT 
+  		l.name AS league, 
+     	m.date, 
+  		m.home_goal, 
+  		m.away_goal,
+       (m.home_goal + m.away_goal) AS total_goals
+    FROM match AS m
+    LEFT JOIN league as l ON m.country_id = l.id)
+-- Select the league, date, home, and away goals from the CTE
+SELECT league, date, home_goal, away_goal
+FROM match_list
+-- Filter by total goals
+WHERE total_goals >= 10;
+
+/*
+Declare a CTE that calculates the total goals from matches in August of the 2013/2014 season.
+Left join the CTE onto the league table using country_id from the match_list CTE.
+Filter the list on the inner subquery to only select matches in August of the 2013/2014 season.
+*/
+-- Set up your CTE
+WITH match_list AS (
+    SELECT 
+  		country_id, 
+  	   (home_goal + away_goal) AS goals
+    FROM match
+    -- Create a list of match IDs to filter data in the CTE
+    WHERE id IN (
+       SELECT id
+       FROM match
+       WHERE season = '2013/2014' AND EXTRACT(MONTH FROM date) = 08))
+-- Select the league name and average of goals in the CTE
+SELECT
+	l.name,
+    AVG(match_list.goals)
+FROM league AS l
+-- Join the CTE onto the league table
+LEFT JOIN match_list ON l.id = match_list.country_id
+GROUP BY l.name;
+
+ ```
