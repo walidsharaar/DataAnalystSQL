@@ -121,3 +121,73 @@ FROM Athlete_Medals
 ORDER BY Country ASC, RANK_N ASC;
 
 ```
+## Window functions' third common application: Paging
+### Paging: Splitting data into approximately equal chunks
+- APIs use "pages" to reduce data size exchange between platforms
+- Sorting data into quartiles or thirds for performance assessment
+### Paging in SQL
+- **NTILE**: Window function splitting data into n equal pages
+- NTILE example with 67 disciplines divided into 15 pages
+- Uneven distribution due to 67 not divisible by 15, causing overflow in some pages
+- **Top, middle, and bottom thirds**:
+- NTILE divides data into thirds or quartiles
+- Example: Country_Medals CTE categorizing countries by medal count into thirds
+- Labels top, middle, or bottom x% of data based on medals awarded
+- **Thirds averages**:
+- Grouping by Third column shows average medal count per third
+- Top third: average count of almost 600 medals, middle third: around 23, bottom third: approximately 2 medals
+- **Practice exercises** with NTILE for paging and labeling data's top, middle, and bottom percentages
+```
+--Split the distinct events into exactly 111 groups, ordered by event in alphabetical order.
+WITH Events AS (
+  SELECT DISTINCT Event
+  FROM Summer_Medals)
+  
+SELECT
+  --- Split up the distinct events into 111 unique groups
+  Event,
+  ntile(111) OVER (ORDER BY Event ASC) AS Page
+FROM Events
+ORDER BY Event ASC;
+
+--Split the athletes into top, middle, and bottom thirds based on their count of medals.
+WITH Athlete_Medals AS (
+  SELECT Athlete, COUNT(*) AS Medals
+  FROM Summer_Medals
+  GROUP BY Athlete
+  HAVING COUNT(*) > 1)
+  
+SELECT
+  Athlete,
+  Medals,
+  -- Split athletes into thirds by their earned medals
+  ntile(3) over(order by medals desc)  AS Third
+FROM Athlete_Medals
+ORDER BY Medals DESC, Athlete ASC;
+
+--Return the average of each third.
+
+WITH Athlete_Medals AS (
+  SELECT Athlete, COUNT(*) AS Medals
+  FROM Summer_Medals
+  GROUP BY Athlete
+  HAVING COUNT(*) > 1),
+  
+  Thirds AS (
+  SELECT
+    Athlete,
+    Medals,
+    NTILE(3) OVER (ORDER BY Medals DESC) AS Third
+  FROM Athlete_Medals)
+  
+SELECT
+  -- Get the average medals earned in each third
+  Third,
+  AVG(Medals) AS Avg_Medals
+FROM Thirds
+GROUP BY Third
+ORDER BY Third ASC;
+
+
+
+```
