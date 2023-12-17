@@ -121,3 +121,57 @@ FROM Chinese_Medals
 ORDER BY Athlete ASC;
 
 ```
+
+## Summary Moving averages and totals | SQL
+### Moving Averages and Totals
+- Moving averages and totals are calculated using aggregate window functions with frames.
+- Moving Average: Averages the last n periods of a column's values, indicating trends and momentum.
+- Moving Total: Sums the last n periods, indicating recent performance shifts.
+
+### Source Table
+- Examines the count of gold medals awarded to the US after 1980.
+- Moving Average Calculation
+- Computes the 3-year moving average by averaging medals from the last two and the current sets of Olympic games for each year.
+- Functions similarly to moving average but uses the SUM function to accumulate values.
+- ROWS BETWEEN: Considers all rows within the defined frame.
+- RANGE BETWEEN: Treats duplicate values as single entities within the defined frame, affecting cumulative sum computation.
+
+```
+-- Calculate the 3-year moving average of medals earned.
+WITH Russian_Medals AS (
+  SELECT
+    Year, COUNT(*) AS Medals
+  FROM Summer_Medals
+  WHERE
+    Country = 'RUS'
+    AND Medal = 'Gold'
+    AND Year >= 1980
+  GROUP BY Year)
+
+SELECT
+  Year, Medals,
+  AVG(Medals) OVER
+    (ORDER BY Year ASC
+     ROWS BETWEEN
+     2 PRECEDING AND CURRENT ROW) AS Medals_MA
+FROM Russian_Medals
+ORDER BY Year ASC;
+
+--Calculate the 3-year moving sum of medals earned per country.
+WITH Country_Medals AS (
+  SELECT
+    Year, Country, COUNT(*) AS Medals
+  FROM Summer_Medals
+  GROUP BY Year, Country)
+
+SELECT
+  Year, Country, Medals,
+  -- Calculate each country's 3-game moving total
+  SUM(Medals) OVER
+    (PARTITION BY Country
+     ORDER BY Year ASC
+     ROWS BETWEEN
+     2 PRECEDING AND CURRENT ROW) AS Medals_MA
+FROM Country_Medals
+ORDER BY Country ASC, Year ASC;
+```
