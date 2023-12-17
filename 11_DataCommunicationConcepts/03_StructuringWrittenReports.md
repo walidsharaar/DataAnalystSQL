@@ -34,3 +34,26 @@
 - Prefer active voice in business contexts for better engagement and clarity.
 - Remove redundant adjectives/adverbs to maintain report conciseness.
 - Watch out for run-on sentences; separate clauses correctly for clarity.
+
+## Case study: report on credit risk | Theory
+### Credit Risk Overview
+- Quantifies the likelihood of customer defaulting on loans.
+- Data from Loanme used to predict default probability based on demographics.
+  - Target Audience
+  - Non-technical decision-makers.
+-Communicating findings in a clear, understandable manner.
+  - Storyline Development
+- Identifying trends: increased defaults linked to unemployment and lower income in younger demographics.
+- Model accuracy: Prediction of defaulters at 95%.
+- Tech to Non-tech Translation
+- Adapting technical findings for finance department director’s decision-making.
+- Key Data Presentation
+- Statistics: Median age/income for default vs. non-default customers.
+- Visuals: Boxplot (age/income vs. default) and lineplot (% change in defaulters).
+- Report Format Consideration
+- Email communication of key findings before a meeting.
+- Choosing a summary report tailored for non-technical stakeholders.
+- Report Structure
+  - Introduction: Purpose, contextual info, analysis question.
+  - Body: Data description, key findings.
+  - Conclusion: Restate questions, central insight, and recommendations.
