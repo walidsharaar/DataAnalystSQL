@@ -102,3 +102,46 @@ $$) AS ct (Country VARCHAR,
 Order by Country ASC;
 
 ```
+
+### Summary ROLLUP and CUBE | SQL
+- ROLLUP and CUBE: Aggregate Functions in SQL
+- Group-level Totals: Calculating Totals in SQL Queries
+- The Old Way: Inelegant Methods for Totals Calculation
+- Enter ROLLUP: Using ROLLUP for Group-Level Aggregations
+- ROLLUP in Action: Generating Group and Grand Totals
+- ROLLUP Results: Identifying Country and Grand Totals
+- Enter CUBE: Utilizing CUBE for Aggregations
+- CUBE Result: Identifying Country and Medal-Level Totals
+- ROLLUP vs CUBE: Choosing the Right Subclause in SQL
+```
+--You want to look at three Scandinavian countries' earned gold medals per country and gender in the year 2004. You're also interested in Country-level subtotals to get the total medals earned for each country, but Gender-level subtotals don't make much sense in this case, so disregard them.
+
+-- Count the gold medals per country and gender
+SELECT
+  Country,
+  Gender,
+  COUNT(*) AS Gold_Awards
+FROM Summer_Medals
+WHERE
+  Year = 2004
+  AND Medal = 'Gold'
+  AND Country IN ('DEN', 'NOR', 'SWE')
+-- Generate Country-level subtotals
+GROUP BY Country, ROLLUP(Gender)
+ORDER BY Country ASC, Gender ASC;
+
+--  Count the medals awarded per gender and medal type. Generate all possible group-level counts (per gender and medal type subtotals and the grand total).
+-- Count the medals per gender and medal type
+SELECT
+  Gender,
+  Medal,
+  COUNT(*) AS Awards
+FROM Summer_Medals
+WHERE
+  Year = 2012
+  AND Country = 'RUS'
+-- Get all possible group-level subtotals
+GROUP BY CUBE(Gender, Medal)
+ORDER BY Gender ASC, Medal ASC;
+
+```
