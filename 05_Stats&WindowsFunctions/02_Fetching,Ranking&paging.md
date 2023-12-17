@@ -67,3 +67,25 @@ FROM Hosts
 ORDER BY Year ASC;
 
 ```
+
+## Summary  Window Functions and Ranking:
+- ROW_NUMBER: Assigns unique numbers to rows, even if values are the same.
+- RANK: Assigns the same number to identical values, skips over next numbers in such cases.
+- DENSE_RANK: Assigns the same number to identical values, but doesn't skip over the next numbers.
+
+- **Example with Olympic Games Participation:**
+- Query to determine the number of Olympic games each country participated in.
+- Demonstrates the use of the three ranking functions to handle identical values.
+
+- **Different Functions in Action:**
+- ROW_NUMBER: Assigns unique numbers based on order, handles duplicates uniquely.
+- RANK: Assigns the same number to equal values, skips next ranks.
+- DENSE_RANK: Assigns the same number to equal values, doesn't skip ranks.
+- Last rank differs: ROW_NUMBER and RANK have the count of rows, while DENSE_RANK has the count of unique values ranked.
+
+- **Ranking without Partitioning vs. with Partitioning:**
+- Without partitioning: Ranking without considering separate groups results in incorrect relative rankings.
+- With partitioning: Correct ranking within specific groups achieved by partitioning.
+
+- **Practicing Different Ranking Functions:**
+- Encouragement to practice using various ranking functions in exercises.
