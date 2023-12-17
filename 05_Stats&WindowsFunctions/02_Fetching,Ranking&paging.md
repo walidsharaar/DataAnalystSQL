@@ -73,19 +73,51 @@ ORDER BY Year ASC;
 - RANK: Assigns the same number to identical values, skips over next numbers in such cases.
 - DENSE_RANK: Assigns the same number to identical values, but doesn't skip over the next numbers.
 
-- **Example with Olympic Games Participation:**
-- Query to determine the number of Olympic games each country participated in.
-- Demonstrates the use of the three ranking functions to handle identical values.
-
-- **Different Functions in Action:**
+## Different Functions in Action:
 - ROW_NUMBER: Assigns unique numbers based on order, handles duplicates uniquely.
 - RANK: Assigns the same number to equal values, skips next ranks.
 - DENSE_RANK: Assigns the same number to equal values, doesn't skip ranks.
 - Last rank differs: ROW_NUMBER and RANK have the count of rows, while DENSE_RANK has the count of unique values ranked.
 
-- **Ranking without Partitioning vs. with Partitioning:**
+## Ranking without Partitioning vs. with Partitioning:
 - Without partitioning: Ranking without considering separate groups results in incorrect relative rankings.
 - With partitioning: Correct ranking within specific groups achieved by partitioning.
 
-- **Practicing Different Ranking Functions:**
-- Encouragement to practice using various ranking functions in exercises.
+```
+--Rank each athlete by the number of medals they've earned -- the higher the count, the higher the rank -- with identical numbers in case of identical values.
+WITH Athlete_Medals AS (
+  SELECT
+    Athlete,
+    COUNT(*) AS Medals
+  FROM Summer_Medals
+  GROUP BY Athlete)
+
+SELECT
+  Athlete,
+  Medals,
+  -- Rank athletes by the medals they've won
+  rank() OVER (ORDER BY medals DESC) AS Rank_N
+FROM Athlete_Medals
+ORDER BY Medals DESC;
+
+--Rank each country's athletes by the count of medals they've earned -- the higher the count, the higher the rank -- without skipping numbers in case of identical values.
+WITH Athlete_Medals AS (
+  SELECT
+    Country, Athlete, COUNT(*) AS Medals
+  FROM Summer_Medals
+  WHERE
+    Country IN ('JPN', 'KOR')
+    AND Year >= 2000
+  GROUP BY Country, Athlete
+  HAVING COUNT(*) > 1)
+
+SELECT
+  Country,
+  -- Rank athletes in each country by the medals they've won
+  Athlete,
+  DENSE_RANK() OVER (PARTITION BY Country
+                         ORDER BY Medals DESC) AS Rank_N
+FROM Athlete_Medals
+ORDER BY Country ASC, RANK_N ASC;
+
+```
