@@ -1,0 +1,25 @@
+## Planning an oral presentation | Theory
+- Planning an Oral Presentation
+- Presentation Strategy  
+  -   Consider elements for choosing the right format.
+  -   Focus on written reports initially.
+-   Plan and build presentation slides.
+-   Avoid common mistakes and pitfalls.
+-   Deliver effectively.
+-   Planning Importance: Similar to coding, planning is crucial before crafting slides.
+-   Consider purpose, audience, and intended message for structuring.
+-   Purpose: Define the presentation's purpose based on its type.
+-   Informative, instructional, or persuasive.
+-   Uderstanding Audience: Assess the audience type (technical, managerial, customers).
+-   Consider audience size for tailoring content.
+-   Crafting the Message : Aim for one key takeaway that resonates. Build content around this central message.
+-   Structuring the Presentation
+  -   Introduction: Grab attention and hint at content.
+  -   Content: Varies based on audience technicality.
+  -   Conclusion: Recap, include a call-to-action.
+- Outline and Sections
+- Plan visuals and sections (e.g., analysis, conclusions).
+- Maintain around five sections for clarity.
+- Time Consideration
+- Duration impacts planning, adapt content accordingly.
+- Timing revisited later in the chapter.
