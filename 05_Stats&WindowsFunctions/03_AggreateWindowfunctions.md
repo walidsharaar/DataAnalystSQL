@@ -62,3 +62,20 @@ SELECT
 FROM France_Medals
 ORDER BY Year ASC;
 ```
+
+## Summary Frames | SQL
+
+### Frames and Window Functions
+- Use PARTITION and ORDER to alter window function behavior.
+- Frames redefine how window functions operate.
+
+### Motivation for Frames
+
+- Frames avoid default behaviors like identical column values.
+- Demonstrated using LAST_VALUE and frame clauses.
+
+### Defining Frames: ROWS BETWEEN
+- Frames start with RANGE BETWEEN or ROWS BETWEEN.
+- ROWS BETWEEN: PRECEDING, CURRENT ROW, FOLLOWING define frame boundaries.
+
+
