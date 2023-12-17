@@ -25,3 +25,35 @@ Understanding various data metrics crucial for effective storytelling and analys
 - Mean vs. median: Median can be more robust, especially in cases of non-normally distributed data or outliers.
 - Understanding p-values for statistical significance: A value below 0.05 conventionally signifies significance but does not prove absolute truth and may require additional supporting metrics for clarity.
 
+## Summary Visualizations for different audiences | Theory
+- Visualizations in storytelling:Crafting visualizations to suit diverse audiences.
+- Tailoring communication: Choosing visualizations for technical and non-technical audiences.
+- Data storytelling essentials: Selecting, adjusting visualizations based on audience expertise.
+- Targeted messaging: Customizing visuals for different recipients (investor vs. technical lead).
+- Visualization-message alignment: Linking data elements directly to convey specific messages.
+- Providing contextual insights: Incorporating context in visualizations to support messages.
+- Best practices: Applying the Pareto principle, simplifying visuals for engagement.
+- McCandless method: Steps for effective visualization presentation (headline, anticipation of questions, insight clarification, relatability).
+- Practical application: Engaging in practice to reinforce these visualization concepts.
+
+## Summary Choosing the appropriate format | Theory
+- Choosing the appropriate format: Learning when to use various presentation formats.
+- Data storytelling road: Final piece in the communication strategy. Designed, defined approach, selected data, impactful visualization, ready for presentation.
+- Which format is more effective?
+-- Engaging, understandable communication.
+  Discussing written reports vs. oral presentations.
+- Presentation strategy:
+- Considerations: audience, content, special requirements, and channels.
+- Stakeholders: Understanding the audience's needs and purposes for the findings.
+- Content: Deciding what to include based on audience needs: results, conclusions, recommendations, methodology explanation.
+- Requirements: Identifying special stakeholder needs: time availability, reporting requirements, time zones.
+- Consumption: Formats like Word docs, Jupyter notebooks, articles, slide decks.
+- Delivery methods: direct presentation, email, Slack.
+- Audience size considerations.
+- Oral communication:
+--  Strengths: relationship building, immediate feedback, body language richness.
+--  Weaknesses: lack of revision, not suitable for lengthy messages.
+- Written communication:
+-- Strengths: record keeping, shareability, less emotional reactions, suitable for technical details.
+-- Weaknesses: lack of immediate feedback, harder to adapt without real-time reactions.
+- Appropriate format: Example scenario: CEO's interest in conclusions, preferring a quick oral presentation during her visit. Subsequent need for a structured written report based on her feedback for investor decisions.
