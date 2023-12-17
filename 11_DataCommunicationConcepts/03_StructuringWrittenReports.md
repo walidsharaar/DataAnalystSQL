@@ -25,3 +25,12 @@
 - Interpretability for Stakeholders: Explaining findings with compelling narratives aids stakeholder understanding and allows for reproducibility of conclusions.
 - Citing Sources: Essential to correctly cite and reference others' work in analysis.
 - References & Citations: Importance of citations, styles like APA, and reference management tools for efficient tracking and retrieval of information.
+
+## Summary Write precise and clear reports | Theory
+- Reports should be reproducible and intelligible to stakeholders for impactful decisions.
+- Data science reports demand concise, precise writing for clarity and understanding.
+- Eliminate empty phrases; they distract and add no substantial information.
+- Prefer concrete nouns over ambiguous pronouns for clear and direct technical writing.
+- Prefer active voice in business contexts for better engagement and clarity.
+- Remove redundant adjectives/adverbs to maintain report conciseness.
+- Watch out for run-on sentences; separate clauses correctly for clarity.
