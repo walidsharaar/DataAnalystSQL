@@ -40,3 +40,31 @@
 - Visualization Over Text: Preference for graphs over excessive text for better audience understanding.
 - Effective Visualization Techniques: Highlighting and layering graphs aid in directing audience attention.
 - Use one or two full-size graphs per slide to prevent overcrowding.
+- 
+## Summary Delivering the presentation | Theory
+
+- Plan Before Slides
+  - Plan presentation before building slides.
+  - Slides should support the presentation's story.
+- Practice & Delivery
+  - Practice is crucial for effective delivery.
+  - Writing a script as a guide, not for memorization.
+- Anticipate and prepare for follow-up questions.
+- Rehearse & Refine
+  - Rehearse in presentation context.
+  - Identify and eliminate distracting speech patterns.
+  - Refine transitions between slides and spoken content.
+- Delivery Tactics
+  - Awareness of emotions during delivery.
+  - Engage audience within their attention span (5-20 minutes).
+  - Establish a relationship, use eye contact, and interact.
+- Time Management
+  - Respect allocated presentation time.
+  - Use pauses effectively; adjust pace for urgency.
+- Open for Questions
+  - Encourage questions during or after the presentation.
+  - Show openness to feedback and audience engagement.
+- Keys to Effective Presentation
+  - Engage with the audience, emphasize less content.
+  - Consistently reinforce the main message.
+  - Practice, anticipate follow-up inquiries, and prepare.
