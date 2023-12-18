@@ -40,31 +40,56 @@
 - Visualization Over Text: Preference for graphs over excessive text for better audience understanding.
 - Effective Visualization Techniques: Highlighting and layering graphs aid in directing audience attention.
 - Use one or two full-size graphs per slide to prevent overcrowding.
-- 
+  
 ## Summary Delivering the presentation | Theory
 
 - Plan Before Slides
-  - Plan presentation before building slides.
-  - Slides should support the presentation's story.
+    - Plan presentation before building slides.
+    - Slides should support the presentation's story.
 - Practice & Delivery
-  - Practice is crucial for effective delivery.
-  - Writing a script as a guide, not for memorization.
+    - Practice is crucial for effective delivery.
+    - Writing a script as a guide, not for memorization.
 - Anticipate and prepare for follow-up questions.
 - Rehearse & Refine
-  - Rehearse in presentation context.
-  - Identify and eliminate distracting speech patterns.
-  - Refine transitions between slides and spoken content.
+    - Rehearse in presentation context.
+    - Identify and eliminate distracting speech patterns.
+    - Refine transitions between slides and spoken content.
 - Delivery Tactics
-  - Awareness of emotions during delivery.
-  - Engage audience within their attention span (5-20 minutes).
-  - Establish a relationship, use eye contact, and interact.
+    - Awareness of emotions during delivery.
+    - Engage audience within their attention span (5-20 minutes).
+    - Establish a relationship, use eye contact, and interact.
 - Time Management
-  - Respect allocated presentation time.
-  - Use pauses effectively; adjust pace for urgency.
+    - Respect allocated presentation time.
+    - Use pauses effectively; adjust pace for urgency.
 - Open for Questions
-  - Encourage questions during or after the presentation.
-  - Show openness to feedback and audience engagement.
+    - Encourage questions during or after the presentation.
+    - Show openness to feedback and audience engagement.
 - Keys to Effective Presentation
-  - Engage with the audience, emphasize less content.
-  - Consistently reinforce the main message.
-  - Practice, anticipate follow-up inquiries, and prepare.
+    - Engage with the audience, emphasize less content.
+    - Consistently reinforce the main message.
+    - Practice, anticipate follow-up inquiries, and prepare.
+## Summary Avoiding common errors | Theory
+
+- Avoiding common errors
+    - Presenting a set of best practices for impactful presentations
+- Recap
+    - Planning and practicing presentations are crucial
+    - Presentations need to be concise, avoiding common mistakes
+- Length
+    - Effective presentations stay within 20 minutes to keep audience attention
+    - Allocate time for audience questions
+- Purpose
+    - Introduce presentation's purpose early to give context and importance
+- Guide audience
+    - Provide a structured flow of information throughout the presentation
+    - Share findings gradually to support the main message
+- Audience involvement
+    - Engage the audience, not just lecture them
+    - Introduce oneself strongly and share key assumptions
+    - Pose questions to involve the audience and relate content to the main idea
+- Body language
+    - Speaker's presence matters for message delivery
+    - Use natural gestures and expressions to emphasize points
+- Voice tonality
+    - Vary voice tone and speed for emphasis and engagement
+    - Speak clearly and with appropriate volume for the presentation format
