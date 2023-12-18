@@ -93,3 +93,5 @@
 - Voice tonality
     - Vary voice tone and speed for emphasis and engagement
     - Speak clearly and with appropriate volume for the presentation format
+
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/2b1a721a-6872-49af-afa0-0a7787970d7d)
