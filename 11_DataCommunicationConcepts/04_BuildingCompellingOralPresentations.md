@@ -23,3 +23,20 @@
 - Time Consideration
 - Duration impacts planning, adapt content accordingly.
 - Timing revisited later in the chapter.
+  
+## Summary Building presentation slides | Theory
+- Planning Crucial for Slide Building : Key emphasis on planning before creating slides.
+- Designing Slides for Audience Engagement: Importance of slides supporting the storytelling.
+- Prioritize multiple slides with concise content over few slides with excessive information.
+- Slide Count & Messaging Focus: Slides count for time management, emphasizing a single message per slide.
+- Avoid overwhelming the audience with excessive content at once.
+- Color & Formatting Impact: Use minimal colors that convey meaning effectively.
+- Maintain contrast for readability, considering color-vision deficiencies.
+- Font Readability & Use: Serif vs. sans-serif contextual usage.
+- Opt for shorter, larger text sizes, limit font variations to avoid distractions.
+- Content Management on Slides: Caution against text-heavy slides that distract from the presenter's message.
+- Focus on key points, avoid making slides standalone content.
+- Slide Headlines & Layering: Importance of concise, visible headlines to guide attention. Layering for clearer, structured slides that aid audience focus.
+- Visualization Over Text: Preference for graphs over excessive text for better audience understanding.
+- Effective Visualization Techniques: Highlighting and layering graphs aid in directing audience attention.
+- Use one or two full-size graphs per slide to prevent overcrowding.
