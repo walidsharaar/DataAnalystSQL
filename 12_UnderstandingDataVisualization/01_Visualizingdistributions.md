@@ -34,3 +34,14 @@
 - Comparing histograms with box plots reveals clearer insights, showcasing median ages and quartile ranges.
 - Box plot whiskers extend to 1.5 times the interquartile range, encompassing most data points while indicating outliers.
 - Comparing royal houses' monarch ascension ages through box plots reveals historical trends, displaying a gradual increase in ascension ages over time.
+
+## Scatter plots | Theory
+- Scatter plots are essential for visualizing the relationship between two continuous variables, offering insights into correlations and trends.
+
+### Facts
+- Scatter plots are used to explore the relationship between two continuous variables.
+- Los Angeles County home price dataset includes bedrooms, sale prices, and square footage.
+- Logarithmic scales in scatter plots help evenly distribute data points for better readability.
+- Correlation in scatter plots indicates the strength and direction of relationships between variables.
+- Sometimes, complex data shapes may not align with traditional correlation interpretations.
+- Adding trend lines (straight or smooth curves) aids in understanding relationships between variables in scatter plots.
