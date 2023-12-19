@@ -19,3 +19,12 @@
 - Histogram + Polar Coords = Rose Plot
   -- Transforming histograms to polar coordinates creates a rose plot.
   -- Unlike pie plots, in rose plots, it's the x-axis converted to angles while bar heights remain as lengths, aiding in clearer data interpretation, such as the paca's continuous nocturnal activity.
+
+## Axes of evil | Theory
+- Issues in data visualization, from misleading axes to misrepresented bar lengths, demonstrate the significance of accurate plotting techniques.
+
+### Facts
+- Problems with bar lengths can distort perception, like Yang's 22.5% appearing significantly larger than Sanders' 21%.
+- Stacked bar plots with skewed y-axes, like misrepresented phone OS market shares, can mislead about actual data distribution.
+- Dual y-axes can create conflicting interpretations; altering the axis changes the perceived correlation between variables.
+- Opting for separate panels when plotting different metrics is a clearer and more honest visualization technique.
