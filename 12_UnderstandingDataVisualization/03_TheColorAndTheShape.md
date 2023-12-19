@@ -28,3 +28,17 @@
 -  Color Scale Types: Qualitative scales distinguish unordered categories; sequential scales emphasize order, and diverging scales highlight values around a midpoint.
 -  alette Examples: Different scales suit different data: qualitative for technology adoption, sequential for ordered categories, and diverging for midpoint emphasis.
 - Example Applications: Specific datasets, like survey responses on green technology in Malaysia, illustrate the use of diverging scales for nuanced perceptions.
+
+## Plotting many variables at once | Theory
+- Visualizing multiple variables involves using advanced plot types like pair plots, correlation heatmaps, and parallel coordinates plots. These aid in understanding distributions, relationships, and correlations among variables.
+
+### Facts
+- Pair plots handle around ten variables, showcasing variable distributions and relationships between each pair.
+- LA home prices' pair plot displays four variables, with diagonal panels showing variable distributions.
+- Panels off the diagonal in pair plots illustrate relationships between continuous variables via scatter plots and correlations.
+- Pair plots compare categorical and continuous variables, showcasing box plots and histograms.
+- Pair plots are valuable for swift dataset exploration, while correlation heatmaps simplify visualization for many continuous variables.
+- Correlation heatmaps highlight relationships between pairs of continuous variables, enabling easy comparison for numerous variables at once.
+- Scatter plots with color representations exhibit three variables together, becoming complex with more variables.
+- Parallel coordinates plots aid in understanding relationships or clustering of numerous continuous variables.
+- Plotting by continent in parallel coordinates reveals distinct patterns across different regions, providing insights into various metrics for different continents.
