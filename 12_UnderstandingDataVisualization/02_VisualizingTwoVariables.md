@@ -37,3 +37,13 @@
 - Stacking bars illustrates changing percentages over time in children's dietary habits.
 - Comparison between bar plots (counts) and box plots (spread of variables).
 - Bar plots can represent other metrics beyond counts, like mean age in a less dynamic manner than box plots.
+
+## Dot plots | Theory
+- Dot plots are a versatile alternative to bar plots, offering advantages like logarithmic scale usage and the ability to represent multiple metrics.
+
+### Facts
+- Dot plots, akin to bar plots, suit similar scenarios but offer the advantages of logarithmic scale compatibility and accommodating multiple metric representations.
+- A dataset illustrating nearby stars' distance from Earth in light years and their mass in solar masses is showcased.
+- When comparing bar plots and dot plots for star masses, the limitations of bar plots on a logarithmic scale become apparent, necessitating the use of dot plots to visualize accurately.
+- Logarithmic scales aid in understanding weight comparisons between stars.
+- Row sorting is crucial in dot plots, much like bar plots, facilitating easier analysis of the heaviest or lightest stars nearest to Earth.
