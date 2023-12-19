@@ -22,3 +22,15 @@
 - Assessing skewness helps identify whether a distribution is symmetric or not.
 - Kurtosis measures the number of extreme values in a distribution, distinguishing between mesokurtic, leptokurtic, and platykurtic distributions.
 - Analyzing kurtosis aids in understanding the distribution's peak and the frequency of extreme values.
+
+
+## Box plots | Theory
+- Box plots offer a space-efficient way to compare distributions of a continuous variable across different categories, aiding in visualizing trends and comparisons.
+
+### Facts
+- Individual histograms pose challenges when comparing multiple distributions.
+- Drawing histograms in separate panels aids comparison, yet aligning them in a single column can lead to space issues and readability problems.
+- Box plots split data by category, displaying quartiles, medians, and outliers efficiently.
+- Comparing histograms with box plots reveals clearer insights, showcasing median ages and quartile ranges.
+- Box plot whiskers extend to 1.5 times the interquartile range, encompassing most data points while indicating outliers.
+- Comparing royal houses' monarch ascension ages through box plots reveals historical trends, displaying a gradual increase in ascension ages over time.
