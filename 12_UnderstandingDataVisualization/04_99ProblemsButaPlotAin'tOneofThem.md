@@ -28,3 +28,14 @@
 - Stacked bar plots with skewed y-axes, like misrepresented phone OS market shares, can mislead about actual data distribution.
 - Dual y-axes can create conflicting interpretations; altering the axis changes the perceived correlation between variables.
 - Opting for separate panels when plotting different metrics is a clearer and more honest visualization technique.
+
+## Sensory overload | Theory
+- This text discusses various aspects of effective data visualization, including measures of good visualization, chartjunk, skeuomorphism, extra dimensions, and the use of ostentatious colors and lines, emphasizing how these elements can affect data interpretation negatively.
+
+### Facts
+- Two basic measures of good data visualization are the number of insights a reader can obtain from a plot and how quickly they can grasp those insights.
+- Chartjunk refers to elements in a plot that hinder data comprehension, such as unnecessary design additions or elements that distort information.
+- Example plots from sources like BBC, Fox News, and Reddit illustrate problems like misrepresenting data through visual elements like images instead of bars, skeuomorphic elements, unnecessary 3D perspectives, and improper use of colors and lines.
+- Skeuomorphism, seen in some plots, includes adding real-world elements to virtual objects, which might distract from the actual data.
+- The use of unnecessary dimensions, like adding unnecessary 3D perspectives to bar plots, can make data interpretation more challenging without providing additional meaningful information.
+- Ostentatious colors and lines, as seen in a plot representing German Federal Council seats, can make visuals unappealing and difficult to comprehend, hindering insights.
