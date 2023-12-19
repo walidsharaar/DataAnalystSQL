@@ -15,3 +15,16 @@
 - Line Plot Dimensions: Line plots incorporate aesthetics like color, thickness, transparency, and linetype.
 - Color in Line Plots: Color distinguishes lines in technology adoption plots effectively.
 - Linetype Usage: Linetype as an alternative dimension in line plots, albeit challenging for distinction.
+
+## Using color | Theory
+- Understanding color in data visualization is crucial. Different color spaces, such as RGB and CMYK, affect how colors are displayed and printed. Choosing the right color palette based on hue, chroma, and luminance can enhance data perception, with three main types of color scales: qualitative, sequential, and diverging.
+
+### Facts
+- Color Perception: Color plays a vital role in data interpretation, with various color spaces impacting display and print quality.
+- Colorspaces: RGB (Red-Green-Blue) and CMYK (Cyan-Magenta-Yellow-blacK) are commonly used color models in programming and design, respectively.
+- Plotting Palette Choice: Selecting the right colors matters. Issues like visibility, similarity, and perception differences can impact data interpretation.
+-  HCL Colorspace: Hue-Chroma-Luminance (HCL) addresses color perception issues for effective data visualization.
+-  HCL Components: HCL comprises hue (rainbow colors), chroma (intensity), and luminance (brightness).
+-  Color Scale Types: Qualitative scales distinguish unordered categories; sequential scales emphasize order, and diverging scales highlight values around a midpoint.
+-  alette Examples: Different scales suit different data: qualitative for technology adoption, sequential for ordered categories, and diverging for midpoint emphasis.
+- Example Applications: Specific datasets, like survey responses on green technology in Malaysia, illustrate the use of diverging scales for nuanced perceptions.
