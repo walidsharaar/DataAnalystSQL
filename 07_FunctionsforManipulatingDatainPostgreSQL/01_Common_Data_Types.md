@@ -49,3 +49,22 @@ WHERE table_name ='customer';
 
 ```
 
+## Summary Date and time data types | SQL
+- Timestamp Data Types
+  - Crucial for data preparation in machine learning and data science.
+  - Includes precision timestamps, intervals, date, and time types.
+  - Contains date and time values with microsecond precision.
+  - Often used in SQL for precise time records like payment or updates.
+  - PostgreSQL follows the ISO 8601 format: YYYY-MM-DD HH:MM:SS.microseconds.
+- DATE and TIME Data Types
+  - DATE: Stores only the date without a time.
+  - TIME: Stores only the time without a date.
+  - Useful for storing partial TIMESTAMP values.
+- INTERVAL Data Types
+  - Stores time as a period (years, months, days, hours, seconds).
+  - Helpful for performing arithmetic operations on date and time columns.
+  - PostgreSQL allows storing TIMESTAMP and TIME data with or without a timezone.
+ 
+```
+
+```
