@@ -13,9 +13,9 @@
 - Introduction to full-text search via PostgreSQL extensions.
 ### Common Data Types:
 - PostgreSQL's diverse native data types:
-    -- Text types like CHAR, VARCHAR, TEXT.
-    -- Numeric types such as INT, DECIMAL.
-    -- Date/time types like DATE, TIME, TIMESTAMP, INTERVAL, and ARRAYs.
+    - Text types like CHAR, VARCHAR, TEXT.
+    - Numeric types such as INT, DECIMAL.
+    - Date/time types like DATE, TIME, TIMESTAMP, INTERVAL, and ARRAYs.
 ### Text Data Types:
 - CHAR, VARCHAR for fixed/varying characters; TEXT for unlimited length. Examples: categorical data (e.g., film titles), manipulation techniques (substring extraction).
 ### Numeric Data Types:
