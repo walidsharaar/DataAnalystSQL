@@ -23,3 +23,7 @@
 ### Determining Data Types:
 - Crucial skill: determining column data types in existing databases.
 - Leveraging INFORMATION_SCHEMA in PostgreSQL for querying data type information.
+
+```
+```
+
