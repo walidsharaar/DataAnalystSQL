@@ -10,7 +10,8 @@ Your final query:
 See if length of stay impacts the average diagnostic scores rounded to two decimal places for international students, and order the results by descending order of the length of stay.
 The final output of your query with aliases will have a total nine observation rows and four columns: stay, average_phq, average_scs, and average_as, in that order.
 */
-```
+
+
 -- Average scores by length of stay for international students, and view them in descending order
 select stay, 
        round(AVG(todep), 2) AS average_phq, 
@@ -20,3 +21,5 @@ from students
 where inter_dom = 'Inter'
 group by stay
 order by stay desc;
+```
+
