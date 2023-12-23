@@ -76,3 +76,24 @@ SELECT
 FROM rental;
 
 ```
+## Working with ARRAYs | SQL
+- Working with ARRAYs
+	- PostgreSQL arrays resemble arrays in most programming languages.
+ 	- Arrays can be multi-dimensional and of varying lengths for any native data type in PostgreSQL.
+- Before Getting Started
+	- Data science often involves extracting data using SQL queries.
+ 	- To work with data, databases need tables with columns and inserted records. Example: CREATE TABLE for a table called my_first_table with text and integer columns.
+- ARRAY as a Special Type
+	- Creating ARRAY types involves adding square brackets to a data type.
+ 	- Illustration: Creating a table with nested email arrays and integer test scores arrays.
+- INSERT Statements with ARRAYS
+	- INSERT STATEMENT adds records to the created table using array representations in SQL.
+- Accessing ARRAYs
+	- Accessing arrays in SELECT statements involves array notation, starting indexing at 1 in PostgreSQL.
+- Searching ARRAYs
+	- Array notation in WHERE clause acts as a filter, searching for specific values in arrays.
+- ARRAY Functions and Operators (ANY)
+	- The ANY function searches arrays for values and returns matching records.
+ 	- ARRAY Functions and Operators (Contains Operator)
+  ```
+  ```
