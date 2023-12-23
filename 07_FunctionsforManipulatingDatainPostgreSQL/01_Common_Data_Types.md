@@ -100,13 +100,18 @@ FROM rental;
   SELECT 
   title, 
   special_features FROM film;
-  -- Select the title and special features column
-  
--- Select all films that have a special feature Trailers by filtering on the first index of the special_features ARRAY.
+  -- Select all films that have a special feature Trailers by filtering on the first index of the special_features ARRAY.
 	SELECT 
   title, 
   special_features 
 	FROM film
 	-- Use the array index of the special_features column
 	WHERE special_features[1] = 'Trailers';
+  -- Now let's select all films that have Deleted Scenes in the second index of the special_features ARRAY.
+  SELECT 
+  title, 
+  special_features
+  FROM film
+  -- Use the array index of the special_features column
+  WHERE special_features[2] = 'Deleted Scenes';
  ```
