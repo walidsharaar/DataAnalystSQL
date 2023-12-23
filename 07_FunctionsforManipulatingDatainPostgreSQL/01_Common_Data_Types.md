@@ -96,7 +96,7 @@ FROM rental;
 	- The ANY function searches arrays for values and returns matching records.
  	- ARRAY Functions and Operators (Contains Operator)
   ```
-  -- Select the title and special features from the film table and compare the results between the two columns.
+   -- Select the title and special features from the film table and compare the results between the two columns.
   SELECT 
   title, 
   special_features FROM film;
@@ -126,4 +126,5 @@ FROM rental;
   special_features  FROM film
   -- Filter where special_features contains 'Deleted Scenes'
   WHERE special_features @> ARRAY[ 'Deleted Scenes' ];
+  
  ```
