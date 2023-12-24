@@ -53,3 +53,25 @@ FROM film AS f
     INNER JOIN rental AS r ON i.inventory_id = r.inventory_id
 ORDER BY f.title;
 ```
+### Functions for retrieving current date/time | SQL
+- Functions for retrieving current date/time: Learn to retrieve and utilize current date/time values at varying precision levels.
+- Retrieving current timestamp:
+	-- NOW() function fetches timestamp with microseconds and timezone.
+ 	-- Casting for timestamp without timezone is achievable through explicit conversion.
+- Casting for data conversion:
+	-- Casting allows conversion between data types.
+  	-- PostgreSQL supports double colon syntax and CAST() function for type conversion.
+- Alternative methods in PostgreSQL:
+	-- CURRENT_TIMESTAMP mirrors NOW() function.
+  	-- Either function can be used interchangeably in queries.
+- Precision and function differences:
+	-- CURRENT_TIMESTAMP permits specifying precision for seconds.
+  	-- NOW() and CURRENT_TIMESTAMP vary in precision options.
+- Current date and time functions:
+	-- CURRENT_DATE returns date without time
+  	-- CURRENT_TIME retrieves time with timezone but excludes date.
+  These points cover the techniques and nuances in PostgreSQL for fetching current date/time values with varying levels of precision and type conversions.
+
+```
+
+```
