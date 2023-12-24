@@ -77,5 +77,16 @@ ORDER BY f.title;
 
 SELECT CURRENT_TIMESTAMP;
 
+-- Select the current timestamp
+SELECT now();
+-- Select the current date
+SELECT current_date;
+--
+SELECT 
+	-- Select the current date
+	current_date,
+    -- CAST the result of the NOW() function to a date
+    cast( now() AS date )
+
 
 ```
