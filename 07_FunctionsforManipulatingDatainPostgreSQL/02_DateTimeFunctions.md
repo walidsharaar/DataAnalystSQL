@@ -73,5 +73,9 @@ ORDER BY f.title;
   These points cover the techniques and nuances in PostgreSQL for fetching current date/time values with varying levels of precision and type conversions.
 
 ```
+-- Return current date and time as timestamp with timezone
+
+SELECT CURRENT_TIMESTAMP;
+
 
 ```
