@@ -103,3 +103,25 @@ SELECT
     interval '5 days' + CURRENT_TIMESTAMP(0) AS five_days_from_now;
 
 ```
+
+## Extracting and transforming date/ time data | SQL
+- Extracting and transforming date/time data:
+	-- Learned about AGE function for calculating timestamp differences.
+  	-- Exploring built-in functions for transforming timestamp and interval data types for data preparation.
+- Manipulating timestamp data:
+	-- Using EXTRACT, DATE_PART, and DATE_TRUNC functions to extract sub-fields, manipulate precision, and create new columns.
+  	-- Helpful when precision in timestamps isn't necessary for analysis, enabling extraction of specific parts like year or month.
+- Utilizing EXTRACT and DATE_PART functions:
+	-- Parameters: field identifier and source (timestamp, time, or interval data types).
+  	-- Field identifiers: year, month, quarter, day of week, etc.
+  	-- Functions produce similar results, interchangeable with slight variations in parameter passing.
+- Extracting sub-fields from timestamp data:
+	-- DVD Rentals database example: payment_date column holds transaction timestamps.
+  	-- While crucial for detailed records, aggregation for analysis or trend spotting is necessary at times.
+- Aggregation using timestamp data:
+	--  Identifying highest revenue by quarter: aggregate amount column using EXTRACT function for quarter and year.
+	--  GROUP BY clause used for field specification in SELECT clause, grouping by quarter and year.
+- Truncating timestamps with DATE_TRUNC():
+	-- Truncates timestamp/interval data to specified precision.
+  	-- Precision values: subset of field identifiers from EXTRACT() and DATE_PART() functions.
+  	-- Returns interval or timestamp based on the precision specified.
