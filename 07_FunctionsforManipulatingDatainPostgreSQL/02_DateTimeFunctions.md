@@ -147,4 +147,17 @@ SELECT
 FROM rental
 GROUP BY 1;
 
+/* Extract the day of the week from the rental_date column using the alias dayofweek.
+Use an INTERVAL in the WHERE clause to select records for the 90 day period starting on 5/1/2005.
+*/
+SELECT 
+  -- Extract the day of week date part from the rental_date
+  EXTRACT(dow FROM rental_date) AS dayofweek,
+  AGE(return_date, rental_date) AS rental_days
+FROM rental AS r 
+WHERE 
+  -- Use an INTERVAL for the upper bound of the rental_date 
+  rental_date BETWEEN CAST('2005-05-01' AS DATE)
+   AND CAST('2005-05-01' AS DATE) + INTERVAL '90 day';
+
 ```
