@@ -126,4 +126,10 @@ SELECT
   	-- Precision values: subset of field identifiers from EXTRACT() and DATE_PART() functions.
   	-- Returns interval or timestamp based on the precision specified.
 ```
+SELECT 
+  -- Extract day of week from rental_date
+  EXTRACT(dow FROM rental_date) AS dayofweek 
+FROM rental 
+LIMIT 100;
+
 ```
