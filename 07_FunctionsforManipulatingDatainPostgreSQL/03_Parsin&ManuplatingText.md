@@ -9,3 +9,10 @@
   - String Concatenation
     - Mergins trings using || operator
     - Real-world example: Creating 'full_name' from 'first_name' and 'last_name'
+   
+  ```
+  -- Concatenate the first_name and last_name 
+SELECT first_name || ' ' || last_name  || ' <' || email || '>' AS full_email 
+FROM customer
+
+  ```
