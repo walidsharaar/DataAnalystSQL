@@ -139,5 +139,12 @@ SELECT
   COUNT(rental_id) as rentals 
 FROM rental 
 GROUP BY 1;
+--count the total number of rentals by rental_day and alias it as rentals
+SELECT 
+  DATE_TRUNC('day', rental_date) AS rental_day,
+  -- Count total number of rentals 
+  COUNT(rental_id) as rentals 
+FROM rental
+GROUP BY 1;
 
 ```
