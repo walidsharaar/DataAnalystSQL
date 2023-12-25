@@ -125,3 +125,5 @@ SELECT
 	-- Truncates timestamp/interval data to specified precision.
   	-- Precision values: subset of field identifiers from EXTRACT() and DATE_PART() functions.
   	-- Returns interval or timestamp based on the precision specified.
+```
+```
