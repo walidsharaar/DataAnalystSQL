@@ -85,3 +85,22 @@ SELECT
   SUBSTRING(email FROM POSITION('@' IN email)+1 FOR LENGTH(email)) AS domain
 FROM customer;
 ```
+
+## Truncating and padding string data | SQL
+- Truncating and Overwriting Strings : Demonstrates methods to truncate and replace characters in a string from.
+- TRIM Function
+  - Removes specified characters from the start, end, or both of a string.
+  - Accepts optional parameters for removal specifications.
+  - Example illustrates removing whitespace from the beginning and end of a string.
+- LTRIM and RTRIM Functions
+  - Analogous to TRIM but remove characters from either the beginning or end, not both.
+  - Default usage truncates whitespace.
+  - LTRIM removes spaces at the string's beginning.
+  - RTRIM demonstrates removing characters from the end.
+- Padding with Characters
+  - LPAD function adds characters to a string to match a specified length.
+  - Useful for uniform field length. Example pads 'padded' with hash characters to reach a length of ten.
+- Padding with Whitespace
+  - LPAD without the third parameter pads strings with spaces by default.
+  - Truncation occurs if the specified length is less than the original string length.
+  - RPAD function pads characters to the right.
