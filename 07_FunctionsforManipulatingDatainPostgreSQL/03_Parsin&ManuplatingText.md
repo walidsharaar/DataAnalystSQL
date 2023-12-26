@@ -113,5 +113,14 @@ FROM customer;
 -- Concatenate the first_name and last_name and add a single space to the beginning of last_name column using a padding function 
 SELECT 
 	first_name || LPAD(last_name, LENGTH(last_name)+1) AS full_name
+FROM customer;
+/*
+Add a single space to the right or end of the first_name column.
+Add the characters < to the right or end of last_name column.
+Finally, add the characters > to the right or end of the email column.*/
+SELECT 
+	RPAD(first_name, LENGTH(first_name)+1) 
+    || RPAD(last_name, LENGTH(last_name)+2, ' <') 
+    || RPAD(email, LENGTH(email)+1, '>') AS full_email
 FROM customer; 
 ```
