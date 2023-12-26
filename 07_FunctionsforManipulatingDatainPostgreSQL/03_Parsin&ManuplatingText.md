@@ -62,6 +62,10 @@
 
 ```
 Select the title and description columns from the film table and find the number of characters in the description column with the alias desc_len.
-
+SELECT 
+  title,
+  description,
+  LENGTH(description) AS desc_len
+FROM film;
 
 ```
