@@ -36,4 +36,6 @@
   	ON f.film_id = fc.film_id 
   INNER JOIN category AS c 
   	ON fc.category_id = c.category_id;
+  -- Replace whitespace in the film title with an underscore
+  SELECT  REPLACE(title, ' ', '_') AS title FROM film; 
   ```
