@@ -109,4 +109,9 @@ FROM customer;
 SELECT 
 	RPAD(first_name, LENGTH(first_name)+1) || last_name AS full_name
 FROM customer;
+
+-- Concatenate the first_name and last_name and add a single space to the beginning of last_name column using a padding function 
+SELECT 
+	first_name || LPAD(last_name, LENGTH(last_name)+1) AS full_name
+FROM customer; 
 ```
