@@ -14,4 +14,7 @@
   -- Concatenate the first_name and last_name
   SELECT first_name || ' ' || last_name  || ' <' || email || '>' AS full_email
   FROM customer
+  -- Concatenate the first_name and last_name and email
+  SELECT CONCAT(first_name, ' ', last_name, ' <', email, '>') AS full_email
+  FROM customer
   ```
