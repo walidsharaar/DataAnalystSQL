@@ -34,7 +34,7 @@
 - User-defined Data Types:
   - Created via CREATE TYPE command, registering in system tables.
   - Enumerated types (enums) define fixed value sets (e.g., days of the week).
-- ℹ️ Retrieving Data Type Info:
+- Retrieving Data Type Info:
   - Query pg_type for data type details (typname, typcategory).
   - INFORMATION_SCHEMA.COLUMNS also provides data type insights.
 - User-defined Functions:
