@@ -17,4 +17,8 @@
   ```
   -- Select only records that contain the word 'GOLD'
   SELECT * FROM film WHERE title LIKE '%GOLD%';
+
+  -- Select the film description as a tsvector
+  SELECT to_tsvector(description)
+  FROM film;
   ```
