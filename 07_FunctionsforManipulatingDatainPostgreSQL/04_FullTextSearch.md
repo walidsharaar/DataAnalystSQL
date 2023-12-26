@@ -14,3 +14,7 @@
 - Full-Text Search Syntax Explained:
   - Utilizes to_tsvector and to_tsquery functions to convert text to tsvector data, enabling powerful basic search queries.
 
+  ```
+  -- Select only records that contain the word 'GOLD'
+  SELECT * FROM film WHERE title LIKE '%GOLD%';
+  ```
