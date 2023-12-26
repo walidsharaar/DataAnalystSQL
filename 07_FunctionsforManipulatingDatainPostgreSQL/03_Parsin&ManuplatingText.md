@@ -39,3 +39,23 @@
   -- Replace whitespace in the film title with an underscore
   SELECT  REPLACE(title, ' ', '_') AS title FROM film; 
   ```
+
+## Parsing string and character data | SQL
+- Parsing string and character data
+  - Learn string functions in PostgreSQL for parsing and manipulating text.
+  - Combine and nest functions for enhanced capabilities.
+- Determining string length
+  - CHAR_LENGTH: Counts characters in a string; returns an integer.
+  - LENGTH: Analogous to CHAR_LENGTH, interchangeable based on preference.
+- Finding character position
+  - POSITION: Locates a character's position from the string's start.
+  - STRPOS: Similar to POSITION but with slightly different syntax.
+- Parsing string data
+  - LEFT: Extracts the first "n" characters from a string.
+  - RIGHT: Extracts the last "n" characters from a string.
+- Extracting substrings
+  - SUBSTRING: Extracts a substring with source, start, and length parameters.
+  - SUBSTR: Similar to SUBSTRING but with different syntax limitations.
+- Advanced substring extraction
+  - Combine SUBSTRING with other functions for diverse extractions.
+  - Extracting text before/after the "@" sign in email addresses using POSITION and CHAR_LENGTH.
