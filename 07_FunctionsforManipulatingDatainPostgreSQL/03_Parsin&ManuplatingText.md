@@ -104,3 +104,9 @@ FROM customer;
   - LPAD without the third parameter pads strings with spaces by default.
   - Truncation occurs if the specified length is less than the original string length.
   - RPAD function pads characters to the right.
+```
+-- Add a single space to the end or right of the first_name column using a padding function and use the || operator to concatenate the padded first_name to the last_name column.
+SELECT 
+	RPAD(first_name, LENGTH(first_name)+1) || last_name AS full_name
+FROM customer;
+```
