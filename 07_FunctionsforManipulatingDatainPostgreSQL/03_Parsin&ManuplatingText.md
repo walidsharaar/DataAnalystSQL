@@ -59,3 +59,9 @@
 - Advanced substring extraction
   - Combine SUBSTRING with other functions for diverse extractions.
   - Extracting text before/after the "@" sign in email addresses using POSITION and CHAR_LENGTH.
+
+```
+Select the title and description columns from the film table and find the number of characters in the description column with the alias desc_len.
+
+
+```
