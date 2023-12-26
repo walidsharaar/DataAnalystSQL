@@ -44,3 +44,12 @@
   - Sakila DB demonstrates PostgreSQL's extensibility.
   - Sample functions: 'get_customer_balance', 'inventory_held_by_customer', 'inventory_in_stock'.
   - These functions perform various tasks like calculating balances and inventory statuses.
+```
+-- Create an enumerated data type, compass_position
+CREATE TYPE compass_position AS ENUM (
+  	-- Use the four cardinal directions
+  	'North', 
+  	'South',
+  	'East', 
+  	'West');
+```
