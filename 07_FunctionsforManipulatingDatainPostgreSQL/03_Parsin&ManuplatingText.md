@@ -67,5 +67,21 @@ SELECT
   description,
   LENGTH(description) AS desc_len
 FROM film;
+-- Select the first 50 characters of the description column with the alias short_desc
 
+SELECT 
+  LEFT(description, 50) AS short_desc
+FROM 
+  film AS f;
+-- Extract only the street address without the street number from the address column and use functions to determine the starting and ending position parameters.
+SELECT SUBSTRING(address FROM POSITION(' ' IN address)+1 FOR LENGTH(address))
+FROM address;
+
+-- Extract the characters to the left of the @ of the email column in the customer table and alias it as username and then use SUBSTRING to extract the characters after the @ of the email column and alias the new derived field as domain.
+SELECT
+  -- Extract the characters to the left of the '@'
+  LEFT(email, POSITION('@' IN email)-1) AS username,
+  -- Extract the characters to the right of the '@'
+  SUBSTRING(email FROM POSITION('@' IN email)+1 FOR LENGTH(email)) AS domain
+FROM customer;
 ```
