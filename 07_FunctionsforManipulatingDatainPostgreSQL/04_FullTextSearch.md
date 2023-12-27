@@ -134,4 +134,19 @@ FROM
   film
 ORDER BY 3
 
+/*
+Select the title and description for all DVDs from the film table and perform a full-text search by
+converting the description to a tsvector and match it to the phrase 'Astounding & Drama' using a tsquery in the WHERE clause.
+*/
+-- Select the title and description columns
+SELECT  
+  title, 
+  description 
+FROM 
+  film 
+WHERE 
+  -- Match "Astounding Drama" in the description
+  to_tsvector(description) @@ 
+  to_tsquery('Astounding & Drama');
+
 ```
