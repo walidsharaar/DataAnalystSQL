@@ -105,5 +105,20 @@ WHERE typname='mpaa_rating'
 -- Enable the pg_trgm extension
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
+-- Select all rows extensions
+SELECT * 
+FROM pg_extension;
+
+/*
+Select the film title and description and calculate the similarity between the title and description.
+*/
+-- Select the title and description columns
+SELECT 
+  title, 
+  description, 
+  -- Calculate the similarity
+  similarity(title, description)
+FROM 
+  film
 
 ```
