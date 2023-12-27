@@ -166,3 +166,5 @@ ORDER BY
 	similarity(description, 'Astounding Drama') DESC;
 
 ```
+
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/c935851a-6d8f-4b9d-b911-65c81f334bf9)
