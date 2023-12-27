@@ -102,5 +102,8 @@ WHERE typname='mpaa_rating'
   - Result Interpretation: 'GUMBO' and 'GAMBOL' have a similarity value of 0.181818, showcasing their level of likeness.
 
 ```
+-- Enable the pg_trgm extension
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
 
 ```
