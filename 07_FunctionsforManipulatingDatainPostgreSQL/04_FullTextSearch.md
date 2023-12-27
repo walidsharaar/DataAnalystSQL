@@ -148,5 +148,21 @@ WHERE
   -- Match "Astounding Drama" in the description
   to_tsvector(description) @@ 
   to_tsquery('Astounding & Drama');
+/*
+Add a new column that calculates the similarity of the description with the phrase 'Astounding Drama' and sort the results by the new similarity column in descending order.
+
+*/
+SELECT 
+  title, 
+  description, 
+  -- Calculate the similarity
+  similarity(description, 'Astounding Drama') 
+FROM 
+  film 
+WHERE 
+  to_tsvector(description) @@ 
+  to_tsquery('Astounding & Drama') 
+ORDER BY 
+	similarity(description, 'Astounding Drama') DESC;
 
 ```
