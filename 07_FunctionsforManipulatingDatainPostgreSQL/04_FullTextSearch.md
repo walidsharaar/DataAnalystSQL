@@ -82,4 +82,25 @@ FROM pg_type
 WHERE typname='mpaa_rating'
 ```
 
+## Full Text Search Enhancements:
+- Extensions Overview:** PostgreSQL extensions like fuzzystrmatch and pg_trgm enhance full text search capabilities.
+- Common Extensions:** PostGIS, PostPic, fuzzystrmatch, and pg_trgm cater to specific functionalities within PostgreSQL.
+- Querying Extensions:
+  - Discovering Extensions: Use `pg_available_extensions` to find available extensions and `pg_extension` to see enabled ones.
+  - Listing Enabled Extensions: Example showcases the presence of 'plpgsql' as an enabled extension.
 
+- Loading Extensions:
+  - Enabling Extensions: Use `CREATE EXTENSION` to load and enable extensions, ensuring they're not duplicated with `IF NOT EXISTS`.
+  - Confirmation: After enabling, verify the addition in `pg_extension` to see the updated list.
+
+- Fuzzy Search Features:
+  - fuzzystrmatch: Utilize functions like 'levenshtein' to gauge string similarity by calculating edit distances.
+  - Example Usage: Shows the distance between 'GUMBO' and 'GAMBOL' as 2, indicating the required changes.
+
+- String Comparison with pg_trgm:
+  - Trigram Matching: pg_trgm uses trigrams to determine string similarity through the 'similarity' function.
+  - Result Interpretation: 'GUMBO' and 'GAMBOL' have a similarity value of 0.181818, showcasing their level of likeness.
+
+```
+
+```
