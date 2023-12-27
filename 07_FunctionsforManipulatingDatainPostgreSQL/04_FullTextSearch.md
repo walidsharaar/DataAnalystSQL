@@ -1,6 +1,6 @@
 ## Introduction to Full-Text Search: Explores PostgreSQL's built-in functions for data transformation in SQL.
-- Topics:
-  - Advanced PostgreSQL features: Custom code extensions, full-text search capabilities, improving search with extensions, and advanced combined capabilities.
+
+- Advanced PostgreSQL features: Custom code extensions, full-text search capabilities, improving search with extensions, and advanced combined capabilities.
 - The LIKE Operator:
   - Uses wildcards in a WHERE clause for pattern matching.
   - Underscore matches one character, percent matches zero or more characters.
