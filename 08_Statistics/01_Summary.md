@@ -38,3 +38,20 @@
   - Considering data symmetry to decide between mean and median; showcasing their applicability based on data distribution.
 - Data Symmetry Impact
   - Explaining how outliers affect mean and median calculations, suggesting the use of median for non-symmetrical data.
+
+## Measures of Spread:
+
+1. Spread Definition: Describes the distance between data points.
+2. Importance of Spread: Indicates the variety within data sets, affecting likelihood predictions.
+3. Measures of Spread:
+    - Range: Difference between maximum and minimum values.
+    - Variance: Average distance from each data point to the mean.
+4. Range Example: Illustrates the significant difference between boroughs in crime rates.
+5. Variance Calculation:Explains how distances from mean affect variance.
+6. Standard Deviation: Converts variance to data units, offering clarity in dispersion.
+7. Standard Deviation in a Histogram: Demonstrates dispersion via standard deviation values.
+8. Quartiles: Divides data into four equal parts, showcasing distribution percentages.
+9. Quartile Insight: Highlights percentages of data falling within quartile values.
+10. Box Plots: Visual representation of quartiles and outliers in data.
+11. Interquartile Range (IQR): Measures distance between first and third quartiles, less affected by extreme values.
+  
