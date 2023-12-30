@@ -89,7 +89,8 @@
   - Larger samples converge closer to theoretical distributions.
   - Law of Large Numbers: Sample mean approaches theoretical mean with larger samples.
 
-## Continuous distributions model continuous data, unlike discrete distributions which handle count or interval data.
+## Continuous distributions
+- Continuous distributions model continuous data, unlike discrete distributions which handle count or interval data.
 - Waiting for a bus exemplifies continuous uniform distribution, with a probability line representing wait times from zero to 12 minutes.
 - Probability equates to area in continuous distributions, calculated by the width times the height of a rectangle representing the probability.
 - Calculating probabilities within certain time frames involves finding the area under the probability line.
