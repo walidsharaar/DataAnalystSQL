@@ -88,3 +88,12 @@
 - Effect of Sample Size
   - Larger samples converge closer to theoretical distributions.
   - Law of Large Numbers: Sample mean approaches theoretical mean with larger samples.
+
+## Continuous distributions model continuous data, unlike discrete distributions which handle count or interval data.
+- Waiting for a bus exemplifies continuous uniform distribution, with a probability line representing wait times from zero to 12 minutes.
+- Probability equates to area in continuous distributions, calculated by the width times the height of a rectangle representing the probability.
+- Calculating probabilities within certain time frames involves finding the area under the probability line.
+- Probability of waiting more than a specified time is obtained by subtracting the probability of waiting less from the total probability.
+- Distributions aren't solely uniform; bimodal distributions show two peak values occurring more frequently.
+- The normal distribution, a bell-shaped curve, is a common continuous distribution seen in various scenarios like blood pressure or retirement age.
+- Regardless of the distribution shape, the total area under the curve always equals one, covering 100% of possible outcomes.
