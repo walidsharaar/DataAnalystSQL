@@ -52,3 +52,39 @@
   - This highlights the impact of event sequence on the probability outcome.
 - Formula for conditional probability
   - The formula for conditional probability: P(A|B) = P(A ∩ B) / P(B).
+
+## Discrete distributions | Theory
+- Discrete Distributions
+  - Rolling the Dice
+    - Six-sided die with equal chances for each outcome.
+- Choosing Salespeople
+  - Similarity between die outcomes and selecting names.
+- Probability Distribution Basics
+  - Describing possible outcomes' probabilities.
+  - Calculating expected values using probabilities.
+- Importance of Probability Distributions
+  - Quantifying risk and aiding decision-making.
+  - Used in hypothesis testing for result analysis.
+- Visualizing Probability Distributions
+  - Histograms depict outcomes and their probabilities.
+- Calculating Probabilities as Areas
+  - Probability equated to areas in distributions.
+  - Example: Probability of specific outcomes on a die.
+- Uneven Die Probabilities
+  - Altering probabilities affects the expected value.
+- Visualizing Uneven Probabilities
+  - Changed probabilities alter distribution visualization.
+- Discrete Probability Distributions
+  - Representing count or interval data.
+  - Discrete outcomes with equal probabilities.
+- Sampling from Discrete Distributions
+  - Relating sampling from a distribution to dice rolls.
+  - Sampling with replacement and expected values.
+- Visualizing Sample Outcomes
+  - Histograms display outcomes from multiple rolls.
+- Sample Distribution vs Theoretical Distribution
+  - Variations in sample outcomes despite equal probabilities.
+  - Comparison of sample mean to theoretical mean.
+- Effect of Sample Size
+  - Larger samples converge closer to theoretical distributions.
+  - Law of Large Numbers: Sample mean approaches theoretical mean with larger samples.
