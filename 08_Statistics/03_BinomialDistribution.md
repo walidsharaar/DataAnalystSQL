@@ -21,3 +21,29 @@
 - Real-world data often mimics the normal distribution, impacting statistical hypothesis testing.
 - Skewness indicates the direction data tails off, while kurtosis describes extreme values in the distribution. Positive skewness peaks on the left and tails off to the right, while negative skewness is the opposite.
 - Kurtosis also categorizes distributions: positive (leptokurtic), normal (mesokurtic), and negative (platykurtic), based on peak and standard deviation.
+
+## Summary The central limit theorem | Theory
+- Central Limit Theorem Overview
+  - Understanding the significance of the normal distribution.
+-Rolling a Die
+  - Taking means from multiple sets reveals varying averages.
+- Multiple Set Analysis
+  - Repeating the process multiple times demonstrates different mean values for each set.
+- 10 Sets of Five Die Rolls
+  - Conducting 10 sets of five die rolls provides a range of mean values.
+- Sampling Distributions
+  - Plotting means leads to sampling distributions, specifically of the sample mean.
+- Multiple Sampling Rounds
+  - Iterating through 100, 1000, 10,000, 100,000, and 1 million samples highlights the convergence to a normal distribution.
+- Central Limit Theorem's Definition
+  - Explaining the central limit theorem: the shift towards normality as sample size increases. Criteria include randomness and independence.
+- Standard Deviation and the CLT
+   - Applying the CLT to standard deviation, showing how the distribution of sample standard deviations behaves.
+- Proportions and the CLT
+  - Observing how the CLT applies to proportions using dice roll examples.
+- Sampling Distribution of Proportion
+  - Visualizing the distribution of fours rolled in each sample, resembling a normal distribution.
+- Mean of Sampling Distribution
+  - Understanding how mean estimates are derived from normal sampling distributions.
+- Benefits of the CLT
+  - Utilizing the CLT for estimation in large populations, saving time and resources in data collection.
