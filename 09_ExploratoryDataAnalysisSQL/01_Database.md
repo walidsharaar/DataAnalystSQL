@@ -117,3 +117,13 @@ Entity relationship diagrams specify column types; even without diagrams, column
 Casting converts values temporarily; use the cast function to convert values or entire columns.
 - Casting with ::
 An alternate notation, double colon, performs casting similarly to the cast function, offering a more concise method.
+
+```
+--  Select profits_change and profits_change cast as integer from fortune500 and look at how the values were converted.
+-- Select the original value
+SELECT profits_change, 
+	   -- Cast profits_change
+       CAST(profits_change AS integer) AS profits_change_int
+  FROM fortune500;
+
+```
