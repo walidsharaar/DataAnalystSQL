@@ -99,3 +99,21 @@ SELECT company_original.name, title, rank
              fortune500.ticker
  ORDER BY rank; 
 ```
+
+## Summary Column types and constraints | SQL
+
+Understanding column types and constraints in databases involves recognizing various data types and limitations on values within columns. This includes constraints like foreign keys, primary keys, unique, and not null, as well as different data types such as numeric, character, date/time, and special types like boolean, monetary, geometric, and structured data types.
+
+### Facts
+- Column Constraints
+Foreign keys and primary keys limit values; columns can have unique, not null, or check constraints.
+-Data Types
+Numeric, character, date/time, and boolean are common; special types include monetary, geometric, and structured data.
+- Numeric Types
+Diverse numeric types store varied value ranges and require different memory allocations.
+- Types in Diagrams
+Entity relationship diagrams specify column types; even without diagrams, column types are fundamental in documentation.
+- Casting with CAST()
+Casting converts values temporarily; use the cast function to convert values or entire columns.
+- Casting with ::
+An alternate notation, double colon, performs casting similarly to the cast function, offering a more concise method.
