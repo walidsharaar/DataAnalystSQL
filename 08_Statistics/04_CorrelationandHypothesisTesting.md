@@ -39,3 +39,19 @@ Correlation measures the relationship between variables, using the Pearson corre
 - Life expectancy vs. water costs: Moderate positive correlation.
 - Correlation ≠ Causation.
 - Confounding variables can affect observed relationships.
+
+
+## Summary Interpreting hypothesis test results | Theory
+Hypothesis testing helps analyze differences between populations, like comparing life expectancy in cities. Through p-values and significance levels, it evaluates if differences are statistically significant.
+
+### Facts
+- Hypothesis testing compares differences between populations.
+- Life expectancy comparison: Null hypothesis - no difference; alternative - Chicago has longer life expectancy.
+- Sampling distributions: Histograms showcase age of death data from 100 residents each in Chicago and Bangkok.
+- Different samples: New samples show varying results, raising the question of representation accuracy.
+- Sampling distribution of mean life expectancy: Sampling with replacement creates distributions, indicating Chicago's potentially higher life expectancy.
+- P-value: Probability metric determining extreme results; Chicago's life expectancy p-value found to be 0.037.
+- Visualizing p-value: Overlapping areas in sample mean distributions reflect confidence in conclusions.
+- ⍺ (Significance level): Set at 0.05, determines the likelihood of false rejection of null hypothesis.
+- Type I/II errors: Wrongly rejecting/accepting null hypothesis leads to different errors.
+-  Drawing conclusions: Overlap < 0.05, rejecting null hypothesis suggests higher life expectancy in Chicago.
