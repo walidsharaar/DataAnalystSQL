@@ -47,3 +47,17 @@
   - Understanding how mean estimates are derived from normal sampling distributions.
 - Benefits of the CLT
   - Utilizing the CLT for estimation in large populations, saving time and resources in data collection.
+
+
+
+## Summary The Poisson distribution | Theory
+The Poisson distribution characterizes the likelihood of a specific number of events occurring within a fixed time or space, rooted in the concept of Poisson processes and governed by the parameter lambda ($\lambda$).
+
+### Facts
+- Poisson Processes: Events occurring with a known average but random time or space intervals, evident in scenarios like animal adoptions, restaurant arrivals, or website visits.
+- Poisson Distribution: Describes the probability of events within a fixed timeframe, enabling calculations for various scenarios like adoption rates or patron arrivals.
+- Lambda ($\lambda$): Represents the average event count, shaping the distribution and acting as its peak or most probable value.
+- Lambda's Impact: Changes in lambda alter the distribution's shape while maintaining its peak at the lambda value.
+- Central Limit Theorem: Applies to Poisson distributions; with a large sample size, sample means form a normal distribution.
+- Probability Calculations: Determining probabilities for specific event counts, like the likelihood of a precise number of patrons or occurrences above a certain count, involves measuring bar heights within the distribution.
+
