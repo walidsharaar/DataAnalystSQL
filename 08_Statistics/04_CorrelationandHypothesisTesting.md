@@ -22,3 +22,20 @@ Experiments within hypothesis testing involve treatment and control groups to as
 - The gold standard in experiments involves randomization and blinding methods to reduce bias, ensuring more reliable conclusions.
 - Double-blind randomized controlled trials prevent bias in both administering the treatment and analyzing the results.
 - Randomized controlled trials, akin to A/B testing in industries, test multiple treatments or variations with the aim of comparing their effects.
+
+
+## Summary Correlation | Theory
+Correlation measures the relationship between variables, using the Pearson correlation coefficient to quantify strength and direction. However, correlation doesn't imply causation and can be influenced by confounding variables.
+
+### Facts
+- Correlation measures relationships between variables.
+- Scatter plots visualize relationships between two variables.
+- Pearson correlation coefficient quantifies relationship strength (from -1 to 1).
+- Correlation coefficient applies to linear relationships.
+- Values near 1 or -1 show strong relationships; around 0 indicates weak or no relationship.
+- Positive/negative correlation: As one variable increases, the other does too/decreases.
+- Water costs vs. gym costs: Weak-to-moderate positive correlation.
+- Adding trendlines aids visualization of relationships.
+- Life expectancy vs. water costs: Moderate positive correlation.
+- Correlation ≠ Causation.
+- Confounding variables can affect observed relationships.
