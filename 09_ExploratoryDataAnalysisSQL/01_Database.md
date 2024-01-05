@@ -48,3 +48,14 @@ Understanding database relationships involves recognizing foreign keys, ER diagr
 - Lack of a foreign key doesn’t hinder table joins; comparable columns suffice, as seen in the fortune500 and company tables.
 - Primary keys uniquely identify table rows; they're indicated in ER diagrams with a bordered format.
 - Coalesce function merges non-NULL values row-wise, offering flexibility in selecting or combining column data, providing default or backup values.
+
+```
+/*First, using the tag_type table, count the number of tags with each type.
+Order the results to find the most common tag type.
+*/
+-- Count the number of tags with each type
+SELECT type, count(*) AS count
+  FROM tag_type
+ GROUP BY type
+ ORDER BY count DESC;
+```
