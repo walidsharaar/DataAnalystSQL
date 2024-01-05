@@ -142,4 +142,11 @@ SELECT revenues_change, count(*)
   FROM fortune500
  GROUP BY revenues_change 
  ORDER BY revenues_change;
+
+--Repeat step 1, but this time, cast revenues_change as an integer to reduce the number of different values.
+
+SELECT revenues_change::integer, count(*) 
+  FROM fortune500
+ GROUP BY revenues_change::integer 
+ ORDER BY revenues_change;
 ```
