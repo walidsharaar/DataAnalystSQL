@@ -55,3 +55,5 @@ Hypothesis testing helps analyze differences between populations, like comparing
 - ⍺ (Significance level): Set at 0.05, determines the likelihood of false rejection of null hypothesis.
 - Type I/II errors: Wrongly rejecting/accepting null hypothesis leads to different errors.
 -  Drawing conclusions: Overlap < 0.05, rejecting null hypothesis suggests higher life expectancy in Chicago.
+
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/03f0ff88-85df-4f60-b847-d0ac101e8cd3)
