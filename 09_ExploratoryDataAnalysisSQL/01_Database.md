@@ -58,4 +58,16 @@ SELECT type, count(*) AS count
   FROM tag_type
  GROUP BY type
  ORDER BY count DESC;
+
+/*Join the tag_company, company, and tag_type tables, keeping only mutually occurring records.
+Select company.name, tag_type.tag, and tag_type.type for tags with the most common type from the previous step.*/
+
+-- Select the 3 columns desired
+SELECT name, tag_type.tag, tag_type.type
+  FROM company
+       INNER JOIN tag_company 
+       ON company.id = tag_company.company_id
+       INNER JOIN tag_type
+       ON tag_company.tag = tag_type.tag
+  WHERE type='cloud';
 ```
