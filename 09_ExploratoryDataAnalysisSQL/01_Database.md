@@ -136,4 +136,10 @@ SELECT '3.2'::numeric,
        '02314'::numeric,
        '0002'::numeric;
 
+--Use GROUP BY and count() to examine the values of revenues_change and order the results by revenues_change to see the distribution.
+
+SELECT revenues_change, count(*) 
+  FROM fortune500
+ GROUP BY revenues_change 
+ ORDER BY revenues_change;
 ```
