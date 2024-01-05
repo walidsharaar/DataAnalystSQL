@@ -83,4 +83,19 @@ SELECT coalesce(industry, sector, 'Unknown') AS industry2,
  GROUP BY industry2
  ORDER BY count DESC
  LIMIT 1;
+
+/* Join company to itself to add information about a company's parent to the original company's information.
+Use coalesce to get the parent company ticker if available and the original company ticker otherwise.
+INNER JOIN to fortune500 using the ticker.
+Select original company name, fortune500 title and rank.
+*/
+SELECT company_original.name, title, rank
+  FROM company AS company_original
+	   LEFT JOIN company AS company_parent
+       ON company_original.parent_id = company_parent.id 
+       INNER JOIN fortune500 
+       ON coalesce(company_parent.ticker, 
+                   company_original.ticker) = 
+             fortune500.ticker
+ ORDER BY rank; 
 ```
