@@ -70,4 +70,17 @@ SELECT name, tag_type.tag, tag_type.type
        INNER JOIN tag_type
        ON tag_company.tag = tag_type.tag
   WHERE type='cloud';
+
+/*Use coalesce() to select the first non-NULL value from industry, sector, or 'Unknown' as a fallback value.
+Alias the result of the call to coalesce() as industry2.
+Count the number of rows with each industry2 value.
+Find the most common value of industry2.
+*/
+
+SELECT coalesce(industry, sector, 'Unknown') AS industry2,
+       count(*) 
+  FROM fortune500 
+ GROUP BY industry2
+ ORDER BY count DESC
+ LIMIT 1;
 ```
