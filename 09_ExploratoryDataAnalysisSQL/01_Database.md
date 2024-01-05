@@ -107,7 +107,7 @@ Understanding column types and constraints in databases involves recognizing var
 ### Facts
 - Column Constraints
 Foreign keys and primary keys limit values; columns can have unique, not null, or check constraints.
--Data Types
+- Data Types
 Numeric, character, date/time, and boolean are common; special types include monetary, geometric, and structured data.
 - Numeric Types
 Diverse numeric types store varied value ranges and require different memory allocations.
