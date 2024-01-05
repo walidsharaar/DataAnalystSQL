@@ -37,3 +37,14 @@ SELECT company.name
        INNER JOIN fortune500 
        ON company.ticker=fortune500.ticker;
 ```
+
+## Summary The keys to the database
+Understanding database relationships involves recognizing foreign keys, ER diagrams, primary keys, and functions like coalesce.
+
+### Facts
+- Foreign keys link tables via specific column references, enabling relationships between rows.
+- ER diagrams visually represent relationships; arrows denote foreign key connections between tables.
+- Self-referencing occurs when a foreign key in a table points to the same table, like parent_id in the company table.
+- Lack of a foreign key doesn’t hinder table joins; comparable columns suffice, as seen in the fortune500 and company tables.
+- Primary keys uniquely identify table rows; they're indicated in ER diagrams with a bordered format.
+- Coalesce function merges non-NULL values row-wise, offering flexibility in selecting or combining column data, providing default or backup values.
