@@ -16,4 +16,16 @@ This chapter covers numeric data types, including integer and decimal types, and
 - Summarize variables by groups, such as tags in a table, for a more detailed analysis.
 
 ```
+/*
+Compute revenue per employee by dividing revenues by employees; use casting to produce a numeric result.
+Take the average of revenue per employee with avg(); alias this as avg_rev_employee.
+Group by sector.
+Order by the average revenue per employee.
+*/
+SELECT sector, 
+       avg(revenues/employees::numeric) AS avg_rev_employee
+  FROM fortune500
+ GROUP BY sector
+ ORDER BY avg_rev_employee;
+
 ```
