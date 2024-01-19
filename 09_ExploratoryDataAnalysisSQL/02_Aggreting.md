@@ -28,4 +28,15 @@ SELECT sector,
  GROUP BY sector
  ORDER BY avg_rev_employee;
 
+
+-- Divide unanswered_count by question_count
+  -- What are you comparing the above quantity to?
+  -- Select rows where question_count is not 0
+
+SELECT unanswered_count/question_count::numeric AS computed_pct, 
+       unanswered_pct
+  FROM stackoverflow
+ WHERE question_count != 0
+ LIMIT 10;
+
 ```
