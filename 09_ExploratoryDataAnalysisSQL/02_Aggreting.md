@@ -82,18 +82,8 @@ Understanding variable distribution is crucial for identifying data errors, outl
        - Use grouping and ordering to analyze distributions for variables with a small number of discrete values.
        - Consider binning or grouping for variables with numerous values.
   Example: 20 distinct values in the unanswered_count column for the amazon-ebs tag.
-- Truncate
-
-Employ the trunc function to reduce numeric precision by replacing right-most digits with zeros.
-Positive and negative arguments determine digits after and before the decimal, respectively.
-- Truncating and grouping
-Group values in a column by the tens place using the trunc function with a negative second argument.
-- Generate series
-Utilize the generate_series function to group values by quantities other than place values.
-Example: Generate a series from 1 to 10 by steps of 2 or from 0 to 1 by steps of 1/10th.
-- Create bins: query
-Use generate_series to create bins with lower and upper values, along with the count of observations in each bin.
-Use a WITH clause to alias subquery results for later use.
-Generate series for lower and upper bounds, create a subset for amazon-ebs data, and write a query to join and count values.
-The output provides counts of days with unanswered questions falling within specified bin bounds, including bins with zero values.
+- Truncate: Employ the trunc function to reduce numeric precision by replacing right-most digits with zeros. Positive and negative arguments determine digits after and before the decimal, respectively.
+- Truncating and grouping: Group values in a column by the tens place using the trunc function with a negative second argument.
+- Generate series: Utilize the generate_series function to group values by quantities other than place values. Example: Generate a series from 1 to 10 by steps of 2 or from 0 to 1 by steps of 1/10th.
+- Create bins: Use generate_series to create bins with lower and upper values, along with the count of observations in each bin. Use a WITH clause to alias subquery results for later use. Generate series for lower and upper bounds, create a subset for amazon-ebs data, and write a query to join and count values. The output provides counts of days with unanswered questions falling within specified bin bounds, including bins with zero values.
 ℹ️ Note: The approach counts non-null values of unanswered_count instead of just the number of rows.
