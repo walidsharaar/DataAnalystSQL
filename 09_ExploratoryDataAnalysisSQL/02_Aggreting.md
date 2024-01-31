@@ -95,4 +95,18 @@ SELECT trunc(employees, -5) AS employee_bin,
   FROM fortune500
  GROUP BY employee_bin
  ORDER BY employee_bin;
+
+--Repeat step 1 for companies with < 100,000 employees (most common). This time, truncate employees to the 10,000s place.
+SELECT trunc(employees, -4) AS employee_bin,
+       count(*)
+  FROM fortune500
+ WHERE employees < 100000
+ GROUP BY employee_bin
+ ORDER BY employee_bin;
+
+-- Start by selecting the minimum and maximum of the question_count column for the tag 'dropbox' so you know the range of values to cover with the bins.
+SELECT min(question_count), 
+       max(question_count)
+  FROM stackoverflow
+ WHERE tag='dropbox';
 ```
