@@ -147,4 +147,13 @@ This text introduces advanced functions for exploring numeric data, focusing on 
 - Common Issues: Highlights potential issues with numeric data, such as error codes, special meanings, outlier values, and inappropriate numerical treatment of data types like zip codes.
 
 ```
+--Compute the correlation between revenues and profits.
+--Compute the correlation between revenues and assets.
+--Compute the correlation between revenues and equity.
+
+SELECT corr(revenues, profits) AS rev_profits,
+       corr(revenues, assets) AS rev_assets,
+       corr(revenues, equity) AS rev_equity 
+  FROM fortune500;
+
 ```
