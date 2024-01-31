@@ -133,3 +133,18 @@ SELECT lower, upper, count(question_count)
  GROUP BY lower, upper
  ORDER BY lower;
 ```
+
+## More summary functions | SQL
+This text introduces advanced functions for exploring numeric data, focusing on correlation, median, percentile functions, and common issues to consider in data analysis.
+
+### Facts
+- More Summary Functions: Introduction to additional functions for exploring numeric data.
+- Correlation: Understanding the relationship between two variables using correlation coefficients.
+- Correlation Function: corr function calculates the correlation between two columns, excluding rows with null values.
+- Median: Describes the median as the 50th percentile or midpoint in a sorted list of values.
+- Percentile Functions: Details on using percentile functions, including ordered-set aggregate syntax and differences between discrete and continuous percentile calculations.
+= Percentile Examples: Explains how discrete and continuous percentile functions can yield different median values.
+- Common Issues: Highlights potential issues with numeric data, such as error codes, special meanings, outlier values, and inappropriate numerical treatment of data types like zip codes.
+
+```
+```
