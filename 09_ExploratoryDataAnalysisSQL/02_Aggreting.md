@@ -87,3 +87,12 @@ Understanding variable distribution is crucial for identifying data errors, outl
 - Generate series: Utilize the generate_series function to group values by quantities other than place values. Example: Generate a series from 1 to 10 by steps of 2 or from 0 to 1 by steps of 1/10th.
 - Create bins: Use generate_series to create bins with lower and upper values, along with the count of observations in each bin. Use a WITH clause to alias subquery results for later use. Generate series for lower and upper bounds, create a subset for amazon-ebs data, and write a query to join and count values. The output provides counts of days with unanswered questions falling within specified bin bounds, including bins with zero values.
 ℹ️ Note: The approach counts non-null values of unanswered_count instead of just the number of rows.
+
+```
+-- Use trunc() to truncate employees to the 100,000s (5 zeros). Count the number of observations with each truncated value.
+SELECT trunc(employees, -5) AS employee_bin,
+       count(*)
+  FROM fortune500
+ GROUP BY employee_bin
+ ORDER BY employee_bin;
+```
