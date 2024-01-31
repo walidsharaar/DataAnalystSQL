@@ -156,4 +156,12 @@ SELECT corr(revenues, profits) AS rev_profits,
        corr(revenues, equity) AS rev_equity 
   FROM fortune500;
 
+--Compute the mean (avg()) and median assets of Fortune 500 companies by sector.Use the percentile_disc() function to compute the median.
+
+SELECT sector, 
+       avg(assets) AS mean,
+       percentile_disc(0.5) WITHIN GROUP (ORDER BY assets) AS median
+  FROM fortune500
+ GROUP BY sector
+ ORDER BY mean;
 ```
