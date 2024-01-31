@@ -109,4 +109,27 @@ SELECT min(question_count),
        max(question_count)
   FROM stackoverflow
  WHERE tag='dropbox';
+
+
+-- Create lower and upper bounds of bins
+SELECT generate_series(2200, 3050, 50) AS lower,
+       generate_series(2250, 3100, 50) AS upper;
+
+--Select lower and upper from bins, along with the count of values within each bin bounds.To do this, you'll need to join 'dropbox', which contains the question_count for tag "dropbox", to the bins created by generate_series().
+
+-- Bins created in Step 2
+WITH bins AS (
+      SELECT generate_series(2200, 3050, 50) AS lower,
+             generate_series(2250, 3100, 50) AS upper),
+     dropbox AS (
+      SELECT question_count 
+        FROM stackoverflow
+       WHERE tag='dropbox') 
+SELECT lower, upper, count(question_count) 
+  FROM bins
+       LEFT JOIN dropbox
+         ON question_count >= lower 
+        AND question_count < upper
+ GROUP BY lower, upper
+ ORDER BY lower;
 ```
