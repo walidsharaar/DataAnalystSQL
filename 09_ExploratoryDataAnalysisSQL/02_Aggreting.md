@@ -223,5 +223,40 @@ SELECT title, fortune500.sector,
        ON fortune500.sector=profit80.sector
  WHERE profits > pct80;
 
+
+--create a temporary table called startdates with each tag and the min() date for the tag in stackoverflow. Then join startdates to stackoverflow twice using different table aliases.
+For each tag, select mindate, question_count on the mindate, and question_count on 2018-09-25 (the max date) and compute the change in question_count over time.
+
+-- To clear table if it already exists
+DROP TABLE IF EXISTS startdates;
+
+CREATE TEMP TABLE startdates AS
+SELECT tag, min(date) AS mindate
+  FROM stackoverflow
+ GROUP BY tag;
+ 
+SELECT startdates.tag, 
+       mindate, 
+	   so_min.question_count AS min_date_question_count,
+       so_max.question_count AS max_date_question_count,
+       so_max.question_count - so_min.question_count AS change
+  FROM startdates
+       INNER JOIN stackoverflow AS so_min
+          ON startdates.tag = so_min.tag
+         AND startdates.mindate = so_min.date
+       INNER JOIN stackoverflow AS so_max
+          ON startdates.tag = so_max.tag
+         AND so_max.date = '2018-09-25';
+
+-- Insert into Temporary table
+
+DROP TABLE IF EXISTS correlations;
+
+CREATE TEMP TABLE correlations AS
+SELECT 'profits'::varchar AS measure,
+       corr(profits, profits) AS profits,
+       corr(profits, profits_change) AS profits_change,
+       corr(profits, revenues_change) AS revenues_change
+  FROM fortune500;
 ```
 
