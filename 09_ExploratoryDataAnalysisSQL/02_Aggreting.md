@@ -189,6 +189,39 @@ Temporary tables can be created with a "create temp table" command or a "select 
 ### Time to Create Some Tables!
 
 ```
+-- To clear table if it already exists;
+DROP TABLE IF EXISTS profit80;
+
+-- Create the temporary table
+CREATE TEMP TABLE profit80 AS
+  SELECT sector, 
+         percentile_disc(0.8) WITHIN GROUP (ORDER BY profits) AS pct80
+    FROM fortune500 
+   GROUP BY sector;
+   
+-- See what you created: select all columns and rows 
+-- from the table you created
+SELECT * 
+  FROM profit80;
+
+
+--Using the profit80 table you created in step 1, select companies that have profits greater than pct80. Select the title, sector, profits from fortune500, as well as the ratio of the company's profits to the 80th percentile profit.
+
+-- Code from previous step
+DROP TABLE IF EXISTS profit80;
+
+CREATE TEMP TABLE profit80 AS
+  SELECT sector, 
+         percentile_disc(0.8) WITHIN GROUP (ORDER BY profits) AS pct80
+    FROM fortune500 
+   GROUP BY sector;
+
+SELECT title, fortune500.sector, 
+       profits, profits/pct80 AS ratio
+  FROM fortune500 
+       LEFT JOIN profit80
+       ON fortune500.sector=profit80.sector
+ WHERE profits > pct80;
 
 ```
 
