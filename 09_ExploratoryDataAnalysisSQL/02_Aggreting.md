@@ -176,3 +176,19 @@ SELECT sector,
  ORDER BY mean;
 
 ```
+
+## Summary Creating temporary tables | SQL
+
+### Creating Temporary Tables
+- Temporary tables are used to keep query results during a database session; they require no special permissions and are session-specific.
+### Syntax
+Temporary tables can be created with a "create temp table" command or a "select into" syntax, with Postgres recommending the former for additional options.
+- Create a Table: Example shown for creating a temp table named top_companies with rank and title of the top 10 Fortune500 companies using "create temp table" syntax.
+- Insert into Table: Rows can be added to an existing temp table using "insert into", demonstrated by adding ranks 11 to 20 companies.
+- Delete (Drop) Table: Temp tables can be deleted with "drop table"; use "if exists" to avoid errors in scripts if the table doesn't exist.
+### Time to Create Some Tables!
+
+```
+
+```
+
