@@ -165,3 +165,14 @@ SELECT sector,
  GROUP BY sector
  ORDER BY mean;
 ```
+```
+Compute the mean (avg()) and median assets of Fortune 500 companies by sector. Use the percentile_disc() function to compute the median: 1.percentile_disc(0.5) 2.WITHIN GROUP (ORDER BY column_name)
+
+SELECT sector, 
+       avg(assets) AS mean,
+       percentile_disc(0.5) WITHIN GROUP (ORDER BY assets) AS median
+  FROM fortune500
+ GROUP BY sector
+ ORDER BY mean;
+
+```
