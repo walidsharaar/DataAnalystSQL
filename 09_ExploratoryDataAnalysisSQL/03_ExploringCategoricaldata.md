@@ -30,4 +30,13 @@ SELECT distinct(source), count(*)
   FROM evanston311
  group by source
 having count(*)<100;
+
+-- Find the 5 most common values of street and the count of each
+SELECT street, count(*) 
+  FROM evanston311
+ GROUP BY street
+ ORDER BY count(*) DESC
+ LIMIT 5;
+
+
 ```
