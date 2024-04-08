@@ -107,3 +107,82 @@ SELECT CASE WHEN length(description) > 50
  WHERE description LIKE 'I %'
  ORDER BY description;
 ```
+
+## Summary Strategies for multiple transformations | SQL
+Learned to manage data that requires multiple transformations through techniques like CASE WHEN statements and the creation of temporary recoding tables.
+### Facts
+- Multiple transformations can be applied to data with varied delimiters using the split_part function.
+- The CASE WHEN statement allows for applying specific transformations based on row characteristics, aiding in data categorization.
+- Using a temporary table to map messy values to standardized ones enables cleaner data analysis and aggregation.
+- Creating a temporary table involves defining original and standardized columns, initially filled with the original values.
+- Updating the temporary table's values involves cleaning and standardizing the data for accurate analysis.
+- Joining the original and recoded tables refines the dataset, allowing for more meaningful grouping and summarization.
+
+```
+-- Create recode with a standardized column; use split_part() and then rtrim() to remove any remaining whitespace on the result of split_part(). Fill in the command below with the name of the temp table
+
+DROP TABLE IF EXISTS recode;
+CREATE TEMP TABLE recode AS
+  SELECT DISTINCT category, 
+         rtrim(split_part(category, '-', 1)) AS standardized
+    FROM evanston311;
+       
+SELECT DISTINCT standardized 
+  FROM recode
+ WHERE standardized LIKE 'Trash%Cart'
+    OR standardized LIKE 'Snow%Removal%';
+
+-- UPDATE standardized values LIKE 'Trash%Cart' to 'Trash Cart' and udpate standardized values of 'Snow Removal/Concerns' and 'Snow/Ice/Hazard Removal' to 'Snow Removal'.
+
+DROP TABLE IF EXISTS recode;
+
+CREATE TEMP TABLE recode AS
+  SELECT DISTINCT category, 
+         rtrim(split_part(category, '-', 1)) AS standardized
+    FROM evanston311;
+  
+UPDATE recode 
+   SET standardized='Trash Cart' 
+ WHERE standardized LIKE 'Trash%Cart';
+
+UPDATE recode
+   SET standardized='Snow Removal' 
+ WHERE standardized LIKE 'Snow%Removal%';
+ 
+-- check updates
+SELECT DISTINCT standardized 
+  FROM recode
+ WHERE standardized LIKE 'Trash%Cart'
+    OR standardized LIKE 'Snow%Removal%';
+
+-- Create a temp table indicators from evanston311 with three columns: id, email, and phone. Use LIKE comparisons to detect the email and phone patterns that are in the description, and cast the result as an integer with CAST(). Your phone indicator should use a combination of underscores _ and dashes - to represent a standard 10-digit phone number format. Remember to start and end your patterns with % so that you can locate the pattern within other text!
+
+DROP TABLE IF EXISTS indicators;
+CREATE TEMP TABLE indicators AS
+  SELECT id, 
+         CAST (description LIKE '%@%' AS integer) AS email,
+         CAST (description LIKE '%___-___-____%' AS integer) AS phone 
+    FROM evanston311;
+
+-- Inspect the contents
+SELECT *
+  FROM indicators;
+
+
+-- Join the indicators table to evanston311, selecting the proportion of reports including an email or phone grouped by priority.Include adjustments to account for issues arising from integer division.
+
+
+DROP TABLE IF EXISTS indicators;
+CREATE TEMP TABLE indicators AS
+  SELECT id, 
+         CAST (description LIKE '%@%' AS integer) AS email,
+         CAST (description LIKE '%___-___-____%' AS integer) AS phone 
+    FROM evanston311;
+SELECT priority, 
+       sum(email)/count(*)::numeric AS email_prop, 
+       sum(phone)/count(*)::numeric AS phone_prop 
+  FROM evanston311
+       LEFT JOIN indicators
+       ON evanston311.id=indicators.id
+ GROUP BY priority;
+```
