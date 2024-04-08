@@ -85,5 +85,25 @@ Working with text in programming often involves splitting strings into parts, ex
 - Delimiters are characters or strings used to split text into parts.
 - The split_part function divides a string into parts based on a delimiter and returns a specified part.
 - Concatenation combines multiple text elements into a single string, with the concat function and double pipe || operator being key methods.
+
 ```
- ```
+-- Concatenate house_num, a space, and street and trim spaces from the start of the result
+  SELECT ltrim(concat(house_num, ' ', street)) AS address
+  FROM evanston311;
+-- Use split_part() to select the first word in street; alias the result as street_name and also select the count of each value of street_name.
+-- Select the first word of the street value
+SELECT split_part(street, ' ', 1) AS street_name, count(*)
+  FROM evanston311
+ GROUP BY street_name
+ ORDER BY count DESC
+ LIMIT 20;
+
+-- Select the first 50 characters of description with '...' concatenated on the end where the length() of the description is greater than 50 characters. Otherwise just select the description as is. Like select only descriptions that begin with the word 'I' and not the letter 'I'. For example, you would want to select "I like using SQL!", but would not want to select "In this course we use SQL!".
+SELECT CASE WHEN length(description) > 50
+            THEN left(description, 50) || '...'
+       ELSE description
+       END
+  FROM evanston311
+ WHERE description LIKE 'I %'
+ ORDER BY description;
+```
