@@ -177,3 +177,15 @@ SELECT date_trunc('month', date) AS month,
        ON all_days.date=daily_count.day
  GROUP BY month
 ```
+
+## Summary Time between events | SQL
+The lead and lag functions are used to calculate the time between events in a database, specifically demonstrating how to find the average time between sales and changes in a time series.
+### Facts
+- The lead and lag functions offset ordered column values by one row to calculate differences between events.
+- These functions require specifying an order for the rows, as database tables do not inherently have one.
+- By ordering sales dates from oldest to newest, the lag function can be used to compute the gap between each sale.
+- The average time between sales is calculated as 32 minutes and 15 seconds, requiring a subquery due to aggregation restrictions.
+- Lead and lag are applicable beyond date/time data, enabling analyses of changes in quantities or any time series variable.
+  ```
+  ```
+  
