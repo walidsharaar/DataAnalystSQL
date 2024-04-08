@@ -76,3 +76,14 @@ Functions like upper, lower, and trim, along with the LIKE and ILIKE operators, 
    AND category NOT LIKE '%Trash%'
    AND category NOT LIKE '%Garbage%';
   ```
+## Summary Splitting and concatenating text | SQL
+Working with text in programming often involves splitting strings into parts, extracting substrings, and concatenating text elements using specific functions and operations.
+### Facts
+- Splitting and concatenating text operations are essential for handling and manipulating string values.
+- The left and right functions extract characters from the beginning or end of a string, respectively.
+- The substring function extracts characters from the middle of a string based on a starting position and length.
+- Delimiters are characters or strings used to split text into parts.
+- The split_part function divides a string into parts based on a delimiter and returns a specified part.
+- Concatenation combines multiple text elements into a single string, with the concat function and double pipe || operator being key methods.
+```
+ ```
