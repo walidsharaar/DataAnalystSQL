@@ -55,44 +55,125 @@ Date and time manipulation in databases involves extracting specific components 
 
   ```
   --How many requests are created in each of the 12 months during 2016-2017?
-SELECT date_part('month', date_created) AS month, 
+  SELECT date_part('month', date_created) AS month, 
        count(*)
   FROM evanston311
- WHERE date_created >= '2016-01-01'
+  WHERE date_created >= '2016-01-01'
    AND date_created < '2018-01-01'
- GROUP BY month;
-
--- What is the most common hour of the day for requests to be created?
-SELECT date_part('hour', date_created) AS hour,
+  GROUP BY month;
+  -- What is the most common hour of the day for requests to be created?
+  SELECT date_part('hour', date_created) AS hour,
        count(*)
   FROM evanston311
- GROUP BY hour
- ORDER BY count DESC
- LIMIT 1;
- -- Count requests completed by hour
-SELECT date_part('hour', date_completed) AS hour,
+  GROUP BY hour
+  ORDER BY count DESC
+  LIMIT 1;
+  -- Count requests completed by hour
+  SELECT date_part('hour', date_completed) AS hour,
        count(*)
   FROM evanston311
- GROUP BY hour
- ORDER BY hour;
-
- --Select the name of the day of the week the request was created (date_created) as day then select the mean time between the request completion (date_completed) and request creation as duration.Group by day (the name of the day of the week) and the integer value for the day of the week (use a function) and order by the integer value of the day of the week using the same function used in GROUP BY.
- 
-SELECT to_char(date_created, 'day') AS day, 
-avg(date_completed - date_created) AS duration 
-FROM evanston311 
-GROUP BY day, EXTRACT(DOW FROM date_created) 
-ORDER BY EXTRACT(DOW FROM date_created);
-
--- Write a subquery to count the number of requests created per day and select the month and average count per month from the daily_count subquery.
-
-SELECT date_trunc('month', day) AS month,
+  GROUP BY hour
+  ORDER BY hour;
+  --Select the name of the day of the week the request was created (date_created) as day then select the mean time between the request completion (date_completed) and request creation as duration.Group by day (the name of the day of the week) and the integer value for the day of the week (use a function) and order by the integer value of the day of the week using the same function used in GROUP BY.
+  SELECT to_char(date_created, 'day') AS day,
+  avg(date_completed - date_created) AS duration
+  FROM evanston311
+  GROUP BY day, EXTRACT(DOW FROM date_created)
+  ORDER BY EXTRACT(DOW FROM date_created);
+  -- Write a subquery to count the number of requests created per day and select the month and average count per month from the daily_count subquery.
+  SELECT date_trunc('month', day) AS month,
        avg(count)
   FROM (SELECT date_trunc('day', date_created) AS day,
                count(*) AS count
           FROM evanston311
          GROUP BY day) AS daily_count
- GROUP BY month
- ORDER BY month;
+  GROUP BY month
+  ORDER BY month;
+
   ```
-  
+
+
+## Summary Aggregating with date/time series | SQL
+
+Using the generate_series function with date/time data enables the inclusion of periods with no observations in aggregated data results, enhancing data analysis accuracy.
+### Facts
+- When aggregating date/time series data, periods without observations can be included by generating a series of timestamps.
+- The generate_series function works with date/time data by expecting timestamps and an interval, allowing for flexible data series creation.
+- An example of generating a series with an interval of hours demonstrates that the series ends at a specified maximum timestamp.
+- To avoid unexpected results, it's advisable to generate series starting from the beginning of a month or year, not the end.
+- Correctly generating a series for the last day of each month involves starting from the beginning of each month and subtracting one day.
+- Normal aggregation might miss out on representing units of time with no observations, like sales data by the hour.
+- Aggregating with a series introduces rows for missing hours in data, ensuring a comprehensive representation of time-based observations.
+- The aggregation result with series shows all desired hours, including those with zero sales, preventing overlooked data.
+- For non-standard intervals, bins can aggregate data, such as counting sales in three-hour intervals.
+- The bin aggregation result reveals sales counts for each specified interval, offering a nuanced view of data distribution.
+
+```
+--Write a subquery using generate_series() to get all dates between the min() and max() date_created in evanston311 then write another subquery to select all values of date_created as dates from evanston311.
+--Both subqueries should produce values of type date (look for the ::) and elect dates (day) from the first subquery that are NOT IN the results of the second subquery. |
+SELECT day
+  FROM (SELECT generate_series(min(date_created),
+                               max(date_created),
+                               '1 day')::date AS day
+          FROM evanston311) AS all_dates      
+ WHERE day NOT IN 
+       (SELECT date_created::date
+          FROM evanston311);
+
+SELECT generate_series('2016-01-01',  
+                       '2018-01-01',  
+                       '6 months'::interval) AS lower,
+       generate_series('2016-07-01',  
+                       '2018-07-01',  
+                       '6 months'::interval) AS upper;
+
+SELECT day, count(date_created) AS count
+  FROM (SELECT generate_series('2016-01-01',  -- series start date
+                               '2018-06-30',  -- series end date
+                               '1 day'::interval)::date AS day) AS daily_series
+       LEFT JOIN evanston311
+       -- match day from above (which is a date) to date_created
+       ON day = date_created::date
+ GROUP BY day;
+WITH bins AS (
+	 SELECT generate_series('2016-01-01',
+                            '2018-01-01',
+                            '6 months'::interval) AS lower,
+            generate_series('2016-07-01',
+                            '2018-07-01',
+                            '6 months'::interval) AS upper),
+     daily_counts AS (
+     SELECT day, count(date_created) AS count
+       FROM (SELECT generate_series('2016-01-01',
+                                    '2018-06-30',
+                                    '1 day'::interval)::date AS day) AS daily_series
+            LEFT JOIN evanston311
+            ON day = date_created::date
+      GROUP BY day)
+SELECT lower, 
+       upper, 
+       percentile_disc(0.5) WITHIN GROUP (ORDER BY count) AS median
+  FROM bins
+       LEFT JOIN daily_counts
+       ON day >= lower
+          AND day < upper
+ GROUP BY lower, upper
+ ORDER BY lower;
+
+--Generate a series of dates from 2016-01-01 to 2018-06-30 and join the series to a subquery to count the number of requests created per day. thenUse date_trunc() to get months from date, which has all dates, NOT day and use coalesce() to replace NULL count values with 0. Compute the average of this value.
+WITH all_days AS 
+     (SELECT generate_series('2016-01-01',
+                             '2018-06-30',
+                             '1 day'::interval) AS date),
+     daily_count AS 
+     (SELECT date_trunc('day', date_created) AS day,
+             count(*) AS count
+        FROM evanston311
+       GROUP BY day)
+SELECT date_trunc('month', date) AS month,
+       avg(coalesce(count, 0)) AS average
+  FROM all_days
+       LEFT JOIN daily_count
+       ON all_days.date=daily_count.day
+ GROUP BY month
+```
