@@ -54,4 +54,25 @@ Functions like upper, lower, and trim, along with the LIKE and ILIKE operators, 
 - Combining functions, like using lower before trim, can streamline the process of cleaning data by first standardizing the case and then removing unwanted characters.
 
   ```
+  --Trim digits 0-9, #, /, ., and spaces from the beginning and end of street. Select distinct original street value and the corrected street value and order the results by the original street value.
+  SELECT distinct street,
+       -- Trim off unwanted characters from street
+       trim(street, '0123456789 #/.') AS cleaned_street
+  FROM evanston311
+  ORDER BY street;
+  --Use ILIKE to count rows in evanston311 where the description contains 'trash' or 'garbage' regardless of case.
+  -- Count rows
+  SELECT count(*)
+  FROM evanston311
+  WHERE description ILIKE '%trash%' 
+    OR description ILIKE '%garbage%';
+  
+  --Count rows where the description includes 'trash' or 'garbage' but the category does not.
+ 
+  SELECT count(*)
+  FROM evanston311
+  WHERE (description ILIKE '%trash%'
+    OR description ILIKE '%garbage%') 
+   AND category NOT LIKE '%Trash%'
+   AND category NOT LIKE '%Garbage%';
   ```
