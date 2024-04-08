@@ -38,5 +38,20 @@ SELECT street, count(*)
  ORDER BY count(*) DESC
  LIMIT 5;
 
-
 ```
+
+
+## Summary Cases and spaces | SQL
+Functions like upper, lower, and trim, along with the LIKE and ILIKE operators, help handle text data inconsistencies related to character case and spaces, ensuring accurate querying and data manipulation.
+### Facts
+- Differences in character case and spaces are common inconsistencies in text data that can be addressed with specific functions and operators.
+- The upper and lower functions convert character data to a uniform case, affecting letters but not punctuation or numbers.
+- Using the lower or upper function allows for case insensitive comparisons, useful for matching specific entries like 'apple' in various case formats.
+- The LIKE operator, enhanced with ILIKE for case insensitivity, matches patterns including extra spaces or characters, effectively capturing variations of a word like 'apple'.
+- Caution is advised with LIKE searches as they might match unintended strings, such as 'pineapple' when searching for 'apple'.
+- Trim functions (trim, ltrim, rtrim) are used to remove spaces or specified characters from the ends of a string, with the default being the space character.
+- Other characters can be specified for removal with the trim functions, which are case sensitive, necessitating the inclusion of both upper and lower case versions of a character if needed.
+- Combining functions, like using lower before trim, can streamline the process of cleaning data by first standardizing the case and then removing unwanted characters.
+
+  ```
+  ```
