@@ -12,4 +12,30 @@ This segment covers the fundamentals of handling date/time data in databases, hi
 - Dates can have days added directly, while more complex intervals require specifying durations in terms of years, days, and minutes, among others.
 
 ```
+-- Count requests created on January 31, 2017 and count the number of Evanston 311 requests created on January 31, 2017 by casting date_created to a date.
+SELECT count(*) 
+  FROM evanston311
+ WHERE date_created::date = '2017-01-31'
+-- Count requests created on February 29, 2016
+SELECT count(*)
+  FROM evanston311 
+ WHERE date_created >= '2016-02-29' 
+   AND date_created < '2016-03-01';
+
+-- Count requests created on March 13, 2017 and upper bound by adding 1 to the lower bound.
+SELECT count(*)
+  FROM evanston311
+ WHERE date_created >= '2017-03-13'
+   AND date_created < '2017-03-13'::date + 1;
+
+-- Subtract the min date_created from the max
+SELECT max(date_created) - min(date_created)
+  FROM evanston311;
+
+--Compute the average difference between the completion timestamp and the creation timestamp by category and order the results with the largest average time to complete the request first..
+SELECT category, 
+       avg(date_completed - date_created) AS completion_time
+  FROM evanston311
+ GROUP BY category
+ ORDER BY completion_time DESC;
 ```
