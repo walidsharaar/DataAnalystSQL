@@ -34,5 +34,40 @@ FROM renting;
 - ORDER BY ... DESC: To prioritize higher values first, DESC is used in the ORDER BY clause to sort data in descending order, showcasing the highest ratings.
 
 ```
+--Select all movies rented on October 9th, 2018.
+SELECT *
+FROM renting
+where date_renting ='2018-10-09'; 
+
+--Select all records of movie rentals between beginning of April 2018 till end of August 2018.
+SELECT *
+FROM renting
+where date_renting between '2018-04-01' and '2018-08-31';
+
+---Put the most recent records of movie rentals on top of the resulting table and order them in decreasing order.
+SELECT *
+FROM renting
+WHERE date_renting BETWEEN '2018-04-01' AND '2018-08-31'
+ORDER BY date_renting DESC; -- Order by recency in decreasing order
+
+
+--Select all movies which are not dramas.
+SELECT *
+FROM movies
+where genre != 'Drama'; 
+
+-- Select the movies 'Showtime', 'Love Actually' and 'The Fighter'
+SELECT *
+FROM movies
+where title in ('Showtime', 'Love Actually' , 'The Fighter');
+
+--Select from table renting all movie rentals from 2018 and filter only those records which have a movie rating.
+
+SELECT *
+FROM renting
+WHERE date_renting BETWEEN '2018-01-01' and '2018-12-31' 
+AND rating is not null; 
+
+
 
 ```
