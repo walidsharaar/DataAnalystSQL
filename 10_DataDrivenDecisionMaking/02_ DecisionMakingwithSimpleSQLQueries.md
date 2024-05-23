@@ -20,6 +20,20 @@ from customers
 group BY country
 order by first_account;
 
+--Group the data in the table renting by movie_id and report the ID and the average rating.
+select movie_id, 
+       avg(rating)    -- Calculate average rating per movie
+from renting
+group by  movie_id;
 
+--Add two columns for the number of ratings and the number of movie rentals to the results table and use alias names avg_rating, number_rating and number_renting for the corresponding columns.
+SELECT movie_id, 
+       avg(rating) AS avg_rating, 
+       count(rating) as number_rating,                
+       count(renting_id) as number_renting 
+FROM renting
+GROUP BY movie_id;
+
+--Group the data in the table renting by customer_id and report the customer_id, the average rating, the number of ratings and the number of movie rentals.Select only customers with more than 7 movie rentals and order the resulting table by the average rating in ascending order.
 
 ```
