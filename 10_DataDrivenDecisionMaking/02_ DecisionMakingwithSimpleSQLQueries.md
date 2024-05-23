@@ -34,6 +34,17 @@ SELECT movie_id,
 FROM renting
 GROUP BY movie_id;
 
---Group the data in the table renting by customer_id and report the customer_id, the average rating, the number of ratings and the number of movie rentals.Select only customers with more than 7 movie rentals and order the resulting table by the average rating in ascending order.
+--Group the data in the table renting by customer_id and report the customer_id, the average rating, the number of ratings and the number of movie rentals.Select only customers 
+--with more than 7 movie rentals and order the resulting table by the average rating in ascending order.
+SELECT customer_id,
+      avg(rating),  
+      count(rating),  
+      count(renting_id)  
+FROM renting
+GROUP BY customer_id
+having count(*) >7 
+ORDER BY avg(rating);
+
+
 
 ```
