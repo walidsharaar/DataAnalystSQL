@@ -17,4 +17,50 @@
    - Outer Query: Report actor names whose IDs are in the result of the inner query.
 
 ```
+-- Select all movie IDs which have more than 5 views.
+select movie_id 
+from renting
+group by movie_id
+having count(*) > 5
+
+--Select all information about movies with more than 5 views.
+SELECT *
+FROM movies
+where  movie_id in
+	(SELECT movie_id
+	FROM renting
+	GROUP BY movie_id
+	HAVING COUNT(*) > 5)
+--List all customer information for customers who rented more than 10 movies.
+SELECT *
+FROM customers
+WHERE customer_id IN
+	(SELECT customer_id
+	FROM renting
+	GROUP BY customer_id
+	HAVING COUNT(*) > 10);
+
+--Select movie IDs and calculate the average rating of movies with rating above average.
+
+SELECT movie_id,  
+       AVG(rating)
+FROM renting
+GROUP BY movie_id
+HAVING AVG(rating) >   
+	(SELECT AVG(rating)
+	FROM renting);
+
+
+--The advertising team only wants a list of movie titles. Report the movie titles of all movies with average rating higher than the total average
+
+SELECT title 
+FROM movies
+WHERE movie_id IN
+	(SELECT movie_id
+	 FROM renting
+     GROUP BY movie_id
+     HAVING AVG(rating) > 
+		(SELECT AVG(rating)
+		 FROM renting));
+
 ```
