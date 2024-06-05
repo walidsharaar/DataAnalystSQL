@@ -64,5 +64,58 @@ ORDER BY avg(rating);
    - Result includes columns from both
 
 ```
+--Augment the table renting with all columns from the table customers with a LEFT JOIN. Use as alias' for the tables r and c respectively.
+SELECT * 
+FROM renting r 
+LEFT JOIN customers c
+ON r.customer_id=c.customer_id;
+
+---Select only records from customers coming from Belgium.
+SELECT *
+FROM renting AS r
+LEFT JOIN customers AS c
+ON r.customer_id = c.customer_id
+where country='Belgium'; 
+-- Average rating
+SELECT avg(rating) -- Average ratings of customers from Belgium
+FROM renting AS r
+LEFT JOIN customers AS c
+ON r.customer_id = c.customer_id
+WHERE c.country='Belgium';
+
+--First, you need to join movies on renting to include the renting_price from the movies table for each renting record and use as alias' for the tables m and r respectively.
+SELECT *
+FROM renting AS r
+left join movies AS m -- Choose the correct join statment
+ON r.movie_id=m.movie_id;
+
+--Calculate the revenue coming from movie rentals, the number of movie rentals and the number of customers who rented a movie.
+SELECT 
+	SUM(m.renting_price), 
+	COUNT(*), 
+	COUNT(DISTINCT r.customer_id)
+FROM renting AS r
+LEFT JOIN movies AS m
+ON r.movie_id = m.movie_id;
+
+-- Calculate the revenue in 2018, the number of movie rentals and the number of active customers in 2018. An active customer is a customer who rented at least one movie in 2018.
+
+SELECT 
+	SUM(m.renting_price), 
+	COUNT(*), 
+	COUNT(DISTINCT r.customer_id)
+FROM renting AS r
+LEFT JOIN movies AS m
+ON r.movie_id = m.movie_id
+WHERE date_renting between '2018-01-01' and '2018-12-31';
+
+--Create a list of actor names and movie titles in which they act. Make sure that each combination of actor and movie appears only once and use as an alias for the table actsin the two letters ai.
+select a.name, 
+       m.title
+from actsin AS ai
+LEFT JOIN movies AS m
+on m.movie_id = ai.movie_id
+LEFT JOIN actors AS a
+ON a.actor_id = ai.actor_id;
 
 ```
