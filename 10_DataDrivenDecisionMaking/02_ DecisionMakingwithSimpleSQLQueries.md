@@ -45,6 +45,24 @@ GROUP BY customer_id
 having count(*) >7 
 ORDER BY avg(rating);
 
+```
 
+## Joins
+
+1. **Joining Tables in SQL**:
+   - Join queries allow combining data from multiple tables.
+   - LEFT JOIN is an OUTER JOIN that augments one table (left) with information from another table (right).
+   - All rows from the left table are retained, and only matching rows from the right table are used.
+
+2. **Table Aliases**:
+   - Use aliases (names) for tables to improve readability.
+   - Example: Alias the "customers" table as "c" (c-dot column name).
+
+3. **LEFT JOIN Example**:
+   - Select all columns from the "renting_selected" table (alias "r").
+   - LEFT JOIN with the "customers_selected" table (alias "c") on the condition that customer_id matches.
+   - Result includes columns from both
+
+```
 
 ```
