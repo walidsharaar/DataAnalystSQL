@@ -118,4 +118,110 @@ on m.movie_id = ai.movie_id
 LEFT JOIN actors AS a
 ON a.actor_id = ai.actor_id;
 
+--Report the total income for each movie and order the result by decreasing income.
+select rm.title,
+       SUM(rm.renting_price) AS income_movie
+FROM
+       (SELECT m.title, 
+               m.renting_price
+       FROM renting AS r
+       LEFT JOIN movies AS m
+       ON r.movie_id=m.movie_id) AS rm
+GROUP BY rm.title
+ORDER BY income_movie DESC; 
+
+-- Give age of American actors and actresses. Report the date of birth of the oldest and youngest US actor and actress.
+
+SELECT a.gender, 
+       MIN(a.year_of_birth), 
+       MAX(a.year_of_birth)
+FROM
+    (SELECT * 
+    FROM actors
+    WHERE nationality = 'USA') AS a GROUP BY a.gender;
+
+```
+
+
+
+1. **Objective**:
+   - Explore the favorite actors for specific customer groups using complex SQL queries.
+
+2. **Combining SQL Statements**:
+   - Combine LEFT JOIN, WHERE, GROUP BY, HAVING, and ORDER BY in a single query.
+
+3. **Data Preparation**:
+   - Use a LEFT JOIN to augment the "renting" table with actor and customer information.
+   - Join "renting" with "actsin" (via "movie_id") and then with "actors" (via "actor_id").
+
+4. **Male Customers**:
+   - Select male customers from the joined table.
+   - Group actors' names using "GROUP BY a-dot-name."
+   - Count how often each actor's movies are watched by male customers.
+
+5. **Favorite Actor Criteria**:
+   - Determine what makes an actor the favorite.
+   - Consider either frequent viewership or high movie ratings.
+
+6. **HAVING and ORDER BY**:
+   - Exclude actors with NULL average ratings using the HAVING clause.
+   - Order results by average rating (highest first) and views (highest for the same rating).
+
+7. **Result**:
+   - In the fictional movie database, Ray Romano is the favorite actor among male customers, with a perfect rating of 10 but only 3 views.
+
+```
+-- Select only those records of customers born in the 70s.
+SELECT *
+FROM renting AS r
+LEFT JOIN customers AS c
+ON c.customer_id = r.customer_id
+LEFT JOIN movies AS m
+ON m.movie_id = r.movie_id
+WHERE c.date_of_birth BETWEEN '1970-01-01' AND '1979-12-31';
+
+--For each movie, report the number of times it was rented, as well as the average rating. Limit your results to customers born in the 1970s.
+
+SELECT m.title, 
+COUNT(*), 
+AVG(r.rating)
+FROM renting AS r
+LEFT JOIN customers AS c
+ON c.customer_id = r.customer_id
+LEFT JOIN movies AS m
+ON m.movie_id = r.movie_id
+WHERE c.date_of_birth BETWEEN '1970-01-01' AND '1979-12-31'
+GROUP BY m.title;
+
+--Remove those movies from the table with only one rental and order the result table such that movies with highest rating come first.
+SELECT m.title, 
+COUNT(*),
+AVG(r.rating) 
+FROM renting AS r
+LEFT JOIN customers AS c
+ON c.customer_id = r.customer_id
+LEFT JOIN movies AS m
+ON m.movie_id = r.movie_id
+WHERE c.date_of_birth BETWEEN '1970-01-01' AND '1979-12-31'
+GROUP BY m.title
+HAVING COUNT(*) > 1 
+ORDER BY AVG(r.rating) DESC; 
+
+--report the favorite actors only for customers from Spain.
+SELECT a.name,  c.gender,
+       COUNT(*) AS number_views, 
+       AVG(r.rating) AS avg_rating
+FROM renting as r
+LEFT JOIN customers AS c
+ON r.customer_id = c.customer_id
+LEFT JOIN actsin as ai
+ON r.movie_id = ai.movie_id
+LEFT JOIN actors as a
+ON ai.actor_id = a.actor_id
+WHERE c.country = 'Spain'
+GROUP BY a.name, c.gender
+HAVING AVG(r.rating) IS NOT NULL 
+  AND COUNT(*) > 5 
+ORDER BY avg_rating DESC, number_views DESC;
+
 ```
