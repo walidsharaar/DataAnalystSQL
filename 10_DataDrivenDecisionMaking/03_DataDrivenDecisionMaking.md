@@ -70,4 +70,14 @@ WHERE movie_id IN
 - In a correlated query, the condition in the WHERE clause references a column in the outer query. 
 - The nested query is then evaluated once for each row in the outer query. For example, to determine which movies were rented more than 5 times, the inner query evaluates for'm-dot-movie_id' equal to one, resulting in 8 movie rentals.
 - The outer query checks if 5 is smaller than the inner query's value, resulting in the movie 'One Night at McCools's'. Correlated queries implement a looping mechanism, looping through the subquery for each row in the table.
+
+  ```
+  -- select all columns from the customer table where the number of movie rentals is smaller than 5.
   
+         SELECT * FROM customers as c WHERE 5 > 
+	(SELECT count(*) FROM renting as r WHERE r.customer_id=c.customer_id);
+  
+  --Calculate the minimum rating of customer with ID 7
+  SELECT MIN(rating) FROM renting WHERE customer_id = 7;
+
+  ```
