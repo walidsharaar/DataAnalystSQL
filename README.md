@@ -36,13 +36,7 @@ Learn how to analyze SQL tables and report insights to management.
 ### 10. Understanding Data Visualization
 No one enjoys looking at spreadsheets! Improve your data presentation and learn how to translate data into meaningful visualizations.
 
-## Assessment and Skill Verification
-
-If you already have knowledge in some areas, you can take assessments to verify your skill level and skip certain courses.
-
-## Project
-When Was the Golden Age of Video Games?
-Apply your knowledge by using SQL joins and set theory to discover the best years for video games.
+### 11. Data Communication Concepts
 
 ## Accomplishment Statement
 ![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/6ef2eddf-680d-4230-a1a0-b9bca6d6618c)
