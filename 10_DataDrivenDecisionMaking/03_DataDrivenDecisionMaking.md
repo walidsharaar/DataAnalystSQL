@@ -64,3 +64,10 @@ WHERE movie_id IN
 		 FROM renting));
 
 ```
+
+## Correlated nested queries 
+- are a type of query where the inner block's nested subquery is evaluated before processing the outer select block. 
+- In a correlated query, the condition in the WHERE clause references a column in the outer query. 
+- The nested query is then evaluated once for each row in the outer query. For example, to determine which movies were rented more than 5 times, the inner query evaluates for'm-dot-movie_id' equal to one, resulting in 8 movie rentals.
+- The outer query checks if 5 is smaller than the inner query's value, resulting in the movie 'One Night at McCools's'. Correlated queries implement a looping mechanism, looping through the subquery for each row in the table.
+  
