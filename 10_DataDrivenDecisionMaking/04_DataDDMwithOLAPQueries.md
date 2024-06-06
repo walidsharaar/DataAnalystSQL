@@ -104,6 +104,51 @@ SELECT
 FROM actors
 GROUP BY GROUPING SETS ((nationality), (gender), ());
 
--- 
+-- Select records of movies with at least 4 ratings, starting from 2018-04-01.
+SELECT *
+FROM renting AS r
+LEFT JOIN movies AS m
+ON m.movie_id = r.movie_id
+WHERE r.movie_id IN ( SELECT movie_id FROM renting GROUP BY movie_id HAVING COUNT(rating) >= 4) AND r.date_renting >= '2018-04-01'; 
 
+--For each combination of the actors' nationality and gender, calculate the average rating, the number of ratings, the number of movie rentals, and the number of actors.
+SELECT a.nationality,
+       a.gender,
+	   AVG(r.rating) AS avg_rating, 
+	   COUNT(r.rating) AS n_rating, 
+	   COUNT(*) AS n_rentals, 
+	   COUNT(DISTINCT a.actor_id) AS n_actors 
+FROM renting AS r
+LEFT JOIN actsin AS ai
+ON ai.movie_id = r.movie_id
+LEFT JOIN actors AS a
+ON ai.actor_id = a.actor_id
+WHERE r.movie_id IN ( 
+	SELECT movie_id
+	FROM renting
+	GROUP BY movie_id
+	HAVING COUNT(rating) >=4 )
+AND r.date_renting >= '2018-04-01'
+GROUP BY a.nationality, a.gender;
+
+--Provide results for all aggregation levels represented in a pivot table.
+
+SELECT a.nationality,
+       a.gender,
+	   AVG(r.rating) AS avg_rating,
+	   COUNT(r.rating) AS n_rating,
+	   COUNT(*) AS n_rentals,
+	   COUNT(DISTINCT a.actor_id) AS n_actors
+FROM renting AS r
+LEFT JOIN actsin AS ai
+ON ai.movie_id = r.movie_id
+LEFT JOIN actors AS a
+ON ai.actor_id = a.actor_id
+WHERE r.movie_id IN ( 
+	SELECT movie_id
+	FROM renting
+	GROUP BY movie_id
+	HAVING COUNT(rating) >= 4)
+AND r.date_renting >= '2018-04-01'
+GROUP BY CUBE (a.nationality, a.gender); 
 ```
