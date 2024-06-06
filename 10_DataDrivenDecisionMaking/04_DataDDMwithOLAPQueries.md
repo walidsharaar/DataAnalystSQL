@@ -21,4 +21,36 @@ FROM movies
 GROUP BY CUBE (year_of_release, genre)
 ORDER BY year_of_release;
 
+--Augment the records of movie rentals with information about movies and customers
+SELECT *
+FROM renting AS r
+LEFT JOIN movies AS m
+ON m.movie_id = r.movie_id
+LEFT JOIN customers AS c
+ON r.customer_id = c.customer_id;
+
+--Calculate the average rating for each country.
+SELECT 
+	c.country, 
+	AVG(r.rating)
+FROM renting AS r
+LEFT JOIN movies AS m
+ON m.movie_id = r.movie_id
+LEFT JOIN customers AS c
+ON r.customer_id = c.customer_id
+GROUP BY c.country;
+
+--Calculate the average rating for all aggregation levels of country and genre.
+SELECT 
+	c.country, 
+	m.genre, 
+	AVG(r.rating) AS avg_rating 
+FROM renting AS r
+LEFT JOIN movies AS m
+ON m.movie_id = r.movie_id
+LEFT JOIN customers AS c
+ON r.customer_id = c.customer_id
+GROUP BY CUBE (c.country, m.genre);
+
+
 ```
