@@ -7,5 +7,18 @@
 - The CUBE operator is used to obtain all these aggregation levels with a simple query.
 
 ```
+--Create a table with the total number of customers, of all female and male customers, of the number of customers for each country and the number of men and women from each country.
+SELECT gender,   country, COUNT(*)
+FROM customers
+GROUP BY CUBE (gender, country)
+ORDER BY country;
+
+--List the number of movies for different genres and the year of release on all aggregation levels by using the CUBE operator.
+SELECT year_of_release,
+       genre,
+	   COUNT(*)
+FROM movies
+GROUP BY CUBE (year_of_release, genre)
+ORDER BY year_of_release;
 
 ```
