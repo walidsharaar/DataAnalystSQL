@@ -100,3 +100,41 @@ WHERE movie_id IN
 	WHERE r.movie_id = m.movie_id)
   
   ```
+## EXISTS vs NOT EXISTS Function
+- The EXISTS function in SQL is a useful feature that checks if the result of a correlated nested query is empty or not.
+- It returns a boolean value, either TRUE or FALSE, depending on whether the query has at least one row or an empty table.
+- The function can be used to select movies with at least one rating from a table.
+- For example, if the movie ID is 11, the query will return an empty table. If the movie ID is 1, it will be included in the result.
+- If the function is not NULL, it returns TRUE, and the outer query will select the movie with no ratings.
+
+  ```
+  --Select all records of movie rentals from the customer with ID 115 and exclude records with null ratings.
+  
+  SELECT * FROM renting WHERE rating IS NOT NULL AND customer_id = 115;
+  
+  --Select all customers with at least one rating.
+  SELECT * FROM customers AS c  WHERE EXISTS
+	(SELECT *
+	FROM renting AS r
+	WHERE rating IS NOT NULL 
+	AND r.customer_id = c.customer_id);
+  --Create a list of all actors who play in a Comedy.
+  SELECT * FROM actors AS a WHERE EXISTS
+	(SELECT *
+	 FROM actsin AS ai
+	 LEFT JOIN movies AS m
+	 ON m.movie_id = ai.movie_id
+	 WHERE m.genre = 'Comedy'
+	 AND ai.actor_id = a.actor_id);
+
+  --Report the nationality and the number of actors for each nationality.
+
+  SELECT a.nationality,   COUNT(*)  FROM actors AS a WHERE EXISTS
+	(SELECT ai.actor_id
+	 FROM actsin AS ai
+	 LEFT JOIN movies AS m
+	 ON m.movie_id = ai.movie_id
+	 WHERE m.genre = 'Comedy'
+	 AND ai.actor_id = a.actor_id) GROUP BY a.nationality;
+  
+  ```
