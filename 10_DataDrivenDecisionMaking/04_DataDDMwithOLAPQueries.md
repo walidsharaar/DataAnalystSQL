@@ -54,3 +54,56 @@ GROUP BY CUBE (c.country, m.genre);
 
 
 ```
+
+### The ROLLUP operator
+- is a tool used to execute OLAP queries, allowing for different levels of aggregation.
+- It is used in conjunction with a GROUP BY statement, resulting in a table with different levels of aggregation.
+- The order of column names between parentheses is crucial, with the first column aggregated on two levels and the second on only one level.
+- The ROLLUP operator is used to present data on different levels of detail, dropping a level of detail at each step.
+- The ROLLUP clause can include multiple aggregations, such as movie rentals and ratings, to display the corresponding numbers in columns n_rentals and n_ratings.
+```
+--Generate a table with the total number of customers, the number of customers for each country, and the number of female and male customers for each country and order the result by country and gender
+
+SELECT country,
+       gender,
+	   COUNT(*)
+FROM customers
+GROUP BY ROLLUP (country, gender)
+ORDER BY country, gender;
+
+--Calculate the average ratings and the number of ratings for each country and each genre. Include the columns country and genre in the SELECT clause.
+SELECT 
+	c.country, 
+	m.genre, 
+    AVG(r.rating), 
+	COUNT(*)
+FROM renting AS r
+LEFT JOIN movies AS m
+ON m.movie_id = r.movie_id
+LEFT JOIN customers AS c
+ON r.customer_id = c.customer_id
+GROUP BY c.country, m.genre 
+ORDER BY c.country, m.genre;
+
+```
+
+### Grouping sets
+- The GROUPING SETS operator is a flexible addition to OLAP, allowing for the extraction of different levels of aggregation for the number of movie rentals.
+- The GROUPING SETS operator can be seen as a UNION over GROUP BY statements, where each group represents one GROUP BY statement.
+- The GROUPING SETS operator can be used to count the number of movie rentals for each combination of country and genre, group by country, group by genre, and total aggregation.
+- The resulting table is a combination of all four queries, equivalent to a GROUP BY CUBE query of country and genre.
+- The results of the GROUPING SETS query are presented in a pivot table, with the first row representing the total aggregation corresponding to the empty parentheses.
+
+```
+--Count the number of actors in the table actors from each country, the number of male and female actors and the total number of actors.
+
+SELECT 
+	nationality,
+    gender, 
+    COUNT(*) 
+FROM actors
+GROUP BY GROUPING SETS ((nationality), (gender), ());
+
+-- 
+
+```
