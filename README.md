@@ -44,3 +44,6 @@ If you already have knowledge in some areas, you can take assessments to verify 
 When Was the Golden Age of Video Games?
 Apply your knowledge by using SQL joins and set theory to discover the best years for video games.
 
+## Accomplishment Statement
+![image](https://github.com/walidsharaar/DataAnalystSQL/assets/29350894/6ef2eddf-680d-4230-a1a0-b9bca6d6618c)
+
