@@ -80,4 +80,23 @@ WHERE movie_id IN
   --Calculate the minimum rating of customer with ID 7
   SELECT MIN(rating) FROM renting WHERE customer_id = 7;
 
+  --Select all customers with a minimum rating smaller than 4.
+  SELECT * FROM customers c WHERE 4> 
+	(SELECT MIN(rating)
+	FROM renting AS r
+	WHERE r.customer_id = c.customer_id);
+	--Select all movies with more than 5 ratings.
+  SELECT *
+  FROM movies AS m
+  WHERE 5 < 
+	(SELECT COUNT(rating)
+	FROM renting AS r
+	WHERE r.movie_id = m.movie_id);
+
+  --Select all movies with an average rating higher than 8.
+  SELECT * FROM movies AS m WHERE 8<
+	(SELECT avg(rating)
+	FROM renting AS r
+	WHERE r.movie_id = m.movie_id)
+  
   ```
