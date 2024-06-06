@@ -138,3 +138,61 @@ WHERE movie_id IN
 	 AND ai.actor_id = a.actor_id) GROUP BY a.nationality;
   
   ```
+### UNION and INTERSECT
+- UNION is a set operator that joins two tables, ensuring no duplicates. An example of UNION involves two tables with elements A, B, C, and D, and two tables with elements D, E, and F.
+- The UNION operator selects columns from both tables, resulting in a set of movies with either a renting price higher than 2.8 or being Action and Adventure movies.
+- INTERSECT, on the other hand, is an INTERSECT of two tables, resulting in only the movie Astro Boy with a renting price higher than 2.8 and being an Action and Adventure movie.
+
+  ```
+  --Report the name, nationality and the year of birth of all actors who are not from the USA.
+  SELECT name, nationality,  year_of_birth
+  FROM actors
+  where nationality !='USA';
+  
+  --Select all actors who are not from the USA and all actors who are born after 1990.
+  SELECT name, 
+       nationality, 
+       year_of_birth FROM actors
+  WHERE nationality <> 'USA'
+  UNION
+  SELECT name, 
+       nationality, 
+       year_of_birth
+  FROM actors
+  WHERE year_of_birth > 1990;
+  
+  --Select all actors who are not from the USA and who are also born after 1990.
+  SELECT name, 
+       nationality, 
+       year_of_birth FROM actors WHERE nationality <> 'USA'
+  Intersect
+  SELECT name, 
+       nationality, 
+       year_of_birth
+  FROM actors
+  WHERE year_of_birth > 1990;
+  
+  --Select the IDs of all dramas with average rating higher than 9
+  SELECT movie_id
+  FROM movies
+  WHERE genre = 'Drama'
+  intersect
+  SELECT movie_id
+  FROM renting
+  GROUP BY movie_id
+  HAVING AVG(rating)>9;
+
+  --Select all movies of in the drama genre with an average rating higher than 9.
+  SELECT * FROM movies WHERE movie_id IN 
+   (SELECT movie_id
+    FROM movies
+    WHERE genre = 'Drama'
+    INTERSECT
+    SELECT movie_id
+    FROM renting
+    GROUP BY movie_id
+    HAVING AVG(rating)>9);
+  
+  
+  ```
+  
